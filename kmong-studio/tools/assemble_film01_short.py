@@ -3,7 +3,9 @@
 16:9 컷에서 세로로 잘라(피사체 위치에 맞춰 가로 위치 지정) 1080x1920으로 키우고,
 숏폼 전용 자막·대형 워드마크·엔드 로고와 BGM 절정 구간을 얹는다.
 
-usage: python3 assemble_film01_short.py <cuts_dir> <overlay_dir> <bgm.wav> <out.mp4>
+usage: python3 assemble_film01_short.py <cuts_dir> <overlay_dir> <bgm.wav> <out.mp4> [--frame]
+  기본(crop): 세로로 잘라 꽉 채움 (1.78배 확대 → 샤프닝으로 보정)
+  --frame   : 16:9 화면을 확대 없이 가운데에 두고 위아래 검은 여백 (가장 선명, 시네마 느낌)
 """
 import os
 import re
@@ -13,6 +15,7 @@ import tempfile
 
 F = os.environ.get("FFMPEG", "ffmpeg")
 cuts, ovdir, bgm, out = sys.argv[1:5]
+FRAME = "--frame" in sys.argv
 BGM_FROM = 19.0  # 본편 BGM의 절정 시작 지점부터 사용
 
 # (컷 파일, 시작, 끝, 세로 크롭 중심 x(1920 기준))
@@ -51,20 +54,25 @@ with open(lst, "w") as fl:
     for i, (name, a, b, cx) in enumerate(SEGS):
         src = os.path.join(cuts, name + "_CUT.mp4")
         x = max(0, min(1920 - 608, cx - 304))
-        vf = f"crop=608:1080:{x}:0,scale=1080:1920:flags=lanczos,setsar=1,fps=24,format=yuv420p"
+        if FRAME:
+            vf = "scale=1080:608:flags=lanczos,pad=1080:1920:0:656:black,setsar=1,fps=24,format=yuv420p"
+        else:
+            vf = (f"crop=608:1080:{x}:0,scale=1080:1920:flags=lanczos,"
+                  "unsharp=5:5:0.7:5:5:0.0,setsar=1,fps=24,format=yuv420p")
         if i == 0:
             vf += ",fade=t=in:st=0:d=0.25"
         dst = os.path.join(tmp, f"{i}.mov")
         run(["-ss", str(a), "-t", f"{b - a:.3f}", "-i", src, "-vf", vf,
              "-af", "aresample=48000,aformat=channel_layouts=stereo",
-             "-c:v", "libx264", "-crf", "14", "-preset", "medium", "-c:a", "pcm_s16le", dst])
+             "-c:v", "libx264", "-crf", "10", "-preset", "medium", "-c:a", "pcm_s16le", dst])
         fl.write(f"file '{dst}'\n")
 body = os.path.join(tmp, "body.mov")
 run(["-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", body])
 total = dur(body)
 
 inputs = ["-i", body, "-ss", str(BGM_FROM), "-i", bgm]
-fc = ["[0:v]eq=saturation=0.9:contrast=0.97,curves=all='0/0.025 1/1',noise=alls=3:allf=t[v0]"]
+# 숏폼은 확대·재압축에 그레인이 뭉개지므로 노이즈를 넣지 않음
+fc = ["[0:v]eq=saturation=0.9:contrast=0.97,curves=all='0/0.025 1/1'[v0]"]
 last = "v0"
 for i, (png, st, en, fd) in enumerate(OVERLAYS):
     en = total if en is None else en
@@ -78,6 +86,7 @@ fc.append("[0:a]volume=0.8[sfx]")
 fc.append(f"[1:a]atrim=0:{total:.3f},afade=t=in:st=0:d=0.3,volume=0.7,afade=t=out:st={total - 1.2:.3f}:d=1.2[bg]")
 fc.append("[sfx][bg]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9[aout]")
 run([*inputs, "-filter_complex", ";".join(fc), "-map", "[vout]", "-map", "[aout]", "-t", f"{total:.3f}",
-     "-c:v", "libx264", "-crf", "18", "-preset", "slow", "-maxrate", "9M", "-bufsize", "14M",
+     "-c:v", "libx264", "-crf", "15", "-preset", "slow", "-tune", "film", "-maxrate", "20M", "-bufsize", "30M",
+     "-profile:v", "high", "-level", "4.2",
      "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-movflags", "+faststart", out])
 print("done", out, round(dur(out), 2), "s")
