@@ -42,12 +42,15 @@ A single luxury serum bottle on a seamless light grey studio background: a slim 
 ```
 + 이미지 꼬리말
 
-**ING-B 가상 모델**
+**ING-B 가상 모델** — 기준 인물: Flow에서 생성한 "빙하 전망 창가, 샴페인 실크 로브" 이미지의 여성
+- **방법 A (추천):** 그 이미지를 첨부하고 아래 프롬프트 → 얼굴이 가장 비슷하게 유지됨
 ```
-Portrait of a fictional Korean woman in her late 20s, calm serene expression, dewy luminous glass skin, minimal natural makeup, straight dark hair tied in a low loose bun with a few face-framing strands, small gold stud earrings, ivory silk camisole, soft even beauty lighting, neutral grey background, front-facing medium close-up.
+Use the attached image as the reference for the woman's face: keep her facial features, face shape, skin tone and hair color exactly the same. Ignore the bottle, the robe and the background.
+Beauty portrait of this same fictional woman in her early 30s, calm serene expression with a faint soft smile, dewy luminous glass skin, minimal natural makeup, softly defined brows, long dark brown hair with soft natural waves, loosely tied in a low bun with a few face-framing strands, small gold stud earrings, ivory champagne silk camisole. Soft even beauty lighting, neutral grey background, front-facing medium close-up. She must be clearly recognizable as the same woman.
 ```
+- **방법 B (첨부 없이):** 첨부 문장 두 줄을 빼고 `Beauty portrait of a fictional woman…`으로 시작
 + 이미지 꼬리말
-> 실존 인물과 닮았으면 폐기하고 다시 생성하세요.
+> 기준 이미지는 반드시 **우리가 AI로 생성한 이미지**여야 합니다. 실제 사진·연예인 사진은 첨부 금지. 결과가 실존 인물과 닮았으면 폐기하고 다시 생성하세요.
 
 **ING-C 무드**
 ```
