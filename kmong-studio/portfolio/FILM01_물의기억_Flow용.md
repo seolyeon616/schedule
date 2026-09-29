@@ -69,8 +69,9 @@ Extreme macro of a single perfectly spherical crystal-clear water droplet suspen
 ```
 - **영상 프롬프트:**
 ```
-Extreme macro, locked-off camera. In pure darkness, a single crystal-clear water droplet falls slowly downward in ultra slow motion, its surface wobbling gently. An icy cyan rim light glints across it, and a tiny glacier reflection shimmers inside. Nothing else moves. Audio: a single soft crystalline water drip with a long airy reverb.
+Extreme macro, locked-off camera. In pure darkness, the glowing water droplet from the first frame falls slowly downward in ultra slow motion. It is liquid water, not a glass ball: its surface wobbles and ripples gently as it falls. The icy cyan glow stays around it and the tiny glacier reflection inside shimmers. A few tiny water beads drift beside it. Nothing else moves. Audio: a single soft crystalline water drip with a long airy reverb.
 ```
+- **첫 프레임 고르는 기준:** 물방울 **하나만** 있고, 가장자리에 작은 물방울·물기가 보여 **유리구슬이 아니라 물처럼 보이는 것**. 인물이나 제품이 같이 나온 결과는 이 컷에 쓰지 않습니다. 고른 이미지는 #8(세럼 방울)에서 크기·위치를 맞출 기준으로 따로 저장해 두세요.
 - **편집:** 떨어지는 영상을 **역재생** → "위로 떨어지는 물방울" 완성. (Veo에 역중력을 바로 시키는 것보다 훨씬 안정적)
 
 ### #2 · 0:03–0:07 · 물방울 속으로 → 빙하 협곡
