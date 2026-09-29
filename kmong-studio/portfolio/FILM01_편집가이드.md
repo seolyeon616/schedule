@@ -118,7 +118,7 @@
 
 ---
 
-## 8. 브랜드 (확정 전 추천안)
+## 8. 브랜드 (MANYEON 확정)
 
 - **브랜드:** `MANYEON` (萬年, "ten thousand years") — 한국어 단어를 헤리티지 하우스처럼 쓰는 방식. 이름 자체가 영상의 이야기.
 - **제품명:** `THE FIRST DROP` · `Glacial Rejuvenating Serum`
