@@ -5,7 +5,7 @@ import path from "node:path";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const out = process.argv[2] || path.resolve(here, "../brand");
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
-const page = await browser.newPage({ deviceScaleFactor: 1, viewport: { width: 1920, height: 1080 } });
+const page = await browser.newPage({ deviceScaleFactor: 1, viewport: { width: 1920, height: 1920 } });
 await page.goto("file://" + path.join(here, "overlays.html"));
 await page.evaluate(() => document.fonts.ready);
 await page.waitForTimeout(300);
