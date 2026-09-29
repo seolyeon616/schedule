@@ -85,13 +85,19 @@ Use the attached image as the reference for the [strawberry / cake / alley / caf
 Use the first attached image as the reference for the alley and the second attached image as the reference for the strawberry.
 Eye-level smartphone photo in the red-brick alley: a giant strawberry the size of a small car is rolling around the corner at the far end of the alley toward the camera, two pedestrians in the distance turning to look at it. Realistic scale, contact shadow on the pavement.
 ```
-- **② 영상 (첨부: ①결과)**
+- **② 영상 (첨부: ①결과)** — v2: 1차 결과의 문제(장면 점프·공중부양·딸기 뒤집힘·크기 변화)를 막는 버전
 ```
-Use the attached image as the first frame. Keep the alley and the strawberry exactly the same.
-The giant strawberry rolls down the alley straight toward the camera, bouncing slightly on the cobblestones, its green leaves flopping with each bounce. The handheld camera takes a small startled step back. Passersby in the background pause with minimal movement.
-Audio: heavy soft thuds of the rolling strawberry, street ambience.
+Animate the attached image, using it as the first frame. One continuous shot with no cuts: the same alley, the same buildings and the same strawberry from the first frame to the last.
+The giant strawberry hops toward the camera in two slow, heavy bounces, like a huge soft ball. It always stays upright with its green leaves on top, never tumbling, spinning or flipping over. Each time it lands it touches the cobblestones, squashes slightly and casts a clear shadow; it never floats. Its size, shape and seed pattern stay exactly the same. The two passersby step aside to the edges of the alley, staying seen from behind. The camera stays in place at eye level with only a small natural handheld shake.
+Audio: two deep soft thuds of the landing strawberry, street ambience.
 ```
-+ 꼬리말 A · **고르는 기준:** 첫 1초 안에 딸기가 이미 보이고 크기가 확실히 비현실적인 것
++ 꼬리말 A · **편집:** 두 번째 착지 "쿵"까지 약 2초만 사용 → #2로 하드컷
+- **그래도 튀면 (대안 B, 가장 안정적):** 딸기를 움직이지 말고 카메라만 움직이기
+```
+Animate the attached image, using it as the first frame. One continuous shot with no cuts, the same alley throughout.
+The giant strawberry stays still in the alley. The handheld camera walks slowly toward it with natural footsteps, the strawberry growing larger in the frame, glossy and perfectly still, casting a shadow on the cobblestones. The two passersby stop and look up at it, seen from behind.
+Audio: footsteps on cobblestones, street ambience, a low curious hum of the crowd.
+```
 
 ### #2 · 0:02–0:04 · 쿵! 크림이 터진다
 - **① 이미지 (첨부: ING-S3 → ING-S1)**
