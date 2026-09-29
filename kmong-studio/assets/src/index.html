@@ -61,18 +61,19 @@
 .sketch-lines { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 1px, transparent 1px 7px); }
 
 /* pilot */
-#thumb-pilot { background: radial-gradient(ellipse at 70% 60%, #1f2a3a 0%, #0a0c12 50%, #050507 100%); }
-#thumb-pilot .copy { position: absolute; left: 34px; top: 30px; z-index: 4; }
-#thumb-pilot .h1 { font-size: 44px; font-weight: 900; letter-spacing: -.045em; line-height: 1.12; margin-top: 30px; }
-#thumb-pilot .price { position: absolute; left: 34px; bottom: 30px; z-index: 4; }
-#thumb-pilot .price .p { font-size: 64px; line-height: 1; }
-#thumb-pilot .price .p small { font-family: Pretendard; font-size: 20px; font-weight: 800; color: var(--ivory); }
-#thumb-pilot .price .sub { margin-top: 8px; font-size: 13px; font-weight: 800; color: #1a1206; background: var(--gold-grad); display: inline-block; padding: 6px 12px; border-radius: 8px; }
-#thumb-pilot .viewer { position: absolute; right: 34px; top: 118px; width: 300px; height: 169px; z-index: 3; }
-#thumb-pilot .corner { position: absolute; width: 22px; height: 22px; border-color: var(--gold1); border-style: solid; }
-#thumb-pilot .meta { position: absolute; right: 34px; top: 300px; width: 300px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .15em; font-weight: 700; color: var(--mute); z-index: 3; }
-#thumb-pilot .inc { position: absolute; right: 34px; bottom: 30px; width: 300px; display: flex; gap: 6px; z-index: 3; }
-#thumb-pilot .inc span { flex: 1; text-align: center; font-size: 11px; font-weight: 800; padding: 9px 0; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+#thumb-pilot { background: radial-gradient(ellipse at 72% 45%, #1f2a3a 0%, #0a0c12 50%, #050507 100%); }
+/* 모든 요소를 안쪽 44px 세이프존 안에 배치 (플랫폼 크롭 대비) */
+#thumb-pilot .top { position: absolute; left: 44px; right: 44px; top: 42px; display: flex; justify-content: space-between; align-items: center; z-index: 4; }
+#thumb-pilot .h1 { position: absolute; left: 44px; top: 104px; width: 280px; font-size: 38px; font-weight: 900; letter-spacing: -.045em; line-height: 1.16; z-index: 4; }
+#thumb-pilot .price { position: absolute; left: 44px; top: 300px; z-index: 4; }
+#thumb-pilot .price .p { font-size: 60px; line-height: 1; }
+#thumb-pilot .price .p small { font-family: Pretendard; font-size: 19px; font-weight: 800; color: var(--ivory); }
+#thumb-pilot .price .sub { margin-top: 10px; font-size: 12.5px; font-weight: 800; color: #1a1206; background: var(--gold-grad); display: inline-block; padding: 6px 11px; border-radius: 8px; }
+#thumb-pilot .viewer { position: absolute; left: 344px; top: 108px; width: 264px; height: 149px; z-index: 3; }
+#thumb-pilot .corner { position: absolute; width: 18px; height: 18px; border-color: var(--gold1); border-style: solid; }
+#thumb-pilot .meta { position: absolute; left: 344px; top: 270px; width: 264px; display: flex; justify-content: space-between; font-size: 9.5px; letter-spacing: .14em; font-weight: 700; color: var(--mute); z-index: 3; }
+#thumb-pilot .inc { position: absolute; left: 344px; top: 336px; width: 264px; display: flex; gap: 6px; z-index: 3; }
+#thumb-pilot .inc span { flex: 1; text-align: center; font-size: 11px; font-weight: 800; padding: 10px 0; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
 #thumb-pilot .inc b { display: block; font-family: "Noto Serif KR"; font-size: 18px; color: var(--gold2); }
 
 /* ---------- DETAIL ---------- */
@@ -218,10 +219,11 @@ table.cmp tr:last-child td.us { border-radius: 0 0 12px 12px; }
 
 <!-- PROCESS BAR --><!-- ================= THUMB PILOT (entry gig) ================= -->
 <section class="board thumb grain vignette" id="thumb-pilot">
-  <div class="copy">
-    <div class="logo" style="font-size:15px"><svg style="width:18px;height:18px"><use href="#mark"/></svg><span class="gold">뚝딱컷</span><span class="eyebrow" style="margin-left:8px;font-size:9px">PILOT CUT</span></div>
-    <div class="h1">큰돈 쓰기 전에,<br><span class="gold">먼저 보고</span><br>결정하세요.</div>
+  <div class="top">
+    <div class="logo" style="font-size:15px"><svg style="width:18px;height:18px"><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div>
+    <div class="pill" style="font-size:10px;padding:5px 12px"><i></i>PILOT CUT</div>
   </div>
+  <div class="h1">큰돈 쓰기 전에,<br><span class="gold">먼저 보고</span><br>결정하세요.</div>
   <div class="viewer" id="pv"></div>
   <div class="meta"><span>● PILOT · 10s · 16:9</span><span>YOUR BRAND</span></div>
   <div class="inc"><span><b>1</b>컨셉안</span><span><b>3</b>스타일프레임</span><span><b>10s</b>파일럿 영상</span></div>
@@ -398,10 +400,10 @@ const lbl = (el, x, y, t, sub = "") => el.insertAdjacentHTML("beforeend", `<div 
 // thumb-pilot viewer
 (() => {
   const v = document.getElementById("pv");
-  v.insertAdjacentHTML("beforeend", `<div class="frame" style="left:0;top:0;width:300px;height:169px"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><span class="rec">PILOT</span></div>`);
-  [[-8,-8,"border-width:2px 0 0 2px"],[286,-8,"border-width:2px 2px 0 0"],[-8,155,"border-width:0 0 2px 2px"],[286,155,"border-width:0 2px 2px 0"]]
+  v.insertAdjacentHTML("beforeend", `<div class="frame" style="left:0;top:0;width:264px;height:149px"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><span class="rec">PILOT</span></div>`);
+  [[-7,-7,"border-width:2px 0 0 2px"],[253,-7,"border-width:2px 2px 0 0"],[-7,138,"border-width:0 0 2px 2px"],[253,138,"border-width:0 2px 2px 0"]]
     .forEach(([x,y,b])=>v.insertAdjacentHTML("beforeend",`<div class="corner" style="left:${x}px;top:${y}px;${b}"></div>`));
-  sparks(document.getElementById("thumb-pilot"), 470, 300, 30, 110, 11);
+  sparks(document.getElementById("thumb-pilot"), 476, 262, 26, 90, 11);
 })();
 
 // d01 hero
