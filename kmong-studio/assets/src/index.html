@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>뚝딱컷 크몽 에셋</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ---------- THUMB MAIN ---------- */
+#thumb-main { background: radial-gradient(ellipse at 74% 88%, #2a1c0c 0%, #0b0a0c 45%, #050507 100%); }
+#thumb-main .copy { position: absolute; left: 34px; top: 30px; z-index: 5; }
+#thumb-main .logo { font-size: 17px; }
+#thumb-main .logo small { font-size: 9px; letter-spacing: .3em; color: var(--mute); font-weight: 700; margin-left: 4px; }
+#thumb-main .pill { margin-top: 44px; }
+#thumb-main .l1 { margin-top: 18px; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.12; }
+#thumb-main .l3 { font-size: 128px; line-height: .98; margin-top: 2px; letter-spacing: -.04em; }
+#thumb-main .chips { position: absolute; left: 34px; bottom: 26px; display: flex; gap: 8px; z-index: 5; }
+#thumb-main .chip { font-size: 11.5px; font-weight: 700; padding: 7px 11px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: #e9e2d4; }
+#thumb-main .chip b { color: var(--gold2); margin-right: 4px; }
+
+/* ---------- shared sub-thumb ---------- */
+.st { background: radial-gradient(ellipse at 50% 0%, #1c160d 0%, #0a0a0d 55%, #050507 100%); padding: 30px 34px; }
+.st .top { display: flex; justify-content: space-between; align-items: center; }
+.st .logo { font-size: 13px; }
+.st .logo svg { width: 18px; height: 18px; }
+.st .h { font-size: 32px; font-weight: 900; letter-spacing: -.04em; line-height: 1.18; margin-top: 16px; }
+.st .num { font-family: "Noto Serif KR", serif; font-weight: 900; }
+
+/* kit */
+#thumb-kit .grid { position: absolute; left: 34px; right: 34px; top: 170px; bottom: 30px; }
+#thumb-kit .lbl { position: absolute; font-size: 10px; letter-spacing: .2em; font-weight: 800; color: var(--gold2); }
+#thumb-kit .still { position: absolute; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,240,200,.35); }
+#thumb-kit .still svg { width: 100%; height: 100%; display: block; }
+#thumb-kit .count { position: absolute; right: 34px; top: 70px; text-align: right; }
+#thumb-kit .count b { font-size: 54px; line-height: 1; }
+#thumb-kit .count span { display: block; font-size: 11px; color: var(--mute); font-weight: 700; letter-spacing: .1em; margin-top: 2px; }
+
+/* packages */
+#thumb-packages .cols { display: flex; gap: 10px; margin-top: 56px; }
+#thumb-packages .col { flex: 1; border-radius: 16px; padding: 22px 16px 20px; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.035); position: relative; }
+#thumb-packages .col.best { border: 1.5px solid var(--gold2); background: linear-gradient(180deg, rgba(230,192,122,.16), rgba(230,192,122,.03)); box-shadow: 0 0 40px rgba(230,192,122,.18); transform: translateY(-8px); }
+#thumb-packages .badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 9.5px; font-weight: 900; letter-spacing: .2em; color: #1a1206; background: var(--gold-grad); padding: 4px 10px; border-radius: 999px; }
+#thumb-packages .nm { font-size: 10px; letter-spacing: .22em; font-weight: 800; color: var(--gold2); }
+#thumb-packages .pr { font-size: 44px; margin-top: 6px; line-height: 1; letter-spacing: -.03em; }
+#thumb-packages .pr small { font-family: Pretendard; font-size: 13px; font-weight: 700; margin-left: 2px; color: #e9e2d4; }
+#thumb-packages .one { font-size: 14.5px; font-weight: 800; margin: 10px 0 10px; line-height: 1.35; min-height: 34px; }
+#thumb-packages ul { list-style: none; font-size: 12.5px; line-height: 1.95; color: #cbc4b8; font-weight: 500; }
+#thumb-packages li::before { content: "—"; color: var(--gold2); margin-right: 5px; }
+#thumb-packages .foot { position: absolute; left: 34px; bottom: 18px; font-size: 10.5px; color: var(--mute); font-weight: 600; }
+
+/* process */
+#thumb-process .steps { position: absolute; left: 34px; right: 34px; top: 176px; display: flex; gap: 10px; }
+#thumb-process .step { flex: 1; }
+#thumb-process .shot { height: 100px; border-radius: 6px; overflow: hidden; position: relative; box-shadow: 0 0 0 1px rgba(255,240,200,.25); }
+#thumb-process .shot svg { width: 100%; height: 100%; display: block; }
+#thumb-process .k { margin-top: 12px; font-size: 10px; letter-spacing: .2em; color: var(--gold2); font-weight: 800; }
+#thumb-process .t { font-size: 15px; font-weight: 800; margin-top: 4px; letter-spacing: -.02em; }
+#thumb-process .d { font-size: 11px; color: var(--mute); margin-top: 4px; line-height: 1.5; font-weight: 500; }
+#thumb-process .arrow { position: absolute; top: 236px; font-size: 16px; color: var(--gold2); }
+#thumb-process .gate { position: absolute; top: 6px; left: 6px; font-size: 8.5px; font-weight: 900; letter-spacing: .15em; background: rgba(0,0,0,.6); color: var(--gold1); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; }
+.sketch { filter: grayscale(1) contrast(1.3) brightness(1.1); }
+.sketch-lines { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 1px, transparent 1px 7px); }
+
+/* pilot */
+#thumb-pilot { background: radial-gradient(ellipse at 70% 60%, #1f2a3a 0%, #0a0c12 50%, #050507 100%); }
+#thumb-pilot .copy { position: absolute; left: 34px; top: 30px; z-index: 4; }
+#thumb-pilot .h1 { font-size: 44px; font-weight: 900; letter-spacing: -.045em; line-height: 1.12; margin-top: 30px; }
+#thumb-pilot .price { position: absolute; left: 34px; bottom: 30px; z-index: 4; }
+#thumb-pilot .price .p { font-size: 64px; line-height: 1; }
+#thumb-pilot .price .p small { font-family: Pretendard; font-size: 20px; font-weight: 800; color: var(--ivory); }
+#thumb-pilot .price .sub { margin-top: 8px; font-size: 13px; font-weight: 800; color: #1a1206; background: var(--gold-grad); display: inline-block; padding: 6px 12px; border-radius: 8px; }
+#thumb-pilot .viewer { position: absolute; right: 34px; top: 118px; width: 300px; height: 169px; z-index: 3; }
+#thumb-pilot .corner { position: absolute; width: 22px; height: 22px; border-color: var(--gold1); border-style: solid; }
+#thumb-pilot .meta { position: absolute; right: 34px; top: 300px; width: 300px; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .15em; font-weight: 700; color: var(--mute); z-index: 3; }
+#thumb-pilot .inc { position: absolute; right: 34px; bottom: 30px; width: 300px; display: flex; gap: 6px; z-index: 3; }
+#thumb-pilot .inc span { flex: 1; text-align: center; font-size: 11px; font-weight: 800; padding: 9px 0; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+#thumb-pilot .inc b { display: block; font-family: "Noto Serif KR"; font-size: 18px; color: var(--gold2); }
+
+/* ---------- DETAIL ---------- */
+.detail { background: var(--ink); }
+.detail .center { text-align: center; }
+#d01 { height: 980px; background: radial-gradient(ellipse at 50% 64%, #2e1f0d 0%, #0d0b0c 42%, #050507 100%); }
+#d01 .top { position: absolute; top: 44px; left: 0; right: 0; text-align: center; z-index: 5; }
+#d01 .top .logo { justify-content: center; font-size: 18px; }
+#d01 .copy { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; z-index: 6; }
+#d01 .l1 { font-size: 44px; font-weight: 800; letter-spacing: -.045em; line-height: 1.15; }
+#d01 .l3 { font-size: 150px; line-height: 1; letter-spacing: -.04em; margin-top: 4px; }
+#d01 .sub { font-size: 18px; font-weight: 600; color: #d8d1c5; margin-top: 18px; }
+#d01 .sub b { color: var(--gold2); }
+
+.xcard { display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; }
+.xcard .x { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #6b3b35; color: #ff7b6b; display: grid; place-items: center; font-weight: 900; font-size: 15px; }
+.xcard b { font-size: 19px; font-weight: 800; letter-spacing: -.02em; }
+.xcard p { font-size: 14.5px; color: var(--mute); margin-top: 6px; line-height: 1.55; font-weight: 500; }
+
+.why { display: grid; grid-template-columns: 86px 1fr; gap: 6px 10px; padding: 30px 0; border-top: 1px solid rgba(255,255,255,.08); }
+.why .n { font-family: "Noto Serif KR"; font-weight: 900; font-size: 46px; line-height: 1; }
+.why .t { font-size: 23px; font-weight: 800; letter-spacing: -.03em; }
+.why .d { font-size: 15.5px; color: #bdb6aa; line-height: 1.65; margin-top: 8px; font-weight: 500; }
+.why .viz { grid-column: 2; margin-top: 16px; }
+
+.poster { position: relative; border-radius: 14px; overflow: hidden; height: 400px; box-shadow: 0 0 0 1px rgba(255,240,200,.2), 0 30px 60px rgba(0,0,0,.6); }
+.poster .bg { position: absolute; inset: 0; }
+.poster .bg svg { width: 100%; height: 100%; }
+.poster .cap { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 3; }
+.poster .cap .k { font-size: 10px; letter-spacing: .25em; font-weight: 800; color: var(--gold2); }
+.poster .cap .t { font-family: "Noto Serif KR"; font-size: 34px; font-weight: 900; margin-top: 6px; }
+.poster .cap .m { font-size: 12px; color: #cfc8bb; margin-top: 6px; font-weight: 600; }
+.poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.85)); z-index: 2; }
+
+.kitbox { position: relative; height: 470px; margin-top: 44px; }
+.kitbox .lbl { position: absolute; font-size: 11px; letter-spacing: .18em; font-weight: 800; color: var(--gold2); }
+.kitbox .lbl span { color: var(--mute); letter-spacing: .05em; font-weight: 600; margin-left: 6px; }
+.kitbox .still { position: absolute; border-radius: 4px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,240,200,.35), 0 14px 30px rgba(0,0,0,.5); }
+.kitbox .still svg { width: 100%; height: 100%; display: block; }
+.kitbox .chip { position: absolute; font-size: 13px; font-weight: 800; padding: 8px 13px; border-radius: 9px; background: rgba(230,192,122,.1); border: 1px solid var(--line); color: var(--gold1); }
+
+table.cmp { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 40px; font-size: 14px; }
+table.cmp th, table.cmp td { padding: 16px 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,.07); line-height: 1.45; }
+table.cmp th { font-size: 13px; letter-spacing: .06em; color: var(--mute); font-weight: 700; }
+table.cmp td:first-child { text-align: left; color: #e7e0d3; font-weight: 800; width: 112px; }
+table.cmp td { color: #9c968d; font-weight: 500; }
+table.cmp .us { background: rgba(230,192,122,.09); color: var(--gold1); font-weight: 800; }
+table.cmp th.us { color: #1a1206; background: var(--gold-grad); border-radius: 12px 12px 0 0; font-weight: 900; font-size: 15px; letter-spacing: 0; }
+table.cmp tr:last-child td.us { border-radius: 0 0 12px 12px; }
+
+.pkgs { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+.pkg { border-radius: 20px; padding: 28px 30px; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.03); display: grid; grid-template-columns: 176px 1fr; gap: 22px; position: relative; }
+.pkg.best { border: 1.5px solid var(--gold2); background: linear-gradient(135deg, rgba(230,192,122,.16), rgba(230,192,122,.02)); box-shadow: 0 0 60px rgba(230,192,122,.14); }
+.pkg .badge { position: absolute; top: -12px; left: 28px; font-size: 11px; font-weight: 900; letter-spacing: .2em; color: #1a1206; background: var(--gold-grad); padding: 5px 12px; border-radius: 999px; }
+.pkg .nm { font-size: 10px; letter-spacing: .16em; line-height: 1.6; font-weight: 800; color: var(--gold2); }
+.pkg .pr { font-family: "Noto Serif KR"; font-weight: 900; font-size: 46px; line-height: 1.05; margin-top: 8px; letter-spacing: -.03em; }
+.pkg .pr small { font-family: Pretendard; font-size: 15px; font-weight: 700; color: #e9e2d4; margin-left: 3px; }
+.pkg .meta { font-size: 12.5px; color: var(--mute); margin-top: 10px; font-weight: 600; line-height: 1.6; }
+.pkg .one { font-size: 18px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+.pkg ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 10px; font-size: 13px; white-space: nowrap; color: #cbc4b8; font-weight: 500; }
+.pkg li { padding-left: 16px; position: relative; line-height: 1.45; }
+.pkg li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold2); }
+
+.tl { margin-top: 44px; position: relative; }
+.tl::before { content: ""; position: absolute; left: 21px; top: 10px; bottom: 10px; width: 1px; background: linear-gradient(180deg, var(--gold2), rgba(230,192,122,.1)); }
+.tl .row { display: grid; grid-template-columns: 44px 1fr; gap: 20px; padding: 14px 0; position: relative; }
+.tl .dot { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); border: 1px solid var(--line); font-family: "Noto Serif KR"; font-weight: 900; color: var(--gold2); font-size: 16px; z-index: 1; }
+.tl .row.g .dot { background: var(--gold-grad); color: #1a1206; border: 0; box-shadow: 0 0 22px rgba(230,192,122,.45); }
+.tl .t { font-size: 19px; font-weight: 800; letter-spacing: -.02em; display: flex; align-items: center; gap: 10px; padding-top: 2px; }
+.tl .t em { font-style: normal; font-size: 10.5px; letter-spacing: .18em; font-weight: 900; color: var(--gold1); border: 1px solid var(--line); padding: 3px 8px; border-radius: 5px; }
+.tl .d { font-size: 14.5px; color: var(--mute); margin-top: 5px; line-height: 1.6; font-weight: 500; }
+
+.pilotcard { margin-top: 36px; border-radius: 22px; padding: 34px; border: 1.5px solid var(--gold2); background: linear-gradient(135deg, rgba(230,192,122,.14), rgba(230,192,122,.02)); display: grid; grid-template-columns: 1fr 190px; gap: 20px; align-items: center; }
+.notice { margin-top: 26px; border-radius: 16px; padding: 22px 26px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); }
+.notice li { font-size: 13.5px; color: #a8a298; line-height: 1.85; list-style: none; font-weight: 500; }
+.notice li::before { content: "·"; color: var(--gold2); margin-right: 8px; font-weight: 900; }
+</style>
+</head>
+<body>
+<script src="defs.js"></script>
+
+<!-- ================= THUMB MAIN ================= -->
+<section class="board thumb grain vignette" id="thumb-main">
+  <div class="copy">
+    <div class="logo"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span><small>AI AD STUDIO</small></div>
+    <div class="pill"><i></i>TV CF · CAMPAIGN · BRAND IP</div>
+    <div class="l1">촬영 없이,<br>방송급 광고를</div>
+    <div class="l3 serif gold glow">뚝딱.</div>
+  </div>
+  <div class="chips">
+    <span class="chip"><b>✓</b>결제 전 파일럿 컷</span>
+    <span class="chip"><b>✓</b>4K 방송 규격</span>
+    <span class="chip"><b>✓</b>IP 소유권 이전</span>
+  </div>
+</section>
+
+<!-- ================= THUMB KIT ================= -->
+<section class="board thumb st grain" id="thumb-kit">
+  <div class="top"><div class="logo"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div><span class="eyebrow">Campaign Kit</span></div>
+  <div class="h">영상 한 편 말고,<br><span class="gold">캠페인 한 세트.</span></div>
+  <div class="count"><b class="num gold">24</b><span>DELIVERABLES · DELUXE</span></div>
+  <div class="grid" id="kitgrid"></div>
+</section>
+
+<!-- ================= THUMB PACKAGES ================= -->
+<section class="board thumb st grain" id="thumb-packages">
+  <div class="top"><div class="logo"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div><span class="eyebrow">Packages</span></div>
+  <div class="cols">
+    <div class="col">
+      <div class="nm">SIGNATURE CUT</div>
+      <div class="pr num gold">200<small>만원</small></div>
+      <div class="one">30초 방송급<br>브랜드 광고</div>
+      <ul><li>스타일프레임 4장</li><li>9:16 리컷</li><li>오리지널 BGM</li><li>4K · 10일</li></ul>
+    </div>
+    <div class="col best"><span class="badge">BEST</span>
+      <div class="nm">CAMPAIGN CUT</div>
+      <div class="pr num gold">500<small>만원</small></div>
+      <div class="one">59초 본편 +<br>캠페인 킷 전체</div>
+      <ul><li>애니매틱 콘티</li><li>전 비율 리컷·컷다운</li><li>훅 A/B 3종</li><li>전속 가상 모델</li></ul>
+    </div>
+    <div class="col">
+      <div class="nm">BRAND UNIVERSE</div>
+      <div class="pr num gold">1,000<small>만원</small></div>
+      <div class="one">세계관·IP +<br>시리즈 3편</div>
+      <ul><li>IP 소유권 이전</li><li>방송·옥외 규격</li><li>전담 디렉터</li><li>집행 후 성과 리컷</li></ul>
+    </div>
+  </div>
+  <div class="foot" style="bottom:44px;display:flex;gap:6px"><span style="font-size:11px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid var(--line);color:var(--gold1)">전 패키지 스타일프레임 선공개</span><span style="font-size:11px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid var(--line);color:var(--gold1)">일관성 바이블</span><span style="font-size:11px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid var(--line);color:var(--gold1)">세금계산서 발행</span><span style="font-size:11px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid var(--line);color:var(--gold1)">VAT 별도</span></div>
+</section>
+
+<!-- ================= THUMB PROCESS ================= -->
+<section class="board thumb st grain" id="thumb-process">
+  <div class="top"><div class="logo"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div><span class="eyebrow">Process</span></div>
+  <div class="h">만들기 전에,<br><span class="gold">먼저 보여드립니다.</span></div>
+  <div class="steps">
+    <div class="step"><div class="shot"><svg class="sketch" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><div class="sketch-lines"></div><span class="gate">결제 전</span></div><div class="k">01 PILOT</div><div class="t">파일럿 컷</div><div class="d">우리 브랜드로<br>먼저 확인</div></div>
+    <div class="step"><div class="shot"><svg style="filter:saturate(.5) brightness(.9)" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><span class="gate">GATE 1·2</span></div><div class="k">02 FRAME</div><div class="t">스타일프레임</div><div class="d">룩과 톤을<br>스틸로 확정</div></div>
+    <div class="step"><div class="shot"><svg style="filter:saturate(.8)" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><span class="gate">GATE 3</span></div><div class="k">03 ROUGH</div><div class="t">러프컷</div><div class="d">흐름과 타이밍<br>확인</div></div>
+    <div class="step"><div class="shot" style="box-shadow:0 0 0 1.5px var(--gold2),0 0 30px rgba(230,192,122,.35)"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><span class="gate">4K</span></div><div class="k">04 FINAL</div><div class="t gold">최종 납품</div><div class="d">캠페인 킷<br>일괄 전달</div></div>
+  </div>
+  <div class="abs" style="left:34px;right:34px;bottom:28px;padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:rgba(230,192,122,.07);display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;font-weight:800">결제 전 <span class="gold">1번</span> + 제작 중 <span class="gold">3번</span>, 눈으로 확인하고 진행합니다.</span><span class="eyebrow" style="font-size:10px">NO BLACK BOX</span></div>
+</section>
+
+<!-- PROCESS BAR --><!-- ================= THUMB PILOT (entry gig) ================= -->
+<section class="board thumb grain vignette" id="thumb-pilot">
+  <div class="copy">
+    <div class="logo" style="font-size:15px"><svg style="width:18px;height:18px"><use href="#mark"/></svg><span class="gold">뚝딱컷</span><span class="eyebrow" style="margin-left:8px;font-size:9px">PILOT CUT</span></div>
+    <div class="h1">큰돈 쓰기 전에,<br><span class="gold">먼저 보고</span><br>결정하세요.</div>
+  </div>
+  <div class="viewer" id="pv"></div>
+  <div class="meta"><span>● PILOT · 10s · 16:9</span><span>YOUR BRAND</span></div>
+  <div class="inc"><span><b>1</b>컨셉안</span><span><b>3</b>스타일프레임</span><span><b>10s</b>파일럿 영상</span></div>
+  <div class="price"><div class="p serif gold glow">30<small>만원</small></div><div class="sub">본 제작 결제 시 100% 차감</div></div>
+</section>
+
+<!-- ================= DETAIL 01 HERO ================= -->
+<section class="board detail grain vignette" id="d01">
+  <div class="top"><div class="logo"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div><div class="eyebrow" style="margin-top:10px">AI AD STUDIO · SINCE 2026</div></div>
+  <div class="copy">
+    <div class="l1">촬영 없이,<br>방송급 광고를</div>
+    <div class="l3 serif gold glow">뚝딱.</div>
+    <div class="sub">고객님은 <b>한 줄</b>, 나머지는 <b>뚝딱컷</b>이.</div>
+  </div>
+</section>
+
+<!-- ================= DETAIL 02 PROBLEM ================= -->
+<section class="board detail sec grain" id="d02">
+  <div class="eyebrow">Problem</div>
+  <div class="h2" style="margin-top:14px">AI 영상 맡겼다가,<br>이런 경험 있으셨나요?</div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-top:36px">
+    <div class="card xcard"><div class="x">✕</div><div><b>결과물이 나올 때까지 아무것도 모른다</b><p>결제는 했는데 어떤 느낌일지는 완성본을 받아봐야 압니다.</p></div></div>
+    <div class="card xcard"><div class="x">✕</div><div><b>컷마다 모델 얼굴이, 제품 모양이 바뀐다</b><p>같은 광고 안에서 사람이 바뀌고 라벨 글자가 깨집니다.</p></div></div>
+    <div class="card xcard"><div class="x">✕</div><div><b>예쁜데, 광고로 돌리니 아무도 안 멈춘다</b><p>첫 1.5초 설계가 없어 피드에서 그대로 스크롤됩니다.</p></div></div>
+    <div class="card xcard"><div class="x">✕</div><div><b>16:9 하나 받고, 숏폼은 또 따로 맡긴다</b><p>매체가 바뀔 때마다 비용과 시간이 다시 듭니다.</p></div></div>
+  </div>
+  <div class="center" style="margin-top:56px">
+    <div class="divider" style="margin-bottom:44px"></div>
+    <div style="font-size:18px;color:var(--mute);font-weight:600">그래서 뚝딱컷은</div>
+    <div class="h2 gold" style="margin-top:10px;font-size:44px">네 가지 모두를<br>공정으로 없앴습니다.</div>
+  </div>
+</section>
+
+<!-- ================= DETAIL 03 WHY ================= -->
+<section class="board detail sec grain" id="d03" style="background:linear-gradient(180deg,#050507,#0c0b0a)">
+  <div class="eyebrow">Why 뚝딱컷</div>
+  <div class="h2" style="margin-top:14px">결과는 <span class="gold">뚝딱</span>,<br>과정은 대행사급.</div>
+  <p class="lead" style="margin-top:16px">전략 → 세계관 → 스타일프레임 → 애니매틱 → 생성 → 편집 → 사운드 → 매체별 리컷.<br>빠짐없이 거치기 때문에, 고객님은 기다리기만 하시면 됩니다.</p>
+  <div style="margin-top:36px">
+    <div class="why"><div class="n gold">01</div><div><div class="t">결제 전, 파일럿 컷</div><div class="d">우리 브랜드에 적용한 장면을 먼저 보고 결정하세요.<br>파일럿 비용은 본 제작 결제 시 전액 차감됩니다.</div></div></div>
+    <div class="why"><div class="n gold">02</div><div><div class="t">본 제작 전, 스타일프레임 · 애니매틱</div><div class="d">룩과 흐름을 눈으로 확정한 뒤 제작합니다.<br>"생각한 것과 달라요"가 구조적으로 나올 수 없습니다.</div></div></div>
+    <div class="why"><div class="n gold">03</div><div><div class="t">영상 한 편이 아닌, 캠페인 한 세트</div><div class="d">본편 · 컷다운 · 전 비율 리컷 · 훅 A/B · 키비주얼.<br>받는 즉시 TV · 유튜브 · 메타 · 옥외에 집행할 수 있습니다.</div></div></div>
+    <div class="why"><div class="n gold">04</div><div><div class="t">광고가 끝나도 남는 브랜드 자산</div><div class="d">전속 가상 모델과 세계관을 설계하고 IP를 이전해 드립니다.<br>다음 캠페인은 처음부터가 아니라 이어서 시작합니다.</div></div></div>
+    <div class="why" style="border-bottom:1px solid rgba(255,255,255,.08)"><div class="n gold">05</div><div><div class="t">4K · 방송 · 옥외 규격 마스터</div><div class="d">AI 영상이라 생기는 해상도·깨짐 걱정 없이,<br>매체 규격에 맞춘 마스터 파일로 납품합니다.</div></div></div>
+  </div>
+</section>
+
+<!-- ================= DETAIL 04 WORKS ================= -->
+<section class="board detail sec grain" id="d04">
+  <div class="eyebrow">Signature Works</div>
+  <div class="h2" style="margin-top:14px">촬영 0회로 완성하는<br><span class="gold">뚝딱컷</span> 시그니처 필름.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px">
+    <div class="poster"><div class="bg"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scDrop"/></svg></div>
+      <div class="cap"><div class="k">BEAUTY CF</div><div class="t">물의 기억</div><div class="m">45s · 16:9 · 4K<br>"당신의 피부에 닿기까지, 1만 년."</div></div></div>
+    <div class="poster" id="poster2" style="background:radial-gradient(ellipse at 50% 80%,#3a260e,#0a0908 60%)">
+      <div class="cap"><div class="k">BRAND FILM</div><div class="t">방망이</div><div class="m">50s · 16:9 · 4K<br>"당신의 브랜드, 나와라."</div></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px">
+    <div class="poster" style="height:120px"><div class="bg"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg></div><div class="cap" style="bottom:10px;left:12px"><div class="k" style="font-size:9px">FRAGRANCE</div></div></div>
+    <div class="poster" style="height:120px"><div class="bg"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scRoad"/></svg></div><div class="cap" style="bottom:10px;left:12px"><div class="k" style="font-size:9px">MOBILITY</div></div></div>
+    <div class="poster" style="height:120px"><div class="bg"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scHanok"/></svg></div><div class="cap" style="bottom:10px;left:12px"><div class="k" style="font-size:9px">K-CULTURE</div></div></div>
+  </div>
+</section>
+
+<!-- ================= DETAIL 05 CAMPAIGN KIT ================= -->
+<section class="board detail sec grain" id="d05" style="background:radial-gradient(ellipse at 50% 30%,#17130c,#050507 70%)">
+  <div class="eyebrow">Campaign Kit</div>
+  <div class="h2" style="margin-top:14px">영상 한 편이 아니라,<br><span class="gold">캠페인 한 세트</span>를 드립니다.</div>
+  <p class="lead" style="margin-top:14px">CAMPAIGN CUT(500만원) 기준 · 받는 즉시 모든 매체에 집행 가능</p>
+  <div class="kitbox" id="kitbox"></div>
+</section>
+
+<!-- ================= DETAIL 06 COMPARE ================= -->
+<section class="board detail sec grain" id="d06">
+  <div class="eyebrow">Compare</div>
+  <div class="h2" style="margin-top:14px">같은 광고,<br>다른 방식.</div>
+  <table class="cmp">
+    <tr><th></th><th>촬영 CF</th><th>일반 AI 영상</th><th class="us">뚝딱컷</th></tr>
+    <tr><td>결제 전 확인</td><td>시안 · 레퍼런스</td><td>포트폴리오</td><td class="us">파일럿 컷<br>+ 스타일프레임</td></tr>
+    <tr><td>제작 기간</td><td>섭외 · 촬영 · 후반<br>수주 ~ 수개월</td><td>빠름</td><td class="us">10 ~ 25일</td></tr>
+    <tr><td>모델</td><td>섭외 · 초상권 계약</td><td>컷마다 달라짐</td><td class="us">전속 가상 모델<br>고정</td></tr>
+    <tr><td>불가능한 장면</td><td>세트 · CG 추가 비용</td><td>가능</td><td class="us">가능<br>+ 4K 방송 규격</td></tr>
+    <tr><td>산출물</td><td>본편 중심<br>리컷 별도</td><td>영상 1편</td><td class="us">캠페인 킷 일괄</td></tr>
+    <tr><td>다음 캠페인</td><td>처음부터 다시</td><td>처음부터 다시</td><td class="us">바이블 · IP로<br>이어서</td></tr>
+  </table>
+</section>
+
+<!-- ================= DETAIL 07 PACKAGES ================= -->
+<section class="board detail sec grain" id="d07" style="background:linear-gradient(180deg,#050507,#0d0b08)">
+  <div class="eyebrow">Packages</div>
+  <div class="h2" style="margin-top:14px">목적에 맞게,<br>세 가지 스케일.</div>
+  <div class="pkgs">
+    <div class="pkg"><div><div class="nm">STANDARD<br>SIGNATURE CUT</div><div class="pr gold">200<small>만원</small></div><div class="meta">작업 10일 · 수정 3회<br>VAT 별도</div></div>
+      <div><div class="one">30초 방송급 브랜드 광고 한 편</div><ul><li>전략 1p + 컨셉 2안</li><li>스타일프레임 4장</li><li>일관성 바이블</li><li>실사 합성 제품 컷</li><li>성우 · 오리지널 BGM</li><li>16:9 본편 + 9:16 리컷</li><li>키비주얼 3장</li><li>4K + FHD</li></ul></div></div>
+    <div class="pkg best"><span class="badge">MOST CHOSEN</span><div><div class="nm">DELUXE<br>CAMPAIGN CUT</div><div class="pr gold">500<small>만원</small></div><div class="meta">작업 15일 · 수정 5회<br>VAT 별도</div></div>
+      <div><div class="one">59초 본편 + 캠페인 킷 전체</div><ul><li>전략서 + 컨셉 3안</li><li>애니매틱 (무빙 콘티)</li><li>스타일프레임 8장</li><li>전속 가상 모델 설계</li><li>30초 · 15초 컷다운</li><li>9:16 · 1:1 · 4:5 리컷</li><li>훅 A/B 3종</li><li>로고 사운드</li><li>한 / 영 자막</li><li>키비주얼 8장</li><li>원본 소스 제공</li></ul></div></div>
+    <div class="pkg"><div><div class="nm">PREMIUM<br>BRAND UNIVERSE</div><div class="pr gold">1,000<small>만원</small></div><div class="meta">작업 25일 · 수정 8회<br>VAT 별도</div></div>
+      <div><div class="one">브랜드 세계관 · IP + 시리즈 3편</div><ul><li>브랜드 세계관 북</li><li>가상 모델 IP 이전</li><li>59초 + 30초 × 2편</li><li>편별 컷다운 · 훅 9종</li><li>방송 · DOOH 규격</li><li>브랜드 사운드 로고</li><li>키비주얼 20장</li><li>AI 비주얼 가이드북</li><li>전담 디렉터 · 미팅</li><li>집행 4주 후 성과 리컷</li></ul></div></div>
+  </div>
+  <p style="margin-top:20px;font-size:13px;color:var(--mute);font-weight:500">세금계산서 발행 가능 · 예산이 패키지 사이라면 맞춤 견적으로 구성해 드립니다.</p>
+</section>
+
+<!-- ================= DETAIL 08 PROCESS ================= -->
+<section class="board detail sec grain" id="d08">
+  <div class="eyebrow">Process</div>
+  <div class="h2" style="margin-top:14px">세 번 확인하고,<br>한 번에 끝냅니다.</div>
+  <div class="tl">
+    <div class="row"><div class="dot">1</div><div><div class="t">문의 · 무료 컨셉 제안서</div><div class="d">한 줄만 보내주세요. 48시간 안에 컨셉 3안을 보내드립니다.</div></div></div>
+    <div class="row"><div class="dot">2</div><div><div class="t">파일럿 컷 <em>선택</em></div><div class="d">10초 파일럿으로 우리 브랜드에 적용한 퀄리티를 먼저 확인합니다.</div></div></div>
+    <div class="row"><div class="dot">3</div><div><div class="t">결제 · 킥오프 브리프</div><div class="d">질문지 10문항, 5분이면 충분합니다.</div></div></div>
+    <div class="row g"><div class="dot">G1</div><div><div class="t">전략 · 기획 컨펌 <em>GATE 1</em></div><div class="d">전략, 컨셉, 스토리보드, 카피를 확정합니다.</div></div></div>
+    <div class="row g"><div class="dot">G2</div><div><div class="t">스타일프레임 · 애니매틱 컨펌 <em>GATE 2</em></div><div class="d">실제 장면의 룩과 흐름을 눈으로 확정합니다.</div></div></div>
+    <div class="row g"><div class="dot">G3</div><div><div class="t">러프컷 컨펌 <em>GATE 3</em></div><div class="d">순서, 타이밍, 자막, 음악을 점검합니다.</div></div></div>
+    <div class="row"><div class="dot">✓</div><div><div class="t gold">최종 납품 · 성과 리컷</div><div class="d">캠페인 킷 일괄 전달. PREMIUM은 집행 4주 후 데이터로 한 번 더 다듬습니다.</div></div></div>
+  </div>
+</section>
+
+<!-- ================= DETAIL 09 PILOT + CTA ================= -->
+<section class="board detail sec grain" id="d09" style="background:radial-gradient(ellipse at 50% 100%,#2e1f0d,#050507 60%);padding-bottom:0">
+  <div class="eyebrow">First Step</div>
+  <div class="h2" style="margin-top:14px">처음이라면,<br>파일럿 컷부터.</div>
+  <div class="pilotcard">
+    <div><div style="font-size:20px;font-weight:800;letter-spacing:-.02em">큰 예산을 쓰기 전에<br>우리 브랜드로 먼저 확인하세요.</div>
+      <div style="font-size:14px;color:#cfc8bb;margin-top:12px;line-height:1.7;font-weight:500">컨셉 1안 · 스타일프레임 3장 · 10초 영상<br>2주 안에 본 제작 결제 시 <b style="color:var(--gold1)">전액 차감</b></div></div>
+    <div style="text-align:right"><div class="serif gold glow" style="font-size:72px;font-weight:900;line-height:1">30<span style="font-family:Pretendard;font-size:22px;color:var(--ivory);font-weight:800">만원</span></div><div style="font-size:12px;color:var(--mute);margin-top:6px;font-weight:600">5일 · VAT 별도</div></div>
+  </div>
+  <ul class="notice">
+    <li>실존 인물(연예인·정치인·일반인)의 얼굴·목소리 합성은 제작하지 않습니다.</li>
+    <li>로고·문구는 AI로 생성하지 않고 편집 단계에서 원본 그대로 합성합니다.</li>
+    <li>상업 이용이 허용된 유료 플랜 툴과 라이선스 음원만 사용합니다.</li>
+    <li>수정은 확정된 기획 범위 안의 변경이며, 컨셉 변경은 재기획으로 협의합니다.</li>
+  </ul>
+  <div id="cta" style="position:relative;height:640px;margin:40px -56px 0;text-align:center">
+    <div style="position:absolute;left:0;right:0;top:40px;z-index:5">
+      <div style="font-size:18px;color:#d8d1c5;font-weight:600">떠오르는 게 한 줄뿐이어도 괜찮습니다.</div>
+      <div class="h2" style="font-size:50px;margin-top:10px">그 한 줄,<br><span class="gold serif glow" style="font-size:64px">뚝딱</span> 광고로.</div>
+      <div style="margin-top:22px;display:inline-block;font-size:15px;font-weight:800;color:#1a1206;background:var(--gold-grad);padding:13px 26px;border-radius:999px;box-shadow:0 0 40px rgba(230,192,122,.35)">지금 문의하기 · 48시간 내 컨셉 3안</div>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:30px;z-index:5"><div class="logo" style="justify-content:center;font-size:16px"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div></div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const b = document.getElementById("thumb-main");
+  floorGlow(b, 500, 425, 520, 150);
+  frame(b, { x: 356, y: 58, w: 176, h: 99, rot: -8, scene: "scPerfume", tag: "BEAUTY", z: 2 });
+  frame(b, { x: 470, y: 26, w: 158, h: 89, rot: 6, scene: "scRoad", tag: "MOBILITY", rec: true, z: 3 });
+  frame(b, { x: 392, y: 196, w: 132, h: 74, rot: -2, scene: "scHanok", tag: "K-CULTURE", z: 2 });
+  shock(b, 500, 424, 440, 64);
+  club(b, 500, 420, 300, 24);
+  sparks(b, 500, 410, 70, 150, 3);
+})();
+</script>
+
+<script>
+const still = (el, x, y, w, h, sc, extra = "") => el.insertAdjacentHTML("beforeend",
+  `<div class="still" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;${extra}"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#${sc}"/></svg></div>`);
+const lbl = (el, x, y, t, sub = "") => el.insertAdjacentHTML("beforeend", `<div class="lbl" style="left:${x}px;top:${y}px">${t}${sub ? `<span>${sub}</span>` : ""}</div>`);
+
+// thumb-kit
+(() => {
+  const g = document.getElementById("kitgrid");
+  lbl(g, 0, 0, "MAIN 16:9"); still(g, 0, 18, 290, 163, "scPerfume", "box-shadow:0 0 0 1.5px var(--gold2),0 0 30px rgba(230,192,122,.3)");
+  lbl(g, 306, 0, "9:16"); still(g, 306, 18, 92, 163, "scHanok");
+  lbl(g, 412, 0, "1:1"); still(g, 412, 18, 72, 72, "scRoad");
+  lbl(g, 498, 0, "4:5"); still(g, 498, 18, 86, 108, "scDrop");
+  lbl(g, 412, 140, "CUTDOWN");
+  g.insertAdjacentHTML("beforeend", `<div class="abs" style="left:412px;top:158px;display:flex;gap:5px">${["30s","15s","6s","HOOK×3"].map(t=>`<span style="font-size:10px;font-weight:800;padding:4px 6px;border-radius:6px;border:1px solid var(--line);color:var(--gold1)">${t}</span>`).join("")}</div>`);
+  lbl(g, 0, 196, "KEY VISUAL × 8");
+  ["scPerfume","scRoad","scHanok","scDrop","scHanok","scPerfume","scDrop","scRoad"].forEach((s,i)=>still(g, i*73, 214, 66, 37, s));
+})();
+
+// thumb-pilot viewer
+(() => {
+  const v = document.getElementById("pv");
+  v.insertAdjacentHTML("beforeend", `<div class="frame" style="left:0;top:0;width:300px;height:169px"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><use href="#scPerfume"/></svg><span class="rec">PILOT</span></div>`);
+  [[-8,-8,"border-width:2px 0 0 2px"],[286,-8,"border-width:2px 2px 0 0"],[-8,155,"border-width:0 0 2px 2px"],[286,155,"border-width:0 2px 2px 0"]]
+    .forEach(([x,y,b])=>v.insertAdjacentHTML("beforeend",`<div class="corner" style="left:${x}px;top:${y}px;${b}"></div>`));
+  sparks(document.getElementById("thumb-pilot"), 470, 300, 30, 110, 11);
+})();
+
+// d01 hero
+(() => {
+  const b = document.getElementById("d01");
+  floorGlow(b, 350, 600, 760, 220);
+  frame(b, { x: 40, y: 140, w: 222, h: 125, rot: -9, scene: "scPerfume", tag: "BEAUTY", z: 2 });
+  frame(b, { x: 440, y: 112, w: 222, h: 125, rot: 7, scene: "scRoad", tag: "MOBILITY", rec: true, z: 2 });
+  frame(b, { x: 60, y: 330, w: 170, h: 96, rot: 4, scene: "scHanok", tag: "K-CULTURE", z: 2 });
+  frame(b, { x: 452, y: 318, w: 176, h: 99, rot: -5, scene: "scDrop", tag: "SKINCARE", z: 2 });
+  shock(b, 350, 598, 640, 90);
+  club(b, 350, 594, 360, -12);
+  sparks(b, 350, 585, 120, 230, 5);
+})();
+
+// d04 poster 2 (club)
+(() => {
+  const p = document.getElementById("poster2");
+  shock(p, 165, 300, 300, 46); club(p, 165, 297, 250, 14); sparks(p, 165, 290, 50, 110, 9);
+})();
+
+// d05 kit
+(() => {
+  const k = document.getElementById("kitbox");
+  lbl(k, 0, 0, "MAIN FILM", "16:9 · 59s · 4K"); still(k, 0, 22, 380, 214, "scPerfume", "box-shadow:0 0 0 1.5px var(--gold2),0 0 40px rgba(230,192,122,.3)");
+  lbl(k, 396, 0, "SHORTFORM", "9:16"); still(k, 396, 22, 120, 214, "scHanok");
+  lbl(k, 532, 0, "1:1"); still(k, 532, 22, 56, 56, "scRoad");
+  lbl(k, 532, 94, "4:5"); still(k, 532, 114, 56, 70, "scDrop");
+  lbl(k, 0, 262, "CUTDOWN");
+  [["30s",0],["15s",64],["6s bumper",128]].forEach(([t,x])=>k.insertAdjacentHTML("beforeend",`<div class="chip" style="left:${x}px;top:284px">${t}</div>`));
+  lbl(k, 300, 262, "HOOK A / B / C", "첫 3초 3종");
+  ["scDrop","scRoad","scHanok"].forEach((s,i)=>{ still(k, 300 + i*98, 284, 88, 50, s); k.insertAdjacentHTML("beforeend",`<div class="abs" style="left:${306+i*98}px;top:288px;font-size:10px;font-weight:900;color:#fff">${"ABC"[i]}</div>`); });
+  lbl(k, 0, 356, "KEY VISUAL", "× 8 · 인쇄용 고해상도");
+  ["scPerfume","scRoad","scHanok","scDrop","scHanok","scPerfume","scDrop","scRoad"].forEach((s,i)=>still(k, (i%4)*148, 378 + Math.floor(i/4)*48, 140, 42, s));
+})();
+
+// d09 cta club
+(() => {
+  const c = document.getElementById("cta");
+  floorGlow(c, 350, 560, 700, 140);
+  shock(c, 350, 558, 560, 60); club(c, 350, 554, 250, -18); sparks(c, 350, 545, 90, 200, 21);
+})();
+</script>
+</body>
+</html>
