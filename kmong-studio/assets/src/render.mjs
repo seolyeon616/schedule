@@ -17,7 +17,9 @@ await page.waitForTimeout(400);
 const ids = await page.$$eval("section.board", (els) => els.map((e) => e.id));
 for (const id of ids) {
   if (only.length && !only.includes(id)) continue;
-  await page.locator("#" + id).screenshot({ path: path.join(out, id + ".png") });
+  const shot = { path: path.join(out, id + ".png") };
+  await page.locator("#" + id).screenshot(shot);
+  if (id === "detail-one") await page.locator("#" + id).screenshot({ path: path.join(out, id + ".jpg"), type: "jpeg", quality: 90 });
   console.log("rendered", id);
 }
 // full-length detail page: all detail sections stacked with no gaps

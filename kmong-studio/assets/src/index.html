@@ -165,6 +165,59 @@ table.opt small { color: var(--mute); font-weight: 500; margin-left: 6px; font-s
 .notice li { font-size: 13.5px; color: #a8a298; line-height: 1.85; list-style: none; font-weight: 500; }
 .notice li::before { content: "·"; color: var(--gold2); margin-right: 8px; font-weight: 900; }
 .notice li b { color: #e7e0d3; }
+
+/* ---------- ONE-PAGE DETAIL (모바일 가독성: 본문 20px 이상) ---------- */
+#detail-one { width: 700px; background: #060608; }
+#detail-one .blk { position: relative; padding: 64px 48px; }
+#detail-one .kick { font-size: 15px; letter-spacing: .3em; font-weight: 800; color: var(--gold2); text-align: center; }
+#detail-one .ttl { font-size: 44px; font-weight: 900; letter-spacing: -.04em; line-height: 1.2; text-align: center; margin-top: 12px; }
+#detail-one .sub { font-size: 21px; color: #cfc8bb; font-weight: 600; text-align: center; margin-top: 12px; line-height: 1.5; }
+#detail-one .sep { height: 1px; margin: 0 48px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+#detail-one .hero { height: 900px; padding: 0; background: radial-gradient(ellipse at 50% 34%, #2e1f0d 0%, #0d0b0c 45%, #060608 100%); }
+#detail-one .hero .copy { position: absolute; left: 0; right: 0; top: 452px; text-align: center; z-index: 6; }
+#detail-one .hero .h1 { font-size: 42px; font-weight: 900; letter-spacing: -.045em; line-height: 1.18; }
+#detail-one .hero .tt { font-size: 104px; line-height: 1; margin-top: 2px; }
+#detail-one .hero .pr { display: inline-flex; align-items: flex-end; gap: 12px; margin-top: 18px; padding: 16px 30px; border-radius: 22px; border: 1.5px solid var(--gold2); background: rgba(230,192,122,.08); box-shadow: 0 0 50px rgba(230,192,122,.18); }
+#detail-one .hero .pr .m { font-size: 40px; font-weight: 900; padding-bottom: 6px; }
+#detail-one .hero .pr .w { font-family: "Noto Serif KR"; font-weight: 900; font-size: 76px; line-height: .95; }
+#detail-one .hero .pr .w small { font-family: Pretendard; font-size: 26px; color: var(--ivory); margin-left: 3px; }
+#detail-one .hero .sc { font-size: 20px; font-weight: 700; color: #d8d1c5; margin-top: 14px; }
+#detail-one .chips { display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
+#detail-one .chips span { font-size: 19px; font-weight: 800; padding: 11px 16px; border-radius: 12px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); }
+#detail-one .chips b { color: var(--gold2); margin-right: 6px; }
+#detail-one .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 34px; }
+#detail-one .pc { position: relative; border-radius: 20px; padding: 24px 24px 22px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.035); }
+#detail-one .pc.best { border: 2px solid var(--gold2); background: linear-gradient(160deg, rgba(230,192,122,.2), rgba(230,192,122,.03)); box-shadow: 0 0 50px rgba(230,192,122,.2); }
+#detail-one .pc .bd { position: absolute; top: -13px; right: 18px; font-size: 13px; font-weight: 900; letter-spacing: .15em; color: #1a1206; background: var(--gold-grad); padding: 5px 12px; border-radius: 999px; }
+#detail-one .pc .n { font-size: 22px; font-weight: 900; }
+#detail-one .pc .n small { font-size: 16px; color: var(--mute); font-weight: 700; margin-left: 6px; }
+#detail-one .pc .p { font-family: "Noto Serif KR"; font-weight: 900; font-size: 58px; line-height: 1; margin-top: 10px; letter-spacing: -.03em; }
+#detail-one .pc .p small { font-family: Pretendard; font-size: 20px; color: var(--ivory); margin-left: 3px; }
+#detail-one .pc .d { font-size: 18.5px; color: #d6cfc2; font-weight: 600; margin-top: 12px; line-height: 1.55; }
+#detail-one .pc .d em { font-style: normal; color: var(--gold1); }
+#detail-one .note { margin-top: 20px; text-align: center; font-size: 18px; font-weight: 700; color: #bfb7a9; }
+#detail-one .inc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+#detail-one .inc div { border-radius: 16px; padding: 18px 14px; text-align: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+#detail-one .inc div i { display: block; font-style: normal; font-size: 14px; font-weight: 700; color: var(--gold2); margin-bottom: 4px; letter-spacing: .05em; }
+#detail-one .zero { margin: 26px auto 0; width: fit-content; font-size: 24px; font-weight: 900; padding: 14px 28px; border-radius: 16px; color: #1a1206; background: var(--gold-grad); box-shadow: 0 0 40px rgba(230,192,122,.3); }
+#detail-one .bank .row { grid-template-columns: 110px 1fr 96px; margin-bottom: 14px; }
+#detail-one .bank .lab { font-size: 20px; }
+#detail-one .bank .lab small { font-size: 15px; }
+#detail-one .bank .bar { height: 64px; }
+#detail-one .bank .seg span { font-size: 15px; }
+#detail-one .bank .eq { font-size: 20px; }
+#detail-one .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 34px; position: relative; }
+#detail-one .steps::before { content: ""; position: absolute; left: 12%; right: 12%; top: 34px; height: 2px; background: linear-gradient(90deg, var(--gold2), rgba(230,192,122,.2)); }
+#detail-one .st1 { text-align: center; position: relative; }
+#detail-one .st1 .c { width: 68px; height: 68px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; font-family: "Noto Serif KR"; font-weight: 900; font-size: 26px; color: var(--gold2); background: #0b0a09; border: 1.5px solid var(--gold2); }
+#detail-one .st1.last .c { background: var(--gold-grad); color: #1a1206; border: 0; box-shadow: 0 0 26px rgba(230,192,122,.45); }
+#detail-one .st1 b { display: block; font-size: 20px; font-weight: 900; margin-top: 14px; letter-spacing: -.02em; }
+#detail-one .st1 span { display: block; font-size: 16px; color: var(--mute); font-weight: 600; margin-top: 6px; line-height: 1.4; }
+#detail-one .ntc { margin-top: 8px; border-radius: 18px; padding: 22px 26px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.08); }
+#detail-one .ntc li { list-style: none; font-size: 17px; line-height: 1.75; color: #b7b0a5; font-weight: 500; }
+#detail-one .ntc li::before { content: "·"; color: var(--gold2); font-weight: 900; margin-right: 8px; }
+#detail-one .ntc li b { color: #ebe4d7; }
+#detail-one .cta { height: 520px; padding: 0; background: radial-gradient(ellipse at 50% 92%, #3a2710, #0a0908 55%, #060608 100%); text-align: center; }
 </style>
 </head>
 <body>
@@ -401,6 +454,83 @@ table.opt small { color: var(--mute); font-weight: 500; margin-left: 6px; font-s
   </div>
 </section>
 
+<!-- ================= ONE-PAGE DETAIL ================= -->
+<section class="board grain" id="detail-one">
+  <div class="blk hero" id="one-hero">
+    <div class="abs" style="left:0;right:0;top:46px;text-align:center;z-index:6"><div class="logo" style="justify-content:center;font-size:22px"><svg style="width:26px;height:26px"><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div><div class="kick" style="margin-top:8px;font-size:13px">AI AD STUDIO</div></div>
+    <div class="copy">
+      <div class="h1">촬영 없이, 방송급 AI 광고를</div>
+      <div class="tt serif gold glow">뚝딱.</div>
+      <div class="pr"><span class="m">1분</span><span class="w gold">15<small>만원</small></span></div>
+      <div class="sc"><span class="gold">숏컷</span> 15초 미만 <span class="gold">7.5만원</span>부터</div>
+      <div class="chips"><span><b>✓</b>컷수 무제한</span><span><b>✓</b>성우·BGM·내레이션</span><span><b>✓</b>추가금 0원</span></div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <div class="kick">PRICE</div>
+    <div class="ttl">가격은 <span class="gold">이게 전부</span>입니다</div>
+    <div class="sub">영상 길이(분) × 15만원 = 최종 금액</div>
+    <div class="grid2">
+      <div class="pc"><div class="n">숏컷<small>15초 미만</small></div><div class="p gold">7.5<small>만원</small></div><div class="d">릴스·쇼츠 1편<br>2일 · 수정 1회</div></div>
+      <div class="pc best"><span class="bd">BEST</span><div class="n">1분 컷</div><div class="p gold">15<small>만원</small></div><div class="d"><em>30초 × 2편</em> 또는 <em>15초 × 4편</em><br>3일 · 수정 2회</div></div>
+      <div class="pc"><div class="n">2분 컷</div><div class="p gold">30<small>만원</small></div><div class="d">최대 8편 · 4K<br>5일 · 수정 3회</div></div>
+      <div class="pc"><div class="n">3분 컷<small>2분 + 추가 1분</small></div><div class="p gold">45<small>만원</small></div><div class="d">한 달치 광고 소재 12편<br>7일 · 수정 3회</div></div>
+    </div>
+    <div class="note">결제 전 <span class="gold">무료 시안 1컷</span>으로 퀄리티부터 확인하세요</div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="blk">
+    <div class="kick">ALL-IN-ONE</div>
+    <div class="ttl">15만원 안에 <span class="gold">전부</span> 들어 있어요</div>
+    <div class="inc">
+      <div><i>01</i>기획·대본</div><div><i>02</i>장면 콘티</div><div><i>03</i>컷 무제한</div>
+      <div><i>04</i>AI 성우</div><div><i>05</i>내레이션</div><div><i>06</i>BGM</div>
+      <div><i>07</i>효과음</div><div><i>08</i>자막</div><div><i>09</i>색보정</div>
+      <div><i>10</i>16:9 · 9:16</div><div><i>11</i>제품·인물 고정</div><div><i>12</i>상업적 이용</div>
+    </div>
+    <div class="zero">추가금 0원</div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="blk">
+    <div class="kick">MINUTE BANK</div>
+    <div class="ttl">1분을 <span class="gold">쪼개</span> 쓰세요</div>
+    <div class="sub">15초 단위로 나눠도 가격은 그대로</div>
+    <div class="bank" id="bank-one" style="margin-top:32px"></div>
+  </div>
+  <div class="sep"></div>
+
+  <div class="blk">
+    <div class="kick">PROCESS</div>
+    <div class="ttl">먼저 보여드리고,<br><span class="gold">3일</span>이면 납품해요</div>
+    <div class="steps">
+      <div class="st1"><div class="c">1</div><b>무료 시안</b><span>결제 전<br>1컷 확인</span></div>
+      <div class="st1"><div class="c">2</div><b>대본·콘티</b><span>방향 먼저<br>컨펌</span></div>
+      <div class="st1"><div class="c">3</div><b>제작</b><span>컷 무제한<br>성우·BGM</span></div>
+      <div class="st1 last"><div class="c">✓</div><b class="gold">납품</b><span>1분 기준<br>3일</span></div>
+    </div>
+  </div>
+
+  <div class="blk" style="padding-top:20px">
+    <ul class="ntc">
+      <li><b>컷수 무제한</b> = 영상 길이 안에서 장면 수에 제한·추가금이 없다는 뜻이에요. 수정 횟수는 상품별로 정해져 있어요.</li>
+      <li><b>성우</b>는 프리미엄 AI 보이스가 포함이며, 실제 사람 성우는 옵션이에요.</li>
+      <li>실존 인물 합성은 하지 않고, 로고·문구는 원본 그대로 합성해요.</li>
+    </ul>
+  </div>
+
+  <div class="blk cta" id="one-cta">
+    <div class="abs" style="left:0;right:0;top:40px;z-index:6">
+      <div style="font-size:22px;color:#d8d1c5;font-weight:600">떠오르는 게 한 줄뿐이어도 괜찮아요.</div>
+      <div style="font-size:50px;font-weight:900;letter-spacing:-.04em;margin-top:10px">그 한 줄, <span class="gold serif glow" style="font-size:64px">뚝딱</span> 광고로.</div>
+      <div style="margin-top:24px;display:inline-block;font-size:22px;font-weight:900;color:#1a1206;background:var(--gold-grad);padding:17px 36px;border-radius:999px;box-shadow:0 0 40px rgba(230,192,122,.35)">무료 시안 1컷 받아보기</div>
+    </div>
+    <div class="abs" style="left:0;right:0;bottom:30px;z-index:6"><div class="logo" style="justify-content:center;font-size:20px"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div></div>
+  </div>
+</section>
+
 <script>
 // ----- receipts -----
 const ITEMS = [
@@ -477,6 +607,29 @@ bank(document.getElementById("bank3"), [
   floorGlow(c, 350, 680, 720, 160);
   shock(c, 350, 678, 600, 66); club(c, 350, 674, 260, -18); sparks(c, 350, 665, 100, 220, 21);
 })();
+// ----- one-page detail art -----
+bank(document.getElementById("bank-one"), [
+  ["1분 × 1편", "홍보 영상", [[4, "60초"]], "15만원"],
+  ["30초 × 2편", "광고 A/B", [[2, "30초"], [2, "30초"]], "15만원"],
+  ["15초 × 4편", "숏폼 4연속", [[1, "15초"], [1, "15초"], [1, "15초"], [1, "15초"]], "15만원"],
+], true);
+(() => {
+  const b = document.getElementById("one-hero");
+  floorGlow(b, 350, 404, 700, 170);
+  frame(b, { x: 40, y: 128, w: 200, h: 112, rot: -9, scene: "scPerfume", tag: "BEAUTY", z: 2 });
+  frame(b, { x: 466, y: 118, w: 200, h: 112, rot: 7, scene: "scRoad", tag: "MOBILITY", rec: true, z: 2 });
+  frame(b, { x: 70, y: 270, w: 150, h: 84, rot: 4, scene: "scHanok", tag: "K-CULTURE", z: 2 });
+  frame(b, { x: 488, y: 262, w: 150, h: 84, rot: -5, scene: "scDrop", tag: "SKINCARE", z: 2 });
+  shock(b, 350, 404, 520, 70);
+  club(b, 350, 400, 270, -12);
+  sparks(b, 350, 394, 90, 190, 7);
+})();
+(() => {
+  const c = document.getElementById("one-cta");
+  floorGlow(c, 350, 430, 700, 140);
+  shock(c, 350, 428, 520, 58); club(c, 350, 424, 170, -18); sparks(c, 350, 418, 70, 170, 23);
+})();
+
 </script>
 </body>
 </html>
