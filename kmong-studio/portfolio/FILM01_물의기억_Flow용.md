@@ -158,15 +158,22 @@ Audio: soft forest dawn ambience, distant birds, one tiny drip.
 - **편집:** #4 폭포 굉음을 끊고 조용한 숲 소리로 전환. 방울이 떨어지는 순간 → #6으로 컷.
 
 ### #6 · 0:19–0:23 · 도시 유리창
-- **모드:** Frames to Video (첫 프레임)
-- **첫 프레임 이미지:**
+- **모드:** 2단계 — ① 첫 프레임 **이미지**(ING-C를 톤 참고로 첨부) → ② 그 이미지를 첨부해 **영상**
+- **① 첫 프레임 이미지 (Nano Banana 2, ING-C 첨부 후):**
 ```
-Close-up of raindrops on a large floor-to-ceiling window at night, behind the glass the blurred neon lights of a modern Seoul skyline in cyan and warm amber bokeh, rain streaks running down the glass, shallow depth of field on the droplets.
+Use the attached image only as a reference for color grading and lighting mood: deep navy shadows, glowing cyan highlights and warm champagne gold light. Do not copy its ice, its composition or its droplet shape.
+Close-up of raindrops on a large floor-to-ceiling window at night, behind the glass the blurred lights of a modern city skyline in cyan and warm amber bokeh, rain streaks running down the glass, shallow depth of field with the droplets on the glass in sharp focus. No readable signs or text in the city lights.
 ```
-- **영상 프롬프트:**
++ 이미지 꼬리말
+- **고르는 기준:** 유리 위 물방울이 선명하고, 뒤 도시 불빛은 **글자·간판이 안 읽히게** 동그란 빛망울로만 보이는 것. 이 이미지는 **#7 배경 참고로도 쓰니 저장**해 두세요.
+- **② 영상 프롬프트 (①에서 고른 이미지만 첨부, 모델 Omni 1.1 Flash):**
 ```
-A single water droplet falls from above and splashes onto the window glass in slow motion. Then a slow rack focus pulls from the droplets on the glass to the blurred neon city lights behind, cyan and amber bokeh shimmering through the rain. Audio: rain tapping on glass, muffled city ambience at night.
+Use the attached image as the first frame. Keep the window, the raindrops and the city lights exactly the same.
+Locked-off close-up. A single water droplet falls from above and splashes onto the window glass in slow motion, sending tiny beads sliding down the glass. Then a slow rack focus pulls from the droplets on the glass to the blurred city lights behind, cyan and amber bokeh shimmering through the rain.
+Audio: rain tapping on glass, muffled city ambience at night.
 ```
++ 공통 꼬리말
+- **편집:** #5 방울이 떨어지는 순간 → #6 물방울이 유리에 부딪히는 순간으로 **"떨어짐 → 부딪힘" 매치 컷**.
 
 ### #7 · 0:23–0:29 · 창가의 여인
 - **모드:** **Ingredients to Video** (재료: **ING-B** 인물 + #6 첫 프레임을 배경으로)
