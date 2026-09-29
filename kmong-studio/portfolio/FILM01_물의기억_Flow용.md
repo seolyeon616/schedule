@@ -226,7 +226,7 @@ Extreme macro, locked-off camera. The drop of shimmering champagne gold serum sl
 Audio: a delicate liquid drop landing softly, gentle shimmering reverb.
 ```
 + 공통 꼬리말
-- **편집:** #1과 같은 크기·같은 위치에 배치 (#1 첫 프레임 이미지를 옆에 띄워 놓고 맞추기). 내레이션 "1만 년을 기다린, 한 방울."은 AI 성우로 따로 녹음.
+- **편집:** #1과 같은 크기·같은 위치에 배치 (#1 첫 프레임 이미지를 옆에 띄워 놓고 맞추기). 내레이션 "Ten thousand years… for a single drop."은 영어 AI 성우로 따로 녹음.
 
 ### #9 · 0:35–0:41 · 제품 히어로
 - **모드:** 2단계 — ① 첫 프레임 **이미지**(ING-A + ING-C 첨부) → ② **영상**
@@ -261,7 +261,7 @@ Locked-off top-down camera. The water droplet falls onto the perfectly black glo
 Audio: a soft water drop impact with a gentle shimmering chime.
 ```
 + 공통 꼬리말
-- **편집:** 파문이 퍼지는 동안 `당신의 피부에 닿기까지, 1만 년.`(Noto Serif KR, 흰색) → 수면이 잔잔해지면 `AURÉA`(세리프, 샴페인 골드, 자간 +30%) + 작게 `Glacial Origin Serum` → 마지막 0.5초 우하단 뚝딱컷 로고. #9 마지막 프레임을 20% 불투명도로 깔아도 좋음.
+- **편집:** 파문이 퍼지는 동안 `Ten thousand years to reach your skin.`(Cormorant Garamond Italic, 흰색) → 수면이 잔잔해지면 `AURÉA`(세리프, 샴페인 골드, 자간 +30%) + 작게 `Glacial Origin Serum` → 마지막 0.5초 우하단 뚝딱컷 로고. #9 마지막 프레임을 20% 불투명도로 깔아도 좋음.
 - **왜 #1 이미지를 쓰나:** 첫 컷과 같은 물방울로 끝나야 "처음과 끝이 같은 한 방울" 구조가 완성됨.
 
 ---
