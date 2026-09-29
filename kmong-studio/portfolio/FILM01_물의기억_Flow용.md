@@ -195,6 +195,13 @@ Slow gentle orbit from left to right around her. Rippling water-light caustics f
 Audio: very soft rain on glass, quiet room tone.
 ```
 + 공통 꼬리말
+- **실제 사용 버전 (첫 프레임에 큰 물방울이 얼굴 옆에 뜬 결과일 때):**
+```
+Use the attached image as the first frame. Keep the woman's face, hair, earrings and camisole exactly the same throughout.
+Very slow push-in toward her face, the camera barely moves. The large teardrop-shaped raindrop on the window glass beside her face slowly slides down the glass, leaving a thin glistening trail. Soft rippling water-light caustics drift gently across her cheek and neck. After a moment she slowly opens her eyes and gazes calmly toward the window, and a faint serene smile appears. Minimal, graceful movement, no talking, no hand gestures. Cool blue window light with a warm champagne gold rim light from behind.
+Audio: very soft rain on glass, quiet room tone.
+```
++ 공통 꼬리말
 - **실패하면:** 얼굴이 바뀌면 orbit(회전)을 빼고 `Very slow push-in, the camera barely moves.`로 교체.
 
 ### #8 · 0:29–0:35 · 세럼 한 방울 (첫 컷과 짝)
