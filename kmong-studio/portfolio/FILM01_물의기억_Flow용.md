@@ -123,15 +123,21 @@ Slow lateral tracking shot gliding through translucent glacier ice. Turquoise li
 - **편집:** 자막 `10,000 YEARS AGO`는 편집에서 넣기.
 
 ### #4 · 0:11–0:15 · 폭포 다이브
-- **모드:** Text to Video (재료 없이) 또는 Frames to Video
-- **첫 프레임 이미지 (선택):**
+- **모드:** Frames to Video (첫 프레임만) — 에이전트형 Flow에선 이미지를 "프롬프트에 추가"로 첨부
+- **첫 프레임 이미지:** 폭포 가장자리 + 물보라 + 무지개 + 뒤쪽 설산 이미지
 ```
 Top of a glacial meltwater waterfall seen from right above its edge, turquoise water plunging into a misty valley far below, small rainbows in the spray, early morning light.
 ```
-- **영상 프롬프트:**
++ 이미지 꼬리말
+- **영상 프롬프트 (첨부 후):**
 ```
-FPV drone shot: the camera tips over the edge of a glacial waterfall and dives straight down alongside the falling turquoise water, fast yet perfectly smooth, spray and mist rushing past the lens, rainbows flashing in the spray. Audio: a powerful rushing waterfall roar swelling up.
+Use the attached image as the first frame. Keep the waterfall, the rocks, the rainbows and the morning light exactly the same.
+FPV drone shot: the camera glides forward over the rocky edge of the waterfall, then tips over the edge and dives straight down alongside the falling turquoise water. Fast yet perfectly smooth and stable, no shaking. Spray and mist rush past the lens, the rainbows flash in the spray as the camera passes through them, and the misty valley floor opens up below. One continuous camera move, no cuts.
+Audio: a powerful rushing waterfall roar swelling up, wind rushing past.
 ```
++ 공통 꼬리말
+- **고르는 기준:** 카메라가 **가장자리를 넘어 아래로** 떨어지는 것 (옆으로만 흐르거나 멈춰 있으면 탈락), 무지개를 통과하는 순간이 있으면 최고.
+- **실패하면:** 카메라가 안 내려가면 `The camera pitches down 90 degrees and falls with the water.`를 추가.
 
 ### #5 · 0:15–0:19 · 이끼 숲의 이슬
 - **모드:** Frames to Video (첫 프레임)
