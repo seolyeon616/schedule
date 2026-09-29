@@ -76,7 +76,7 @@ Extreme macro, locked-off camera. In pure darkness, the glowing water droplet fr
 
 ### #2 · 0:03–0:07 · 물방울 속으로 → 빙하 협곡
 - **모드:** Frames to Video (**첫 + 끝 프레임**)
-- **첫 프레임:** #1 영상의 한 장면 캡처 (물방울이 화면 중앙에 크게 있는 프레임)
+- **첫 프레임:** #1 영상을 **역재생한 뒤의 마지막 장면** = 원본 #1 영상의 **0초 프레임** (물방울이 화면 정중앙). 추출본: `portfolio/frames/FILM01_컷2_첫프레임.jpg`
 - **끝 프레임 이미지:**
 ```
 Epic aerial view flying low over an immense blue glacier canyon at dawn, towering walls of translucent turquoise ice, soft golden sunrise haze drifting through the canyon.
