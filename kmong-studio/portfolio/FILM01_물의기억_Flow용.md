@@ -176,12 +176,23 @@ Audio: rain tapping on glass, muffled city ambience at night.
 - **편집:** #5 방울이 떨어지는 순간 → #6 물방울이 유리에 부딪히는 순간으로 **"떨어짐 → 부딪힘" 매치 컷**.
 
 ### #7 · 0:23–0:29 · 창가의 여인
-- **모드:** **Ingredients to Video** (재료: **ING-B** 인물 + #6 첫 프레임을 배경으로)
-- **영상 프롬프트:**
+- **모드:** 3단계 — ① ING-B(가상 모델) 만들기 → ② 첫 프레임 **이미지**(ING-B + #6 이미지 첨부) → ③ 그 이미지로 **영상**
+- **① ING-B (Nano Banana 2, 첨부 없음):** 위 1장의 ING-B 프롬프트 + 이미지 꼬리말. 실존 인물과 닮았으면 폐기. #8에서도 쓰니 저장.
+- **② 첫 프레임 이미지 (Nano Banana 2, 첨부 2장: ING-B → #6 첫 프레임 이미지 순서):**
 ```
-The woman from the reference stands beside a rain-streaked floor-to-ceiling window at blue hour, eyes gently closed. Slow orbit from left to right around her. Rippling water-light caustics from the rainy window glide across her cheek and neck. She slowly opens her eyes and a faint calm smile appears. Soft cool window light with a warm gold rim light from behind. Her face stays exactly the same throughout. Audio: very soft rain on glass, quiet room tone.
+Use the first attached image as the reference for the woman: keep her face, hairstyle, earrings and ivory silk camisole exactly the same. Use the second attached image as the reference for the rainy night window and the blurred city lights behind it.
+Medium close-up of the woman standing beside the rain-streaked floor-to-ceiling window at blue hour, three-quarter profile facing the window, eyes gently closed, serene expression. Soft rippling water-light caustics from the rainy glass fall across her cheek and neck. Cool blue window light on her face with a warm champagne gold rim light from behind. The city lights are soft cyan and amber bokeh with no readable signs.
 ```
-- **팁:** 얼굴이 흔들리면 Ingredients 대신 **Flow 이미지로 첫 프레임을 먼저 만든 뒤**(ING-B 참고) Frames to Video로 가세요. 얼굴 유지가 더 안정적입니다.
++ 이미지 꼬리말
+- **고르는 기준:** 얼굴이 ING-B와 같은 사람, 눈 감은 상태, 얼굴에 물빛 무늬, 손가락·귀걸이 이상 없음.
+- **③ 영상 프롬프트 (②에서 고른 이미지만 첨부, Omni 1.1 Flash):**
+```
+Use the attached image as the first frame. Keep the woman's face, hair and outfit exactly the same throughout.
+Slow gentle orbit from left to right around her. Rippling water-light caustics from the rainy window glide slowly across her cheek and neck. After a moment she slowly opens her eyes, and a faint calm smile appears. Minimal, graceful movement, no talking, no hand gestures. Soft cool window light with a warm gold rim light from behind.
+Audio: very soft rain on glass, quiet room tone.
+```
++ 공통 꼬리말
+- **실패하면:** 얼굴이 바뀌면 orbit(회전)을 빼고 `Very slow push-in, the camera barely moves.`로 교체.
 
 ### #8 · 0:29–0:35 · 세럼 한 방울 (첫 컷과 짝)
 - **모드:** Ingredients to Video (재료: **ING-A** 병) — 또는 첫 프레임 방식
