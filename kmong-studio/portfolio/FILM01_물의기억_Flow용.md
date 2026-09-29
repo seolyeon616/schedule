@@ -69,7 +69,7 @@ Inside glacier ice, turquoise light caustics rippling across translucent ice lay
 | | #8 | 손끝이 나오니 함께 첨부하면 피부 톤이 맞음 (선택) |
 | **ING-A 병** (AURÉA) | **#8** · **#9** | 재료로 첨부 또는 첫 프레임 이미지 생성 시 참고로 첨부 (병 모양 고정) |
 | | #10 | 엔드 타이틀 뒤 배경에 병을 쓸 경우 |
-| (없음) | #1 · #2 | 물방울 컷은 재료 없이 진행 (#2 첫 프레임 = #1 캡처) |
+| (없음) | #1 · #2 | 물방울 컷은 재료 없이 **첫/끝 프레임 이미지**로 진행 (#1 = 작은 물방울, #2 = 큰 물방울 → 빙하 협곡) |
 
 **에이전트형 Flow에서 첨부하는 법:** 입력창 **+** → 재료 이미지 선택 → 프롬프트 맨 앞에 한 줄 추가
 ```
@@ -83,28 +83,36 @@ Use the attached image as the reference for the [bottle / woman / color and mood
 
 ### #1 · 0:00–0:03 · 물방울 훅
 - **모드:** Frames to Video (첫 프레임만)
-- **첫 프레임 이미지** (Flow 이미지 생성):
+- **첫 프레임 이미지:** **작은 물방울 + 검은 여백이 넓은 이미지** (Nano Banana 2, "Extreme macro of a single liquid water droplet floating in the center of a pure black frame…"로 뽑은 것). 여백이 넓어야 떨어지는 공간과 9:16 크롭 여유가 생깁니다.
+  - 새로 뽑을 때 프롬프트:
 ```
-Extreme macro of a single perfectly spherical crystal-clear water droplet suspended in pure black darkness, a thin icy cyan rim light tracing its edge, a tiny reflection of a vast blue glacier visible inside the droplet.
+Extreme macro of a single liquid water droplet floating in the center of a pure black frame, the droplet small in the frame with lots of black empty space around it. Inside the droplet, a tiny reflection of a vast blue glacier. A thin icy cyan rim light traces its edge and a soft cyan glow surrounds it. A few tiny water beads float nearby.
 ```
-- **영상 프롬프트:**
+- **영상 프롬프트 (에이전트형 Flow: + 로 첫 프레임 이미지 첨부 후):**
 ```
-Extreme macro, locked-off camera. In pure darkness, the glowing water droplet from the first frame falls slowly downward in ultra slow motion. It is liquid water, not a glass ball: its surface wobbles and ripples gently as it falls. The icy cyan glow stays around it and the tiny glacier reflection inside shimmers. A few tiny water beads drift beside it. Nothing else moves. Audio: a single soft crystalline water drip with a long airy reverb.
+Use the attached image as the first frame. Keep the droplet, the glacier reflection inside it, the glow and the black background exactly the same.
+Extreme macro, locked-off camera, the camera does not move. The water droplet falls slowly and straight down in ultra slow motion, staying sharp and in focus. It is liquid water, not a glass ball: its surface wobbles and ripples softly as it falls, and the glacier reflection inside it shimmers and bends. The soft cyan glow travels with it. Two or three tiny water beads drift slowly beside it. Pure black background, nothing else in the frame. Audio: a single soft crystalline water drip with a long airy reverb.
 ```
-- **첫 프레임 고르는 기준:** 물방울 **하나만** 있고, 가장자리에 작은 물방울·물기가 보여 **유리구슬이 아니라 물처럼 보이는 것**. 인물이나 제품이 같이 나온 결과는 이 컷에 쓰지 않습니다. 고른 이미지는 #8(세럼 방울)에서 크기·위치를 맞출 기준으로 따로 저장해 두세요.
-- **편집:** 떨어지는 영상을 **역재생** → "위로 떨어지는 물방울" 완성. (Veo에 역중력을 바로 시키는 것보다 훨씬 안정적)
++ 공통 꼬리말
+- **고르는 기준:** 물방울이 **하나**이고, 떨어지는 동안 **모양이 크게 찌그러지지 않고**, 화면 밖으로 너무 빨리 나가지 않는 것.
+- **편집:** 떨어지는 영상을 **역재생** → "위로 떠오르는 물방울". 역재생하면 영상 끝이 첫 프레임(물방울 정중앙)이 되어 #2로 이어집니다.
 
 ### #2 · 0:03–0:07 · 물방울 속으로 → 빙하 협곡
 - **모드:** Frames to Video (**첫 + 끝 프레임**)
-- **첫 프레임:** #1 영상을 **역재생한 뒤의 마지막 장면** = 원본 #1 영상의 **0초 프레임** (물방울이 화면 정중앙). 추출본: `portfolio/frames/FILM01_컷2_첫프레임.jpg`
-- **끝 프레임 이미지:**
+- **첫 프레임:** **큰 물방울 이미지** (물방울 안에 빙하가 크게 보이는 것). #1 끝(작은 물방울)에서 한 단계 당겨 들어간 컷처럼 이어집니다. 이미지 없이 #1과 완벽히 맞추고 싶으면 #1 첫 프레임 이미지를 그대로 써도 됩니다.
+- **끝 프레임:** **새벽 빙하 협곡 이미지** (물방울 속 빙하와 색·방향이 비슷할수록 넘어가는 장면이 자연스러움). 새로 뽑을 때:
 ```
-Epic aerial view flying low over an immense blue glacier canyon at dawn, towering walls of translucent turquoise ice, soft golden sunrise haze drifting through the canyon.
+Epic aerial view flying low over an immense blue glacier canyon at dawn, towering walls of translucent turquoise ice on both sides, soft golden sunrise haze drifting through the canyon, the canyon leading straight ahead toward the horizon.
 ```
-- **영상 프롬프트:**
++ 이미지 꼬리말
+- **영상 프롬프트 (첫 프레임·끝 프레임 순서로 첨부 후):**
 ```
-The camera pushes steadily into the floating water droplet. The glacier reflected inside grows larger until the camera passes through the droplet's surface in one seamless move and emerges flying low over an immense blue glacier canyon at dawn. One continuous camera move, no cuts. Audio: a deep whoosh passing through water, then vast cold wind.
+Use the first attached image as the first frame and the second attached image as the last frame.
+The camera pushes steadily forward into the floating water droplet. The glacier reflected inside it grows larger and larger until the camera passes through the droplet's liquid surface in one seamless move, with a brief shimmer of water refraction, and emerges flying low over the immense blue glacier canyon at dawn, continuing forward. One continuous camera move, no cuts, no fade.
+Audio: a deep whoosh passing through water, then vast cold wind.
 ```
++ 공통 꼬리말
+- **실패하면:** 물방울이 사라지고 장면이 그냥 바뀌는(디졸브) 결과가 나오면 `The camera physically flies through the droplet like diving into water.`를 추가하세요.
 
 ### #3 · 0:07–0:11 · 빙하 속 갇힌 물
 - **모드:** Ingredients to Video (재료: **ING-C**) — 또는 Frames to Video(첫 프레임 = ING-C)
