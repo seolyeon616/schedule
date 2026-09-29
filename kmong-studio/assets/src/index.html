@@ -218,6 +218,12 @@ table.opt small { color: var(--mute); font-weight: 500; margin-left: 6px; font-s
 #detail-one .ntc li::before { content: "·"; color: var(--gold2); font-weight: 900; margin-right: 8px; }
 #detail-one .ntc li b { color: #ebe4d7; }
 #detail-one .cta { height: 520px; padding: 0; background: radial-gradient(ellipse at 50% 92%, #3a2710, #0a0908 55%, #060608 100%); text-align: center; }
+
+/* ---------- LOGO ---------- */
+.logo-sq { width: 512px; height: 512px; background: radial-gradient(circle at 50% 44%, #2e1f0c 0%, #0b0a09 52%, #050505 100%); }
+.logo-wide { width: 660px; height: 300px; background: radial-gradient(ellipse at 22% 55%, #2a1c0b 0%, #0b0a09 45%, #050505 100%); }
+.wm { font-family: Pretendard; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+.wm-sub { font-size: 12px; letter-spacing: .42em; font-weight: 800; color: var(--gold2); }
 </style>
 </head>
 <body>
@@ -531,6 +537,21 @@ table.opt small { color: var(--mute); font-weight: 500; margin-left: 6px; font-s
   </div>
 </section>
 
+<!-- ================= LOGOS ================= -->
+<section class="board logo-sq" id="logo-profile">
+  <div class="abs" style="left:0;right:0;top:338px;text-align:center;z-index:6">
+    <div class="wm gold glow" style="font-size:80px">뚝딱컷</div>
+    <div class="wm-sub" style="margin-top:12px;margin-left:.42em">AI AD STUDIO</div>
+  </div>
+</section>
+<section class="board logo-sq" id="logo-symbol"></section>
+<section class="board logo-wide" id="logo-wide">
+  <div class="abs" style="left:250px;top:88px;z-index:6">
+    <div class="wm gold glow" style="font-size:96px">뚝딱컷</div>
+    <div class="wm-sub" style="margin-top:16px;font-size:15px">AI AD STUDIO</div>
+  </div>
+</section>
+
 <script>
 // ----- receipts -----
 const ITEMS = [
@@ -628,6 +649,19 @@ bank(document.getElementById("bank-one"), [
   const c = document.getElementById("one-cta");
   floorGlow(c, 350, 430, 700, 140);
   shock(c, 350, 428, 520, 58); club(c, 350, 424, 170, -18); sparks(c, 350, 418, 70, 170, 23);
+})();
+
+// ----- logos -----
+(() => {
+  const a = document.getElementById("logo-profile");
+  floorGlow(a, 256, 292, 380, 96);
+  shock(a, 256, 292, 320, 42); club(a, 256, 288, 250, 20); sparks(a, 256, 282, 50, 120, 31);
+  const b = document.getElementById("logo-symbol");
+  floorGlow(b, 256, 400, 420, 110);
+  shock(b, 256, 400, 360, 50); club(b, 256, 396, 330, 20); sparks(b, 256, 390, 60, 140, 33);
+  const c = document.getElementById("logo-wide");
+  floorGlow(c, 140, 232, 260, 70);
+  shock(c, 140, 232, 220, 32); club(c, 140, 229, 190, 20); sparks(c, 140, 224, 34, 90, 35);
 })();
 
 </script>
