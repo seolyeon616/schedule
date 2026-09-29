@@ -1,17 +1,39 @@
 <!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:"Cormorant";font-weight:300;src:url(node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-normal.woff2)}
-@font-face{font-family:"Cormorant";font-weight:300;font-style:italic;src:url(node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-italic.woff2)}
+@font-face{font-family:"Belleza";src:url(node_modules/@fontsource/belleza/files/belleza-latin-400-normal.woff2)}
 @font-face{font-family:"Mont";font-weight:300;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-300-normal.woff2)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:transparent;-webkit-font-smoothing:antialiased}
-section{width:1920px;height:1080px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;text-shadow:0 0 18px rgba(0,0,0,.35)}
-.caps{font-family:"Mont";font-weight:300;text-transform:uppercase}
+section{width:1920px;height:1080px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.cap{position:absolute;bottom:118px;left:0;right:0;text-align:center;font-family:Belleza;font-size:44px;letter-spacing:.04em;color:rgba(248,246,240,.95);text-shadow:0 0 24px rgba(0,0,0,.55),0 1px 2px rgba(0,0,0,.35)}
+.small{font-family:Mont;font-weight:300;text-transform:uppercase;letter-spacing:.45em;margin-right:-.45em}
+.giant{position:absolute;left:0;right:0;bottom:36px;text-align:center;font-family:Belleza;font-size:430px;line-height:1;letter-spacing:.005em;color:#fff;text-shadow:0 0 60px rgba(0,0,0,.25)}
+svg.sym{display:block}
 </style></head><body>
-<section id="ov-t1"><div class="caps" style="position:absolute;bottom:112px;font-size:22px;letter-spacing:.42em;margin-right:-.42em;color:rgba(244,241,234,.78)">10,000 years ago</div></section>
-<section id="ov-t2"><div style="font-family:Cormorant;font-style:italic;font-weight:300;font-size:46px;letter-spacing:.03em;color:rgba(244,241,234,.92)">Ten thousand years to reach your skin.</div></section>
-<section id="ov-t3">
-  <div style="font-family:Cormorant;font-weight:300;font-size:104px;letter-spacing:.32em;margin-right:-.32em;color:#C9A96E;line-height:1">MANYEON</div>
-  <div class="caps" style="margin-top:38px;font-size:17px;letter-spacing:.45em;margin-right:-.45em;color:rgba(244,241,234,.66)">The First Drop · Glacial Rejuvenating Serum</div>
+<template id="drop"><svg class="sym" viewBox="0 0 120 120" fill="none">
+  <circle cx="60" cy="60" r="56" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+  <circle cx="60" cy="60" r="44" stroke="currentColor" stroke-width="1" opacity=".35"/>
+  <path d="M60 30 C60 30 43 55 43 68 A17 17 0 0 0 77 68 C77 55 60 30 60 30 Z" stroke="currentColor" stroke-width="1.8"/></svg></template>
+
+<section id="c1"><div class="cap">Every drop remembers.</div></section>
+<section id="c2"><div class="cap">Sealed in glacial ice for ten thousand years,</div></section>
+<section id="c3"><div class="cap">it travelled down the mountains,</div></section>
+<section id="c4"><div class="cap">through ancient forests,</div></section>
+<section id="c5"><div class="cap">until it found you.</div></section>
+<section id="c6"><div class="cap" style="bottom:auto;top:500px;left:170px;right:auto;text-align:left;font-size:52px">The First Drop.</div></section>
+<section id="giant"><div class="giant">Manyeon</div></section>
+<section id="c7"><div class="cap" style="position:static;font-size:50px">Ten thousand years to reach your skin.</div></section>
+<section id="endlogo">
+  <span data-sym style="width:96px;color:#E6D3A8;margin-bottom:34px"></span>
+  <div style="font-family:Belleza;font-size:150px;line-height:1;color:#fff;letter-spacing:.01em">Manyeon</div>
+  <div class="small" style="margin-top:34px;font-size:18px;color:rgba(246,243,236,.72)">The First Drop · Glacial Rejuvenating Serum</div>
 </section>
-<section id="slate" style="background:#000"><img src="../logo-wide.png" style="width:900px;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%)"></section>
+<section id="slate" style="background:#000"><img src="../logo-wide.png" style="width:900px;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 60%,transparent 100%)"></section>
+<!-- 브랜드 로고 파일 (투명 배경) -->
+<section id="logo-manyeon-v2-white" style="width:1400px;height:560px">
+  <span data-sym style="width:110px;color:#E6D3A8;margin-bottom:36px"></span>
+  <div style="font-family:Belleza;font-size:190px;line-height:1;color:#fff">Manyeon</div></section>
+<section id="logo-manyeon-v2-black" style="width:1400px;height:560px">
+  <span data-sym style="width:110px;color:#A8864B;margin-bottom:36px"></span>
+  <div style="font-family:Belleza;font-size:190px;line-height:1;color:#111">Manyeon</div></section>
+<script>const t=document.getElementById('drop').innerHTML;document.querySelectorAll('[data-sym]').forEach(s=>{s.innerHTML=t;s.style.display='block'});</script>
 </body></html>
