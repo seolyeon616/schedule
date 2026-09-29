@@ -4,5 +4,5 @@
 ## YYYY-MM-DD HH:MM 고객
 (원문)
 
-## YYYY-MM-DD HH:MM OVERFRAME
+## YYYY-MM-DD HH:MM 뚝딱컷
 (보낸 답장)
