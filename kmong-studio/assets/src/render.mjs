@@ -10,7 +10,8 @@ const only = process.argv.slice(2);
 
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
 const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 900, height: 900 } });
-await page.goto("file://" + path.join(here, "index.html"));
+const PAGE = process.env.PAGE || "index.html";
+await page.goto("file://" + path.join(here, PAGE));
 await page.evaluate(() => document.fonts.ready);
 await page.waitForTimeout(400);
 
@@ -19,11 +20,11 @@ for (const id of ids) {
   if (only.length && !only.includes(id)) continue;
   const shot = { path: path.join(out, id + ".png") };
   await page.locator("#" + id).screenshot(shot);
-  if (id === "detail-one") await page.locator("#" + id).screenshot({ path: path.join(out, id + ".jpg"), type: "jpeg", quality: 90 });
+  if (id === "detail-one" || id === "apple-full") await page.locator("#" + id).screenshot({ path: path.join(out, id + ".jpg"), type: "jpeg", quality: 90 });
   console.log("rendered", id);
 }
 // full-length detail page: all detail sections stacked with no gaps
-if (!only.length || only.includes("detail-full")) {
+if (PAGE === "index.html" && (!only.length || only.includes("detail-full"))) {
   await page.evaluate(() => {
     const wrap = document.createElement("div");
     wrap.id = "detail-full";
