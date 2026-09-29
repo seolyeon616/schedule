@@ -461,27 +461,26 @@ table.opt small { color: var(--mute); font-weight: 500; margin-left: 6px; font-s
     <div class="copy">
       <div class="h1">촬영 없이, 방송급 AI 광고를</div>
       <div class="tt serif gold glow">뚝딱.</div>
-      <div class="pr"><span class="m">1분</span><span class="w gold">15<small>만원</small></span></div>
-      <div class="sc"><span class="gold">숏컷</span> 15초 미만 <span class="gold">7.5만원</span>부터</div>
+      <div class="sc" style="font-size:24px;margin-top:20px">기획부터 <span class="gold">성우·BGM·자막</span>까지, 한 번에.</div>
       <div class="chips"><span><b>✓</b>무료 시안 2컷</span><span><b>✓</b>컷수 무제한</span><span><b>✓</b>성우·BGM 포함</span></div>
     </div>
   </div>
 
   <div class="blk">
-    <div class="kick">PRICE</div>
-    <div class="ttl">가격은 <span class="gold">이게 전부</span>입니다</div>
-    <div class="sub">영상 길이(분) × 15만원 = 최종 금액</div>
+    <div class="kick">FORMAT</div>
+    <div class="ttl">필요한 길이로 <span class="gold">골라</span> 받으세요</div>
+    <div class="sub">컷 수 제한 없이, 추가금 없이</div>
     <div class="grid2">
-      <div class="pc"><div class="n">숏컷<small>15초 미만</small></div><div class="p gold">7.5<small>만원</small></div><div class="d">릴스·쇼츠·범퍼 광고 1편<br>2일 납품 · 수정 1회<br>무료 시안 1컷</div></div>
-      <div class="pc best"><span class="bd">BEST</span><div class="n">1분 컷</div><div class="p gold">15<small>만원</small></div><div class="d"><em>30초 × 2편</em> 또는 <em>15초 × 4편</em><br>3일 납품 · 수정 2회<br><em>무료 시안 2컷</em></div></div>
+      <div class="pc"><div class="n">숏컷</div><div class="p gold" style="font-size:44px">15초 미만</div><div class="d">릴스·쇼츠·범퍼 광고 1편<br>2일 납품 · 수정 1회<br>무료 시안 1컷</div></div>
+      <div class="pc best"><span class="bd">BEST</span><div class="n">1분 컷</div><div class="p gold" style="font-size:44px">1분</div><div class="d"><em>30초 × 2편</em> 또는 <em>15초 × 4편</em><br>3일 납품 · 수정 2회<br><em>무료 시안 2컷</em></div></div>
     </div>
-    <div class="note">결제 전 <span class="gold">분당 무료 시안 2컷</span>으로 퀄리티부터 확인하세요<br><span style="font-size:16px;color:var(--mute)">더 긴 영상은 1분 단위로 추가돼요 (분당 15만원)</span></div>
+    <div class="note">결제 전 <span class="gold">분당 무료 시안 2컷</span>으로 퀄리티부터 확인하세요<br><span style="font-size:16px;color:var(--mute)">더 긴 영상은 1분 단위로 추가할 수 있어요</span></div>
   </div>
   <div class="sep"></div>
 
   <div class="blk">
     <div class="kick">ALL-IN-ONE</div>
-    <div class="ttl">15만원 안에 <span class="gold">전부</span> 들어 있어요</div>
+    <div class="ttl">영상 하나에 <span class="gold">전부</span> 들어 있어요</div>
     <div class="inc">
       <div><i>01</i>기획·대본</div><div><i>02</i>장면 콘티</div><div><i>03</i>컷 무제한</div>
       <div><i>04</i>AI 성우</div><div><i>05</i>내레이션</div><div><i>06</i>BGM</div>
@@ -495,7 +494,7 @@ table.opt small { color: var(--mute); font-weight: 500; margin-left: 6px; font-s
   <div class="blk">
     <div class="kick">MINUTE BANK</div>
     <div class="ttl">1분을 <span class="gold">쪼개</span> 쓰세요</div>
-    <div class="sub">15초 단위로 나눠도 가격은 그대로</div>
+    <div class="sub">1분을 15초 단위로 나눠 여러 편으로 받을 수 있어요</div>
     <div class="bank" id="bank-one" style="margin-top:32px"></div>
   </div>
   <div class="sep"></div>
@@ -622,9 +621,9 @@ bank(document.getElementById("bank3"), [
 })();
 // ----- one-page detail art -----
 bank(document.getElementById("bank-one"), [
-  ["1분 × 1편", "홍보 영상", [[4, "60초"]], "15만원"],
-  ["30초 × 2편", "광고 A/B", [[2, "30초"], [2, "30초"]], "15만원"],
-  ["15초 × 4편", "숏폼 4연속", [[1, "15초"], [1, "15초"], [1, "15초"], [1, "15초"]], "15만원"],
+  ["1분 × 1편", "홍보 영상", [[4, "60초"]], "= 1분"],
+  ["30초 × 2편", "광고 A/B", [[2, "30초"], [2, "30초"]], "= 1분"],
+  ["15초 × 4편", "숏폼 4연속", [[1, "15초"], [1, "15초"], [1, "15초"], [1, "15초"]], "= 1분"],
 ], true);
 (() => {
   const b = document.getElementById("one-hero");
