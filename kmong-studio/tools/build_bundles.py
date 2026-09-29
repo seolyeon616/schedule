@@ -23,6 +23,8 @@ def build_runbook():
         read("02_프로필_세팅.md"),
         "\n---\n\n# [부록 B] 서비스 등록 원문 (03_서비스_등록.md)\n\n",
         read("03_서비스_등록.md"),
+        "\n---\n\n# [부록 C] 크몽 텍스트 원고 — 서비스 설명·가격 정보 (10_크몽_텍스트_원고.md)\n\n",
+        read("10_크몽_텍스트_원고.md"),
     ]
     out = ROOT / "chrome/크몽_입점_작업지시서.md"
     out.write_text("".join(parts), encoding="utf-8")
@@ -30,7 +32,7 @@ def build_runbook():
 
 
 def build_project_bundle():
-    docs = sorted(ROOT.glob("0[0-9]_*.md")) + sorted((ROOT / "portfolio").glob("*.md"))
+    docs = sorted(ROOT.glob("[0-9][0-9]_*.md")) + sorted((ROOT / "portfolio").glob("*.md"))
     parts = [HEADER, "# 뚝딱컷 크몽 운영본부 — 전체 문서 합본\n\n", "## 목차\n"]
     parts += [f"- {d.relative_to(ROOT)}\n" for d in docs]
     for d in docs:
