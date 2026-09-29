@@ -2,79 +2,96 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>뚝딱컷 상세 — 미니멀</title>
+<title>뚝딱컷 — 미니멀 (화이트)</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* 애플 광고 톤: 한 화면에 한 문장, 넓은 여백, 흑·백·연회색 교차, 금색은 핵심 단어에만 */
-#apple-full { width: 700px; display: flex; flex-direction: column; background: #000; }
-.pn { width: 700px; position: relative; overflow: hidden; text-align: center; padding: 120px 56px; }
-.dark { background: #000; color: #f5f5f7; }
-.light { background: #fff; color: #1d1d1f; }
-.mist { background: #f5f5f7; color: #1d1d1f; }
-.ey { font-size: 17px; font-weight: 700; letter-spacing: .02em; color: #86868b; }
-.hl { font-size: 62px; font-weight: 800; letter-spacing: -.04em; line-height: 1.12; margin-top: 14px; }
-.bd { font-size: 22px; font-weight: 500; color: #86868b; line-height: 1.6; margin-top: 24px; letter-spacing: -.01em; }
-.bd b { color: inherit; font-weight: 700; }
-.dark .bd b { color: #f5f5f7; }
-.light .bd b, .mist .bd b { color: #1d1d1f; }
-.grad { background: linear-gradient(95deg, #fbe3a6 0%, #e7b261 38%, #c7883a 62%, #f3cf86 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.pic { border-radius: 26px; overflow: hidden; position: relative; }
-.pic img { width: 100%; display: block; }
-.cap { font-size: 15px; color: #86868b; margin-top: 16px; font-weight: 500; }
-.mk { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; }
+/* 애플 광고 톤 · 화이트 통일
+   - 배경은 전부 #fff, 영상 장면만 어두운 둥근 카드로 띄움
+   - 헤드라인 1개 + 회색 본문 1~2줄 + 비주얼 1개 = 한 화면
+   - 금색은 핵심 단어 한 곳, 링크(›)와 각주(¹²)로 디테일 */
+:root { --ink1: #1d1d1f; --ink2: #6e6e73; --ink3: #86868b; --hair: #d2d2d7; --tile: #f5f5f7;
+        --acc: linear-gradient(95deg, #d9a449 0%, #b87a2b 45%, #9c6420 70%, #c98f3a 100%); --acc-solid: #b0772b; }
+#apple-full { width: 700px; display: flex; flex-direction: column; background: #fff; }
+.pn { width: 700px; position: relative; overflow: hidden; text-align: center; padding: 116px 56px; background: #fff; color: var(--ink1); }
+.pn + .pn::before { content: ""; position: absolute; top: 0; left: 56px; right: 56px; height: 1px; background: #ececf0; }
+.ey { font-size: 17px; font-weight: 700; color: var(--acc-solid); letter-spacing: -.01em; }
+.hl { font-size: 60px; font-weight: 800; letter-spacing: -.045em; line-height: 1.1; margin-top: 12px; color: var(--ink1); }
+.bd { font-size: 21px; font-weight: 500; color: var(--ink2); line-height: 1.6; margin-top: 22px; letter-spacing: -.015em; }
+.bd b { color: var(--ink1); font-weight: 700; }
+.acc { background: var(--acc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lk { display: inline-block; margin-top: 22px; font-size: 19px; font-weight: 600; color: var(--acc-solid); }
+sup { font-size: .5em; font-weight: 600; color: var(--ink3); vertical-align: super; margin-left: 2px; }
+.card { border-radius: 28px; overflow: hidden; position: relative; background: #000; }
+.card img { width: 100%; display: block; }
+.cap { font-size: 15px; color: var(--ink3); margin-top: 16px; font-weight: 500; }
+.mk { display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: var(--ink1); }
 .mk svg { width: 22px; height: 22px; }
 
-.bars { margin-top: 54px; display: flex; flex-direction: column; gap: 14px; }
+.bars { margin-top: 56px; display: flex; flex-direction: column; gap: 12px; }
 .bars .r { display: flex; gap: 8px; }
-.bars .s { flex: 1; height: 58px; border-radius: 14px; background: #f5f5f7; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 700; color: #1d1d1f; }
-.bars .s.k { background: #1d1d1f; color: #f5f5f7; }
-.bars .lab { width: 110px; text-align: left; display: flex; align-items: center; font-size: 17px; font-weight: 700; color: #86868b; }
+.bars .s { flex: 1; height: 58px; border-radius: 14px; background: var(--tile); display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 700; }
+.bars .s.k { background: var(--ink1); color: #fff; }
+.bars .lab { width: 96px; text-align: left; display: flex; align-items: center; font-size: 17px; font-weight: 700; color: var(--ink3); }
 
-.words { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #2a2a2c; }
-.words div { padding: 26px 0; font-size: 26px; font-weight: 700; letter-spacing: -.02em; border-bottom: 1px solid #2a2a2c; }
-.words div:nth-child(3n+2) { border-left: 1px solid #2a2a2c; border-right: 1px solid #2a2a2c; }
+.words { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.words div { padding: 26px 0; font-size: 24px; font-weight: 700; letter-spacing: -.02em; border-radius: 18px; background: var(--tile); }
 
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 56px; }
-.duo .pic img { aspect-ratio: 1 / 1; object-fit: cover; }
-.duo .tag { position: absolute; left: 14px; top: 14px; font-size: 14px; font-weight: 800; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.88); color: #1d1d1f; }
+.duo .card img { aspect-ratio: 1 / 1; object-fit: cover; }
+.duo .tag { position: absolute; left: 14px; top: 14px; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.92); color: var(--ink1); }
+.play { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: rgba(255,255,255,.92); }
+.play::after { content: ""; position: absolute; left: 24px; top: 18px; border-left: 17px solid var(--ink1); border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
 
-.play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: rgba(255,255,255,.9); }
-.play::after { content: ""; position: absolute; left: 26px; top: 20px; border-left: 18px solid #1d1d1f; border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
-.hero-pic img { transform: scale(1.45); transform-origin: 50% 50%; }
-.inf { font-size: 230px; line-height: .9; font-weight: 300; letter-spacing: -.04em; margin-top: 8px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 56px; border-top: 1px solid var(--hair); }
+.stats div { padding: 36px 10px 34px; border-bottom: 1px solid var(--hair); }
+.stats div:nth-child(odd) { border-right: 1px solid var(--hair); }
+.stats b { display: block; font-size: 72px; font-weight: 800; letter-spacing: -.05em; line-height: 1; }
+.stats span { display: block; font-size: 17px; color: var(--ink2); font-weight: 600; margin-top: 12px; }
 
 .quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 56px; }
-.quad .pic { border-radius: 18px; }
+.quad .card { border-radius: 18px; }
 .quad img { aspect-ratio: 3 / 4; object-fit: cover; }
 
-.steps { margin-top: 50px; text-align: left; border-top: 1px solid #2a2a2c; }
-.steps .st { display: grid; grid-template-columns: 90px 1fr auto; align-items: baseline; padding: 24px 4px; border-bottom: 1px solid #2a2a2c; }
-.steps .n { font-size: 30px; font-weight: 300; color: #86868b; }
-.steps .t { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
-.steps .d { font-size: 17px; color: #86868b; font-weight: 500; }
+.steps { margin-top: 52px; text-align: left; border-top: 1px solid var(--hair); }
+.steps .st { display: grid; grid-template-columns: 80px 1fr auto; align-items: baseline; padding: 24px 4px; border-bottom: 1px solid var(--hair); }
+.steps .n { font-size: 28px; font-weight: 300; color: var(--ink3); }
+.steps .t { font-size: 25px; font-weight: 700; letter-spacing: -.02em; }
+.steps .d { font-size: 17px; color: var(--ink3); font-weight: 500; }
 
-.tools { margin-top: 50px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.tools span { font-size: 21px; font-weight: 700; padding: 14px 22px; border-radius: 999px; background: #fff; color: #1d1d1f; box-shadow: 0 1px 0 rgba(0,0,0,.04); }
-.tools span.g { color: #86868b; font-weight: 600; }
+.tools { margin-top: 50px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.tools span { font-size: 20px; font-weight: 700; padding: 14px 22px; border-radius: 999px; background: var(--tile); }
+.tools span.g { color: var(--ink3); font-weight: 600; }
 
-.btn { display: inline-block; margin-top: 44px; font-size: 21px; font-weight: 700; padding: 18px 38px; border-radius: 999px; background: #f5f5f7; color: #1d1d1f; }
-.fine { margin-top: 90px; font-size: 13.5px; color: #6e6e73; line-height: 1.75; font-weight: 500; }
+.btn { display: inline-block; margin-top: 40px; font-size: 20px; font-weight: 600; padding: 17px 36px; border-radius: 999px; background: var(--ink1); color: #fff; }
+.fn { text-align: left; font-size: 13.5px; color: var(--ink3); line-height: 1.75; font-weight: 500; }
+.fn p { margin-top: 6px; }
+
+/* ---------- THUMBNAILS (652×488, 글자는 가장자리 40px 안쪽) ---------- */
+.th { width: 652px; height: 488px; position: relative; overflow: hidden; background: #fff; color: var(--ink1); }
+.th .in { position: absolute; inset: 40px; }
+.th .in.c { display: flex; flex-direction: column; justify-content: center; }
+.th .ey { font-size: 14px; }
+.th .hl { font-size: 44px; margin-top: 8px; }
+.th .bd { font-size: 16px; margin-top: 12px; }
+.th .mk { font-size: 15px; } .th .mk svg { width: 18px; height: 18px; }
 </style>
 </head>
 <body>
 <script src="defs.js"></script>
 
+<!-- ======================= DETAIL (white) ======================= -->
 <section class="board" id="apple-full">
 
-  <section class="board pn dark" id="apple-01" style="padding-bottom:90px">
-    <div class="mk"><svg><use href="#mark"/></svg><span class="grad">뚝딱컷</span></div>
-    <div class="hl" style="font-size:76px;margin-top:40px">촬영 없이.<br><span class="grad">광고를 뚝딱.</span></div>
+  <section class="board pn" id="apple-01" style="padding-top:100px;padding-bottom:96px">
+    <div class="mk"><svg><use href="#mark"/></svg>뚝딱컷</div>
+    <div class="hl" style="font-size:78px;margin-top:34px">촬영 없이.<br><span class="acc">광고를 뚝딱.</span></div>
     <div class="bd">AI 광고 영상 스튜디오.<br>기획부터 성우·BGM까지, 한 번에.</div>
-    <div class="pic hero-pic" style="margin-top:64px"><img src="img/drop_center.jpg"></div>
+    <div class="lk">무료 시안 받아보기 ›</div>
+    <div class="card" style="margin-top:56px"><img src="img/drop_center.jpg" style="transform:scale(1.45)"></div>
     <div class="cap">「물의 기억」 · 뚝딱컷 제작 · 촬영 0회</div>
   </section>
 
-  <section class="board pn light" id="apple-02">
+  <section class="board pn" id="apple-02">
     <div class="ey">많이, 자주, 꾸준히</div>
     <div class="hl">한 편보다,<br>여러 편.</div>
     <div class="bd">브랜드는 반복해서 보일 때 기억됩니다.<br><b>1분을 15초 단위로 나눠</b> 여러 편으로 받으세요.</div>
@@ -85,48 +102,53 @@
     </div>
   </section>
 
-  <section class="board pn dark" id="apple-03">
+  <section class="board pn" id="apple-03">
     <div class="ey">올인원</div>
-    <div class="hl">처음부터 끝까지.<br><span class="grad">한 번에.</span></div>
+    <div class="hl">처음부터 끝까지.<br><span class="acc">한 번에.</span></div>
+    <div class="bd">광고 한 편에 필요한 모든 공정이 기본으로 들어 있습니다.</div>
     <div class="words">
       <div>기획</div><div>대본</div><div>콘티</div>
       <div>영상</div><div>AI 성우</div><div>내레이션</div>
       <div>BGM</div><div>효과음</div><div>자막</div>
     </div>
-    <div class="bd" style="margin-top:36px">전부 기본 포함. <b>추가 비용 없이.</b></div>
   </section>
 
-  <section class="board pn mist" id="apple-04">
+  <section class="board pn" id="apple-04">
     <div class="ey">무료 시안</div>
     <div class="hl">먼저 보고,<br>그다음에 결정.</div>
     <div class="bd">결제 전에 고객님 제품을 적용한 시안 컷을 보내드립니다.<br><b>1분당 2컷, 무료.</b></div>
     <div class="duo">
-      <div class="pic"><img src="img/drop_center.jpg"><span class="tag">결제 전 · 무료 시안</span></div>
-      <div class="pic"><img src="img/drop_b.jpg"><span class="tag">결제 후 · 완성 영상</span><span class="play"></span></div>
+      <div class="card"><img src="img/drop_center.jpg"><span class="tag">결제 전 · 무료 시안</span></div>
+      <div class="card"><img src="img/drop_b.jpg"><span class="tag">결제 후 · 완성 영상</span><span class="play"></span></div>
     </div>
   </section>
 
-  <section class="board pn dark" id="apple-05">
-    <div class="inf grad">∞</div>
-    <div class="hl">컷 수는, 무제한.</div>
-    <div class="bd">장면을 아끼지 않습니다.<br>장면이 늘어도 <b>추가 비용은 없습니다.</b></div>
+  <section class="board pn" id="apple-05">
+    <div class="ey">숫자로 보는 뚝딱컷</div>
+    <div class="hl">가볍게.<br>그러나 <span class="acc">빈틈없이.</span></div>
+    <div class="stats">
+      <div><b class="acc">∞</b><span>컷 수<sup>1</sup></span></div>
+      <div><b>0원</b><span>추가 비용</span></div>
+      <div><b>2컷</b><span>1분당 무료 시안</span></div>
+      <div><b>3일</b><span>1분 기준 납품<sup>2</sup></span></div>
+    </div>
   </section>
 
-  <section class="board pn light" id="apple-06">
+  <section class="board pn" id="apple-06">
     <div class="ey">일관성 바이블</div>
     <div class="hl">얼굴도, 제품도.<br>끝까지 그대로.</div>
     <div class="bd">기준 이미지로 고정해 컷마다 모습이 바뀌지 않습니다.<br>로고와 제품명은 <b>원본 그대로</b> 합성합니다.</div>
     <div class="quad">
-      <div class="pic"><img src="img/drop_center.jpg"></div>
-      <div class="pic"><img src="img/drop_b.jpg"></div>
-      <div class="pic"><img src="img/drop_center.jpg" style="object-position:45% 50%"></div>
-      <div class="pic"><img src="img/drop_b.jpg" style="object-position:55% 50%"></div>
+      <div class="card"><img src="img/drop_center.jpg"></div>
+      <div class="card"><img src="img/drop_b.jpg"></div>
+      <div class="card"><img src="img/drop_center.jpg" style="object-position:45% 50%"></div>
+      <div class="card"><img src="img/drop_b.jpg" style="object-position:55% 50%"></div>
     </div>
   </section>
 
-  <section class="board pn dark" id="apple-07">
+  <section class="board pn" id="apple-07">
     <div class="ey">작업 프로세스</div>
-    <div class="hl">5단계.<br><span class="grad">3일.</span></div>
+    <div class="hl">5단계.<br><span class="acc">3일.</span><sup style="font-size:.3em">2</sup></div>
     <div class="steps">
       <div class="st"><span class="n">01</span><span class="t">무료 시안</span><span class="d">결제 전</span></div>
       <div class="st"><span class="n">02</span><span class="t">5분 질문지</span><span class="d">목적 · 분위기</span></div>
@@ -136,7 +158,7 @@
     </div>
   </section>
 
-  <section class="board pn mist" id="apple-08">
+  <section class="board pn" id="apple-08">
     <div class="ey">메인 사용 툴</div>
     <div class="hl">최신 모델로.<br>매일 새롭게.</div>
     <div class="tools">
@@ -145,20 +167,82 @@
     </div>
   </section>
 
-  <section class="board pn dark" id="apple-09" style="padding-bottom:70px">
-    <div class="hl" style="font-size:70px">한 줄이면,<br><span class="grad">충분합니다.</span></div>
+  <section class="board pn" id="apple-09" style="padding-bottom:64px">
+    <div class="hl" style="font-size:68px">한 줄이면,<br><span class="acc">충분합니다.</span></div>
     <div class="bd">떠오르는 장면을 말씀만 해주세요.<br>광고는 뚝딱컷이 만듭니다.</div>
     <div class="btn">무료 시안 받아보기</div>
-    <div style="margin-top:80px"><div class="mk" style="justify-content:center"><svg><use href="#mark"/></svg><span class="grad">뚝딱컷</span></div></div>
-    <div class="fine">
-      실존 인물 얼굴·목소리 합성은 제작하지 않습니다 · 컷 수 무제한은 영상 길이 안의 장면 수 기준이며 수정 횟수는 패키지별로 정해져 있습니다<br>
-      성우는 프리미엄 AI 보이스 기본 포함, 실제 성우는 옵션 · 생성형 AI 특성상 실사 촬영과 100% 동일한 표현에는 한계가 있을 수 있습니다
+    <div style="margin-top:72px"><div class="mk" style="justify-content:center"><svg><use href="#mark"/></svg>뚝딱컷</div></div>
+    <div class="fn" style="margin-top:64px;border-top:1px solid #ececf0;padding-top:26px">
+      <p>1. 컷 수 무제한은 영상 길이 안에서 장면 수에 제한·추가 비용이 없다는 뜻이며, 수정 횟수는 패키지별로 정해져 있습니다.</p>
+      <p>2. 1분 컷 기준이며, 고객님 확인 대기 기간은 작업일에서 제외됩니다. 숏컷은 2일입니다.</p>
+      <p>성우는 프리미엄 AI 보이스가 기본 포함되며 실제 성우 녹음은 옵션입니다. 실존 인물의 얼굴·목소리 합성은 제작하지 않습니다.
+         생성형 AI 특성상 실사 촬영과 100% 동일한 표현에는 한계가 있을 수 있어, 무료 시안과 콘티 단계에서 방향을 충분히 맞춘 뒤 제작합니다.</p>
     </div>
   </section>
 
 </section>
+
+<!-- ======================= THUMBNAILS ======================= -->
+<section class="board th" id="apple-thumb-main">
+  <div class="in">
+    <div class="mk"><svg><use href="#mark"/></svg>뚝딱컷</div>
+    <div class="hl" style="font-size:50px;margin-top:40px">촬영 없이.<br><span class="acc">광고를<br>뚝딱.</span></div>
+    <div class="bd" style="position:absolute;left:0;bottom:0;font-size:15px;line-height:1.7">AI 광고 영상 · 컷 수 무제한<br><b>성우 · BGM · 자막 포함</b></div>
+  </div>
+  <div class="card" style="position:absolute;right:40px;top:40px;width:290px;height:408px;border-radius:24px"><img src="img/drop_center.jpg" style="height:100%;object-fit:cover;transform:scale(1.6)"></div>
+</section>
+
+<section class="board th" id="apple-thumb-many">
+  <div class="in c" style="text-align:center">
+    <div class="ey">많이, 자주, 꾸준히</div>
+    <div class="hl">한 편보다, 여러 편.</div>
+    <div class="bd">1분을 15초 단위로 나눠 받으세요</div>
+    <div class="bars" style="margin-top:34px;gap:10px">
+      <div class="r"><div class="lab" style="width:60px;font-size:14px">1편</div><div class="s k" style="height:56px;font-size:17px">60초</div></div>
+      <div class="r"><div class="lab" style="width:60px;font-size:14px">2편</div><div class="s" style="height:56px;font-size:17px">30초</div><div class="s" style="height:56px;font-size:17px">30초</div></div>
+      <div class="r"><div class="lab" style="width:60px;font-size:14px">4편</div><div class="s" style="height:56px;font-size:17px">15초</div><div class="s" style="height:56px;font-size:17px">15초</div><div class="s" style="height:56px;font-size:17px">15초</div><div class="s" style="height:56px;font-size:17px">15초</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="board th" id="apple-thumb-allinone">
+  <div class="in c" style="text-align:center">
+    <div class="ey">올인원</div>
+    <div class="hl">처음부터 끝까지. <span class="acc">한 번에.</span></div>
+    <div class="words" style="margin-top:34px;gap:8px">
+      <div style="padding:22px 0;font-size:21px;border-radius:14px">기획</div><div style="padding:22px 0;font-size:21px;border-radius:14px">대본</div><div style="padding:22px 0;font-size:21px;border-radius:14px">콘티</div>
+      <div style="padding:22px 0;font-size:21px;border-radius:14px">영상</div><div style="padding:22px 0;font-size:21px;border-radius:14px">AI 성우</div><div style="padding:22px 0;font-size:21px;border-radius:14px">내레이션</div>
+      <div style="padding:22px 0;font-size:21px;border-radius:14px">BGM</div><div style="padding:22px 0;font-size:21px;border-radius:14px">효과음</div><div style="padding:22px 0;font-size:21px;border-radius:14px">자막</div>
+    </div>
+  </div>
+</section>
+
+<section class="board th" id="apple-thumb-sample">
+  <div class="in c" style="text-align:center">
+    <div class="ey">무료 시안 · 1분당 2컷</div>
+    <div class="hl">먼저 보고, 그다음에 결정.</div>
+    <div class="duo" style="margin-top:26px;gap:12px;width:440px;align-self:center">
+      <div class="card" style="border-radius:20px"><img src="img/drop_center.jpg" style="aspect-ratio:1/1"><span class="tag" style="font-size:12px">결제 전 · 무료 시안</span></div>
+      <div class="card" style="border-radius:20px"><img src="img/drop_b.jpg" style="aspect-ratio:1/1"><span class="tag" style="font-size:12px">결제 후 · 완성 영상</span><span class="play" style="width:46px;height:46px;margin:-23px 0 0 -23px"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="board th" id="apple-thumb-stats">
+  <div class="in c" style="text-align:center">
+    <div class="ey">숫자로 보는 뚝딱컷</div>
+    <div class="hl">가볍게. 그러나 <span class="acc">빈틈없이.</span></div>
+    <div class="stats" style="margin-top:40px;grid-template-columns:repeat(4,1fr)">
+      <div style="padding:44px 4px;border-right:1px solid var(--hair)"><b class="acc" style="font-size:62px">∞</b><span style="font-size:15px">컷 수</span></div>
+      <div style="padding:44px 4px;border-right:1px solid var(--hair)"><b style="font-size:62px">0원</b><span style="font-size:15px">추가 비용</span></div>
+      <div style="padding:44px 4px;border-right:1px solid var(--hair)"><b style="font-size:62px">2컷</b><span style="font-size:15px">무료 시안</span></div>
+      <div style="padding:44px 4px"><b style="font-size:62px">3일</b><span style="font-size:15px">1분 기준 납품</span></div>
+    </div>
+  </div>
+</section>
+
 <script>
-// 패널 높이를 정수로 맞춰 경계선에 1px 번짐이 생기지 않게
+// 패널 높이를 정수로 맞춰 경계에 1px 번짐이 생기지 않게
 document.querySelectorAll(".pn").forEach((el) => { el.style.height = Math.ceil(el.getBoundingClientRect().height) + "px"; });
 </script>
 </body>
