@@ -1,0 +1,105 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Cormorant";font-weight:300;src:url(node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-normal.woff2)}
+@font-face{font-family:"Cormorant";font-weight:400;src:url(node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2)}
+@font-face{font-family:"Cormorant";font-weight:500;src:url(node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2)}
+@font-face{font-family:"Cormorant";font-weight:300;font-style:italic;src:url(node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-italic.woff2)}
+@font-face{font-family:"Mont";font-weight:300;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-300-normal.woff2)}
+@font-face{font-family:"Mont";font-weight:400;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-400-normal.woff2)}
+@font-face{font-family:"NotoSerifKR";font-weight:400;src:url(node_modules/@fontsource/noto-serif-kr/files/noto-serif-kr-korean-400-normal.woff2)}
+:root{--gold:#C9A96E;--gold2:#E6D3A8;--ink:#0B0F16}
+*{margin:0;padding:0;box-sizing:border-box}
+body{-webkit-font-smoothing:antialiased;background:#222;padding:40px;display:flex;flex-direction:column;gap:40px;align-items:flex-start;font-family:"Mont"}
+.board{position:relative;overflow:hidden}
+.mark{display:flex;flex-direction:column;align-items:center;text-align:center}
+.word{font-family:"Cormorant";font-weight:300;letter-spacing:.32em;margin-right:-.32em;line-height:1}
+.sub{font-family:"Mont";font-weight:300;letter-spacing:.42em;margin-right:-.42em;text-transform:uppercase}
+.han{font-family:"NotoSerifKR";letter-spacing:.3em;margin-right:-.3em}
+.gold{color:var(--gold)} .white{color:#F4F1EA}
+svg.sym{display:block}
+
+/* candidates board */
+#brand-candidates{width:1800px;height:1100px;background:var(--ink);color:#F4F1EA;padding:80px 90px}
+#brand-candidates h1{font-family:"Mont";font-weight:300;font-size:18px;letter-spacing:.5em;color:#8A93A3;margin-bottom:60px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;height:820px}
+.card{border:1px solid rgba(201,169,110,.25);padding:70px 40px 50px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.card.rec{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,169,110,.07),transparent 60%)}
+.badge{font-size:13px;letter-spacing:.4em;color:var(--gold);height:18px}
+.meta{font-family:"Cormorant";font-size:26px;font-style:italic;color:#C8CCD4;text-align:center;line-height:1.45}
+.meta b{font-style:normal;font-weight:500;color:var(--gold2);letter-spacing:.08em}
+.prod{font-size:13px;letter-spacing:.35em;color:#8A93A3;text-align:center;line-height:2}
+
+/* logo lockups (transparent) */
+.lock{padding:60px 80px;background:transparent}
+/* end card */
+#endcard{width:1920px;height:1080px;background:#000;display:flex;align-items:center;justify-content:center}
+</style></head>
+<body>
+
+<template id="drop">
+  <svg class="sym" viewBox="0 0 120 120" fill="none">
+    <circle cx="60" cy="60" r="56" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+    <circle cx="60" cy="60" r="44" stroke="currentColor" stroke-width=".8" opacity=".3"/>
+    <path d="M60 30 C60 30 43 55 43 68 A17 17 0 0 0 77 68 C77 55 60 30 60 30 Z" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+</template>
+
+<section class="board" id="brand-candidates">
+  <h1>FILM 01 · BRAND NAME CANDIDATES</h1>
+  <div class="cols">
+    <div class="card rec">
+      <div class="badge">RECOMMENDED</div>
+      <div class="mark gold"><span data-sym style="width:84px;margin-bottom:34px"></span>
+        <div class="word" style="font-size:76px">MANYEON</div>
+        <div class="han" style="font-size:20px;margin-top:22px;color:#A8B0BD">萬年</div></div>
+      <div class="meta"><b>“Ten thousand years”</b><br>A Korean word, carried like a heritage house.<br>The name <i>is</i> the story of the film.</div>
+      <div class="prod">THE FIRST DROP<br>GLACIAL REJUVENATING SERUM</div>
+    </div>
+    <div class="card">
+      <div class="badge"></div>
+      <div class="mark white"><span data-sym style="width:84px;margin-bottom:34px;color:var(--gold)"></span>
+        <div class="word" style="font-size:80px">AEVUM</div>
+        <div class="sub" style="font-size:13px;margin-top:26px;color:#A8B0BD">MAISON DE GLACE</div></div>
+      <div class="meta"><b>Latin, “eternity”</b><br>European and quiet.<br>Timeless, almost architectural.</div>
+      <div class="prod">MÉMOIRE D’EAU<br>GLACIAL ORIGIN SERUM</div>
+    </div>
+    <div class="card">
+      <div class="badge"></div>
+      <div class="mark gold"><span data-sym style="width:84px;margin-bottom:34px"></span>
+        <div class="word" style="font-size:80px">AURÉA</div>
+        <div class="sub" style="font-size:13px;margin-top:26px;color:#A8B0BD">GLACIAL SKIN SCIENCE</div></div>
+      <div class="meta"><b>Latin, “golden”</b><br>The current working name.<br>Warm, but more common.</div>
+      <div class="prod">GLACIAL ORIGIN SERUM</div>
+    </div>
+  </div>
+</section>
+
+<section class="board lock" id="logo-manyeon-gold">
+  <div class="mark gold"><span data-sym style="width:110px;margin-bottom:44px"></span>
+    <div class="word" style="font-size:120px">MANYEON</div>
+    <div class="sub" style="font-size:20px;margin-top:40px">The First Drop</div></div>
+</section>
+
+<section class="board lock" id="logo-manyeon-white">
+  <div class="mark white"><span data-sym style="width:110px;margin-bottom:44px;color:var(--gold)"></span>
+    <div class="word" style="font-size:120px">MANYEON</div>
+    <div class="sub" style="font-size:20px;margin-top:40px">The First Drop</div></div>
+</section>
+
+<section class="board lock" id="logo-manyeon-wordmark">
+  <div class="mark gold"><div class="word" style="font-size:140px">MANYEON</div></div>
+</section>
+
+<section class="board" id="endcard">
+  <div class="mark">
+    <div class="word gold" style="font-size:96px">MANYEON</div>
+    <div class="sub white" style="font-size:17px;margin-top:36px;opacity:.7">The First Drop · Glacial Rejuvenating Serum</div>
+  </div>
+</section>
+
+<script>
+const t=document.getElementById('drop').innerHTML;
+document.querySelectorAll('[data-sym]').forEach(s=>{s.innerHTML=t;s.style.display='block'});
+</script>
+</body></html>

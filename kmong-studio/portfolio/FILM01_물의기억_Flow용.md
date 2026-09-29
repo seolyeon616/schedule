@@ -36,7 +36,7 @@ Cinematic 16:9 still frame, high-end luxury skincare commercial, anamorphic lens
 
 Flow의 이미지 생성(또는 Gemini 앱)에서 만들고 **저장해 두세요.** 이후 컷에서 계속 재사용합니다.
 
-**ING-A 제품 (AURÉA 병)** — 디자인 확정: 청록빛 투명 유리 원통 + 두꺼운 유리 바닥 + 샴페인골드 세럼(금 입자) + 금색 널링 스포이드 캡. Flow에서 생성한 "빙하 위 얼음 받침" 병 이미지를 첨부해 생성
+**ING-A 제품 (MANYEON 병)** — 디자인 확정: 청록빛 투명 유리 원통 + 두꺼운 유리 바닥 + 샴페인골드 세럼(금 입자) + 금색 널링 스포이드 캡. Flow에서 생성한 "빙하 위 얼음 받침" 병 이미지를 첨부해 생성
 ```
 Use the attached image as the reference for the bottle design: keep its shape, glass, liquid color and cap exactly the same. Ignore the ice and the glacier background.
 A single luxury serum bottle on a seamless light grey studio background: a straight cylindrical bottle of clear glass with a subtle aqua-blue tint and a thick heavy glass base, filled with shimmering champagne gold serum with fine gold particles, a glass pipette visible inside, topped with a tall brushed champagne gold knurled dropper cap. Only one bottle, no jar, no other products, no box. The bottle has no label and no text. Large softbox light from the left, clean reflections, high-end product photography, centered, ultra sharp.
@@ -71,7 +71,7 @@ Inside glacier ice, turquoise light caustics rippling across translucent ice lay
 | | #4 · #5 · #6 | 첫 프레임 이미지를 만들 때 **톤 참고용으로 첨부** → 컷끼리 색감이 맞음 |
 | **ING-B 모델** (여성) | **#7** | 재료로 첨부 (얼굴 고정) |
 | | #8 | 손끝이 나오니 함께 첨부하면 피부 톤이 맞음 (선택) |
-| **ING-A 병** (AURÉA) | **#8** · **#9** | 재료로 첨부 또는 첫 프레임 이미지 생성 시 참고로 첨부 (병 모양 고정) |
+| **ING-A 병** (MANYEON) | **#8** · **#9** | 재료로 첨부 또는 첫 프레임 이미지 생성 시 참고로 첨부 (병 모양 고정) |
 | | #10 | 엔드 타이틀 뒤 배경에 병을 쓸 경우 |
 | (없음) | #1 · #2 | 물방울 컷은 재료 없이 **첫/끝 프레임 이미지**로 진행 (#1 = 작은 물방울, #2 = 큰 물방울 → 빙하 협곡) |
 
@@ -244,7 +244,7 @@ Audio: a soft low resonant water tone.
 ```
 + 공통 꼬리말
 - **대안 (빠른 길):** Flow에서 만든 "빙하 위 얼음 받침" 병 이미지를 바로 첫 프레임으로 쓰고, ② 프롬프트의 `standing on still water`/`ripples`/`Beneath the surface…` 대신 `standing on a block of clear ice, sunlight flaring softly behind the glacier`로 교체.
-- **편집:** 로고 `AURÉA`는 편집에서 병 위 여백에 합성 (AI에게 글자 생성 금지).
+- **편집:** 로고 `MANYEON`는 편집에서 병 위 여백에 합성 (AI에게 글자 생성 금지).
 
 ### #10 · 0:41–0:45 · 엔드 타이틀
 - **모드:** 2단계 — ① 첫 프레임 **이미지**(#1 물방울 이미지 첨부) → ② **영상**. 영상은 타이틀 뒤 **배경 소스**, 글자는 편집에서.
@@ -261,7 +261,7 @@ Locked-off top-down camera. The water droplet falls onto the perfectly black glo
 Audio: a soft water drop impact with a gentle shimmering chime.
 ```
 + 공통 꼬리말
-- **편집:** 파문이 퍼지는 동안 `Ten thousand years to reach your skin.`(Cormorant Garamond Italic, 흰색) → 수면이 잔잔해지면 `AURÉA`(세리프, 샴페인 골드, 자간 +30%) + 작게 `Glacial Origin Serum` → 마지막 0.5초 우하단 뚝딱컷 로고. #9 마지막 프레임을 20% 불투명도로 깔아도 좋음.
+- **편집:** 파문이 퍼지는 동안 `Ten thousand years to reach your skin.`(Cormorant Garamond Italic, 흰색) → 수면이 잔잔해지면 `MANYEON`(세리프, 샴페인 골드, 자간 +30%) + 작게 `The First Drop · Glacial Rejuvenating Serum` → 마지막 0.5초 우하단 뚝딱컷 로고. #9 마지막 프레임을 20% 불투명도로 깔아도 좋음.
 - **왜 #1 이미지를 쓰나:** 첫 컷과 같은 물방울로 끝나야 "처음과 끝이 같은 한 방울" 구조가 완성됨.
 
 ---

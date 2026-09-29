@@ -58,7 +58,7 @@
 |---|---|---|---|
 | ① | 0:08.0–0:10.0 | `10,000 YEARS AGO` | Montserrat Light, 화면 높이의 약 2%, **자간 +40%**, 흰색 70%, 하단 중앙(하단 10% 위), 0.5초 페이드 인·아웃 |
 | ② | 0:41.5–0:43.0 | `Ten thousand years to reach your skin.` | Cormorant Garamond Light *Italic*, 화면 높이의 약 3.5%, 자간 +5%, 흰색 90%, 화면 정중앙, 0.6초 페이드 |
-| ③ | 0:43.2–0:45 | `AURÉA` + 아래 작게 `GLACIAL ORIGIN SERUM` | AURÉA: Cormorant Garamond Light, 화면 높이의 약 6%, **자간 +30%**, 샴페인 골드 `#C9A96E` · 아래 줄: 화면 높이 1.5%, 자간 +60%, 흰색 60%. 파문이 잔잔해질 때 천천히 페이드 인 |
+| ③ | 0:43.2–0:45 | `MANYEON` + 아래 작게 `THE FIRST DROP · GLACIAL REJUVENATING SERUM` | MANYEON: Cormorant Garamond Light, 화면 높이의 약 6%, **자간 +30%**, 샴페인 골드 `#C9A96E` · 아래 줄: 화면 높이 1.5%, 자간 +60%, 흰색 60%. 파문이 잔잔해질 때 천천히 페이드 인 |
 
 - 그림자·외곽선·배경 박스 **없음**.
 - 내레이션 자막은 **넣지 않습니다** (명품 광고는 대사 자막을 거의 쓰지 않음). SNS 무음 재생용 버전만 따로 만들 때 #8에 작은 자막 1줄.
@@ -115,3 +115,16 @@
 - [ ] 글자는 3번 이하, 전부 페이드로 나타나고 사라진다
 - [ ] 내레이션이 또렷하고, 음악이 소리를 덮지 않는다
 - [ ] 휴대폰으로 한 번 보고, 소리 없이 한 번 더 봤을 때도 이야기가 이해된다
+
+---
+
+## 8. 브랜드 (확정 전 추천안)
+
+- **브랜드:** `MANYEON` (萬年, "ten thousand years") — 한국어 단어를 헤리티지 하우스처럼 쓰는 방식. 이름 자체가 영상의 이야기.
+- **제품명:** `THE FIRST DROP` · `Glacial Rejuvenating Serum`
+- **태그라인 (엔드 카드):** *Ten thousand years to reach your skin.*
+- **로고 파일:** `kmong-studio/assets/brand/`
+  - `logo-manyeon-gold.png` · `logo-manyeon-white.png` (심볼 + 워드마크, 투명 배경) · `logo-manyeon-wordmark.png` (글자만) · `endcard.png` (1920×1080 엔드 카드 시안) · `brand-candidates.png` (후보 3안 비교)
+  - 수정은 `assets/src/brand.html` → `node render-brand.mjs`
+- **다른 후보:** `AEVUM` (라틴어 "영원", 제품명 `MÉMOIRE D'EAU`) · `AURÉA` (기존 가칭)
+- **주의:** 포트폴리오용 가상 브랜드입니다. 실제 판매·상표로 쓰려면 KIPRIS·USPTO에서 상표 검색 먼저. 레퍼런스 광고(설화수)의 로고·폰트·카피는 가져오지 않고 **톤(느림·절제·금빛·헤리티지)만** 참고합니다.
