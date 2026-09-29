@@ -342,7 +342,7 @@ table.cmp tr:last-child td.us { border-radius: 0 0 12px 12px; }
 </section>
 
 <!-- ================= DETAIL 09 PILOT + CTA ================= -->
-<section class="board detail sec grain" id="d09" style="background:radial-gradient(ellipse at 50% 100%,#2e1f0d,#050507 60%);padding-bottom:0">
+<section class="board detail sec grain" id="d09" style="background:radial-gradient(ellipse at 50% 100%,#1c140a,#050507 60%)">
   <div class="eyebrow">First Step</div>
   <div class="h2" style="margin-top:14px">처음이라면,<br>파일럿 컷부터.</div>
   <div class="pilotcard">
@@ -356,13 +356,17 @@ table.cmp tr:last-child td.us { border-radius: 0 0 12px 12px; }
     <li>상업 이용이 허용된 유료 플랜 툴과 라이선스 음원만 사용합니다.</li>
     <li>수정은 확정된 기획 범위 안의 변경이며, 컨셉 변경은 재기획으로 협의합니다.</li>
   </ul>
-  <div id="cta" style="position:relative;height:640px;margin:40px -56px 0;text-align:center">
-    <div style="position:absolute;left:0;right:0;top:40px;z-index:5">
-      <div style="font-size:18px;color:#d8d1c5;font-weight:600">떠오르는 게 한 줄뿐이어도 괜찮습니다.</div>
-      <div class="h2" style="font-size:50px;margin-top:10px">그 한 줄,<br><span class="gold serif glow" style="font-size:64px">뚝딱</span> 광고로.</div>
-      <div style="margin-top:22px;display:inline-block;font-size:15px;font-weight:800;color:#1a1206;background:var(--gold-grad);padding:13px 26px;border-radius:999px;box-shadow:0 0 40px rgba(230,192,122,.35)">지금 문의하기 · 48시간 내 컨셉 3안</div>
+</section>
+
+<!-- ================= DETAIL 10 CTA (split out of d09 so no image is too tall to share) ================= -->
+<section class="board detail grain" id="d10" style="background:radial-gradient(ellipse at 50% 88%,#3a2710,#0a0908 55%,#050507 100%)">
+  <div id="cta" style="position:relative;height:780px;text-align:center">
+    <div style="position:absolute;left:0;right:0;top:72px;z-index:5">
+      <div style="font-size:20px;color:#d8d1c5;font-weight:600">떠오르는 게 한 줄뿐이어도 괜찮습니다.</div>
+      <div class="h2" style="font-size:58px;margin-top:14px;line-height:1.18">그 한 줄,<br><span class="gold serif glow" style="font-size:80px">뚝딱</span> 광고로.</div>
+      <div style="margin-top:28px;display:inline-block;font-size:17px;font-weight:800;color:#1a1206;background:var(--gold-grad);padding:15px 30px;border-radius:999px;box-shadow:0 0 40px rgba(230,192,122,.35)">지금 문의하기 · 48시간 내 컨셉 3안</div>
     </div>
-    <div style="position:absolute;left:0;right:0;bottom:30px;z-index:5"><div class="logo" style="justify-content:center;font-size:16px"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div></div>
+    <div style="position:absolute;left:0;right:0;bottom:44px;z-index:5"><div class="logo" style="justify-content:center;font-size:18px"><svg><use href="#mark"/></svg><span class="gold">뚝딱컷</span></div></div>
   </div>
 </section>
 
@@ -443,8 +447,8 @@ const lbl = (el, x, y, t, sub = "") => el.insertAdjacentHTML("beforeend", `<div 
 // d09 cta club
 (() => {
   const c = document.getElementById("cta");
-  floorGlow(c, 350, 560, 700, 140);
-  shock(c, 350, 558, 560, 60); club(c, 350, 554, 250, -18); sparks(c, 350, 545, 90, 200, 21);
+  floorGlow(c, 350, 660, 720, 160);
+  shock(c, 350, 658, 600, 66); club(c, 350, 654, 270, -18); sparks(c, 350, 645, 100, 220, 21);
 })();
 </script>
 </body>
