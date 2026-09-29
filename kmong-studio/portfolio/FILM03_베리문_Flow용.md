@@ -15,12 +15,13 @@
 | 모델 | 이미지 **Nano Banana 2** · 영상 **Omni 1.1 Flash** (테스트) → 최종 컷만 상위 품질 |
 | FOOH 느낌의 핵심 | **"휴대폰으로 실제로 찍은 것 같은"** 화면: 핸드헬드 흔들림, 자연광, 평범한 행인. 거대한 딸기만 비현실적이어야 진짜처럼 보임 |
 | 딸기 모양 고정 | 딸기가 나오는 컷은 **ING-S1(딸기)** 첨부 |
-| 사람 | 행인은 **뒷모습·멀리** 위주. 얼굴 클로즈업 X (얼굴이 흔들리면 가짜 티가 남) |
+| 사람 | 행인은 **뒷모습·멀리** 위주. 얼굴 클로즈업 X |
+| ⚠️ Flow 거절 방지 | "복제할 수 없는 요청"이 뜨면: ① 사람을 `Keep ... exactly the same`으로 고정하라고 하지 말고 `passersby ... with minimal movement`로만 표현 ② `fake` 단어 빼기 ③ 사람 웃음·말소리 요청 빼기 ④ 새 대화에서 다시. 그래도 안 되면 사람 없이 이미지를 다시 생성 |
 | 글자 | 자막·로고·간판 글씨는 **전부 편집에서** (AI에게 글자 생성 금지) |
 
 ### 영상 꼬리말 A — FOOH 컷용 (#1–#4, #7)
 ```
-Photorealistic FOOH (fake out-of-home) CGI commercial, shot on a smartphone, handheld with subtle natural shake, natural daylight, realistic scale, shadows and reflections so the giant object looks truly present in the street, vertical 9:16 framing. No text, no letters, no logos, no readable signs, no watermark. Audio: realistic street ambience and sound effects only as described, no music, no dialogue.
+Photorealistic CGI street commercial, shot on a smartphone, handheld with subtle natural shake, natural daylight, realistic scale and shadows so the giant object looks truly present in the street, vertical 9:16 framing. No text, no letters, no logos, no readable signs, no watermark. Audio: sound effects only as described, no music, no dialogue.
 ```
 
 ### 영상 꼬리말 B — 제품 컷용 (#5, #6)
@@ -87,8 +88,8 @@ Eye-level smartphone photo in the red-brick alley: a giant strawberry the size o
 - **② 영상 (첨부: ①결과)**
 ```
 Use the attached image as the first frame. Keep the alley and the strawberry exactly the same.
-The giant strawberry rolls down the alley straight toward the camera, bouncing slightly on the cobblestones, its green leaves flopping with each bounce. The handheld camera takes a small startled step back. Pedestrians in the background stop and stare.
-Audio: heavy soft thuds of the rolling strawberry, a surprised gasp in the distance, street ambience.
+The giant strawberry rolls down the alley straight toward the camera, bouncing slightly on the cobblestones, its green leaves flopping with each bounce. The handheld camera takes a small startled step back. Passersby in the background pause with minimal movement.
+Audio: heavy soft thuds of the rolling strawberry, street ambience.
 ```
 + 꼬리말 A · **고르는 기준:** 첫 1초 안에 딸기가 이미 보이고 크기가 확실히 비현실적인 것
 
@@ -100,7 +101,7 @@ Low-angle smartphone photo: the giant strawberry has stopped in the middle of th
 ```
 - **② 영상**
 ```
-Use the attached image as the first frame. Keep the strawberry exactly the same.
+Animate the attached image, using it as the first frame.
 The giant strawberry sinks softly into the mound of whipped cream and a thick wave of silky white cream bursts outward in slow motion, fresh strawberries tumbling through the air. The handheld camera shakes slightly from the impact.
 Audio: a deep soft whump, a creamy splash, strawberries landing with light thuds.
 ```
@@ -116,7 +117,7 @@ High-angle view from a rooftop looking down the red-brick alley: a gentle river 
 ```
 Use the attached image as the first frame.
 The camera slowly tilts down as the soft river of whipped cream flows gently down the alley, strawberries drifting and turning on the surface, the cream forming smooth glossy swirls around the corners of the brick buildings.
-Audio: soft creamy flowing sounds, light cheerful street reactions in the distance.
+Audio: soft creamy flowing sounds, street ambience.
 ```
 + 꼬리말 A
 
