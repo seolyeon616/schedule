@@ -1,6 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8">
 <!-- FILM03 STRAWBERRY MOON × 달토끼 제과점 — 9:16 자막·타이틀·로고 오버레이 (1080x1920, 투명) -->
 <link rel="stylesheet" href="node_modules/@fontsource/do-hyeon/index.css">
+<link rel="stylesheet" href="node_modules/pretendard/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="node_modules/@fontsource-variable/fraunces/full.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -10,6 +11,13 @@ section{width:1080px;height:1920px;position:relative;overflow:hidden}
   text-shadow:0 0 18px rgba(255,190,220,.55),0 0 42px rgba(255,150,200,.35),0 3px 10px rgba(40,10,40,.45)}
 .fr{font-family:'Fraunces Variable';font-weight:900;font-variation-settings:'SOFT' 100,'WONK' 1}
 .yellow{fill:#FFD84D}
+.band{position:absolute;left:0;right:0;top:1180px;height:400px;
+  background:linear-gradient(to bottom,transparent,rgba(25,12,28,.30) 40%,rgba(25,12,28,.30) 60%,transparent)}
+.band.strong{background:linear-gradient(to bottom,transparent,rgba(30,14,30,.55) 40%,rgba(30,14,30,.55) 62%,transparent)}
+/* 설명 자막: 영화 대사 자막 스타일 (가운데 · 아래 · 보통 굵기 · 그림자만) */
+.sub{position:absolute;left:70px;right:70px;top:1338px;text-align:center;font-family:Pretendard;font-weight:500;
+  font-size:50px;line-height:1.42;letter-spacing:-.01em;color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.75),0 2px 8px rgba(0,0,0,.55),0 0 22px rgba(0,0,0,.35)}
 svg text{paint-order:stroke}
 </style></head><body>
 
@@ -27,11 +35,11 @@ svg text{paint-order:stroke}
 </svg></template>
 
 <!-- #1 밤거리 · 딸기 달 (사람은 아래, 달은 위 → 가운데 왼쪽) -->
-<section id="cap1"><div class="cap" style="left:96px;top:760px">오늘 밤,<br>달이 조금 이상해</div></section>
+<section id="cap1"><div class="band"></div><div class="sub">오늘 밤, 달이 좀 이상하지 않아?</div></section>
 <!-- #2 별똥별 (하늘 → 오른쪽 위) -->
-<section id="cap2"><div class="cap" style="right:90px;top:520px;text-align:right">어? 달에서<br>딸기 한 알이 떨어졌어</div></section>
+<section id="cap2"><div class="band"></div><div class="sub">어? 달에서 딸기 한 알이 떨어졌어!</div></section>
 <!-- #3 카페 창 (창은 위·가운데 → 아래 왼쪽) -->
-<section id="cap3"><div class="cap" style="left:96px;top:1290px">그 딸기가<br>찾아간 곳은…</div></section>
+<section id="cap3"><div class="band"></div><div class="sub">그 딸기가 찾아간 곳은…</div></section>
 
 <!-- #4 케이크 위 타이틀 (베라 'WHAT YOU WANT' 스타일 아치) -->
 <section id="title">
@@ -50,7 +58,7 @@ svg text{paint-order:stroke}
 </section>
 
 <!-- #5 단면 (아래 왼쪽) -->
-<section id="cap5"><div class="cap" style="left:96px;top:1310px">달빛을 가득 품은<br>딸기 생크림 케이크</div></section>
+<section id="cap5"><div class="band strong"></div><div class="sub">달빛을 가득 품은 딸기 생크림 케이크</div></section>
 
 <!-- 엔딩 로고: 달토끼 제과점 -->
 <section id="endlogo" style="background:radial-gradient(ellipse 75% 45% at 50% 34%,rgba(30,12,40,.55),rgba(30,12,40,.15) 70%,transparent)">
