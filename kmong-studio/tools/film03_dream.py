@@ -5,7 +5,7 @@
 5) 오르골 BGM(직접 합성)과 효과음 믹스
 
 usage: python3 film03_dream.py <cuts_dir> <overlay_dir> <out.mp4>
-cuts_dir 안의 파일(순서대로): 01 02 03a 03b 04 05 06(엔딩 배경) .mov
+cuts_dir 안의 파일(순서대로): 01 02 03a 03b 04 05 06(엔딩 장면) 07(흐려지는 로고 배경) .mov
 """
 import os
 import re
@@ -18,7 +18,7 @@ import numpy as np
 
 F = os.environ.get("FFMPEG", "ffmpeg")
 cuts, ovdir, out = [os.path.abspath(p) for p in sys.argv[1:4]]
-SEGS = ["01", "02", "03a", "03b", "04", "05", "06"]
+SEGS = ["01", "02", "03a", "03b", "04", "05", "06", "07"]
 LAND_IN_04 = 2.29        # #4 컷 안에서 딸기가 착지하는 시점(초)
 FLASH_IN_03A = 1.7       # #3 컷 안에서 창이 번쩍이는 시점(초)
 SR = 48000
@@ -208,9 +208,9 @@ with wave.open(bgm, "wb") as w:
     w.writeframes((mix * 32767).astype(np.int16).tobytes())
 
 # ---------- 4) 합성 ----------
-OV = [("cap1", 0.3, start["02"] - 0.15), ("cap2", start["02"] + 0.2, start["03a"] - 0.1),
+OV = [("cap1", 0.3, start["02"] - 0.7), ("cap2", start["02"] + 0.2, start["03a"] - 0.1),
       ("cap3", start["03a"] + 0.3, start["04"] - 0.1), ("title", T_LAND - 0.15, start["05"] - 0.1),
-      ("cap5", start["05"] + 0.2, start["06"] - 0.1), ("endlogo", start["06"] + 0.5, TOTAL)]
+      ("cap5", start["05"] + 0.2, start["06"] - 0.1), ("endlogo", start["07"] + 0.25, TOTAL)]
 inputs = ["-i", body, "-i", ppath, "-i", bgm]
 fc = ["[0:v]scale=1080:1920,format=gbrp,split[base][forbl]",
       "[forbl]gblur=sigma=28,eq=brightness=0.03:saturation=1.15[bl]",
