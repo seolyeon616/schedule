@@ -1,0 +1,150 @@
+{
+ "segs": [
+  [
+   "seg5/opening5.mp4",
+   1.791667,
+   "opening"
+  ],
+  [
+   "seg9/SEG1z.mp4",
+   5.0,
+   "SEG1"
+  ],
+  [
+   "seg9/SEG2A.mp4",
+   3.708333,
+   "SEG2A"
+  ],
+  [
+   "seg9/blink_wardrobe_desk.mp4",
+   0.583333,
+   "blink_desk"
+  ],
+  [
+   "seg9/SEG2B.mp4",
+   1.791667,
+   "SEG2B"
+  ],
+  [
+   "seg9/SEG3A.mp4",
+   2.291667,
+   "SEG3A"
+  ],
+  [
+   "seg9/SEG3B_x0.mp4",
+   3.791667,
+   "SEG3B"
+  ],
+  [
+   "seg9/blink_bed_box.mp4",
+   0.583333,
+   "blink_box"
+  ],
+  [
+   "seg9/SEG4A_x0.mp4",
+   2.875,
+   "SEG4A"
+  ],
+  [
+   "seg9/SEG4B_x0.mp4",
+   1.916667,
+   "SEG4B"
+  ],
+  [
+   "seg9/R1.mp4",
+   2.416667,
+   "R1_walk_turn"
+  ],
+  [
+   "seg9/R2.mp4",
+   3.583333,
+   "R2_turn"
+  ],
+  [
+   "seg9/HEAP.mp4",
+   3.0,
+   "HEAP_hold_sigh"
+  ],
+  [
+   "seg9/R3.mp4",
+   2.5,
+   "R3_turn_to_desk"
+  ],
+  [
+   "seg9/R4_x0.mp4",
+   3.041667,
+   "R4_turn_window_step_back"
+  ],
+  [
+   "seg2/s26_ending.mp4",
+   3.5,
+   "ending_blinks_black"
+  ]
+ ],
+ "marks": {
+  "opening": [
+   0.0,
+   1.792
+  ],
+  "SEG1": [
+   1.792,
+   6.792
+  ],
+  "SEG2A": [
+   6.542,
+   10.25
+  ],
+  "blink_desk": [
+   10.25,
+   10.833
+  ],
+  "SEG2B": [
+   10.833,
+   12.625
+  ],
+  "SEG3A": [
+   12.375,
+   14.667
+  ],
+  "SEG3B": [
+   14.417,
+   18.208
+  ],
+  "blink_box": [
+   18.208,
+   18.792
+  ],
+  "SEG4A": [
+   18.792,
+   21.667
+  ],
+  "SEG4B": [
+   21.667,
+   23.583
+  ],
+  "R1_walk_turn": [
+   23.333,
+   25.75
+  ],
+  "R2_turn": [
+   25.5,
+   29.083
+  ],
+  "HEAP_hold_sigh": [
+   29.083,
+   32.083
+  ],
+  "R3_turn_to_desk": [
+   31.833,
+   34.333
+  ],
+  "R4_turn_window_step_back": [
+   34.083,
+   37.125
+  ],
+  "ending_blinks_black": [
+   36.875,
+   40.375
+  ]
+ }
+}
