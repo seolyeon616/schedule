@@ -15,7 +15,7 @@ def add(p, l, chains=(), xj=0.0):
 # ---- 0. opening (QC'd in v11)
 add('seg11/opening.mp4', 'opening')
 # ---- 1. floor clothes: slow walk-in, careless pushes, look right, second push
-P1 = [(0.0, 1.2, 2.2), (1.2, 2.6, 1.3), (2.6, 5.8, 3.0), (5.8, 7.4, 1.0), (7.4, 9.6, 2.7)]
+P1 = [(0.0, 1.2, 1.6), (1.2, 2.6, 1.2), (2.6, 5.8, 3.0), (5.8, 7.4, 1.0), (7.4, 9.6, 2.7)]
 def zoom(f, k, st):
     o = k / FPS
     o0 = np.searchsorted(st, 3.2) / FPS; o1 = np.searchsorted(st, 5.8) / FPS
@@ -28,10 +28,10 @@ add(retime('SEG1', 'g1c_cl.mp4', P1, ramp=0.45, lid_in=0.30, post=zoom), 'SEG1',
 add(retime('SEG2A', 'g2a2_cl.mp4', [(1.45, 2.4, 1.6), (2.4, 3.9, 1.2), (3.9, 4.7, 1.0), (4.7, 7.95, 2.5)], ramp=0.4,
            lid_out=0.18, black=0.06), 'SEG2A', ['SEG2A'])
 # ---- 3. desk, perfectionist: laptop aligned slowly, nudged back and re-aligned twice
-LAP = [(0.0, 6.62), (1.25, 7.05), (1.8, 7.20), (2.25, 7.09), (2.75, 7.22), (3.1, 7.15), (3.55, 7.24), (3.8, 7.24)]
+LAP = [(0.0, 6.62), (1.25, 7.05), (1.8, 7.20), (2.25, 7.09), (2.75, 7.22), (3.1, 7.15), (3.55, 7.24), (3.62, 7.24)]
 add(retime('DESK_LAP', 'g2b.mp4', path=LAP, lid_in=0.28), 'DESK_LAP', ['DESK_LAP'])
 # ---- 4. desk, procrastinator: the book is flung off-screen without hesitation
-add(retime('DESK_TOSS', 'g3a.mp4', [(2.6, 3.1, 1.3), (3.1, 5.7, 1.25)], ramp=0.3), 'DESK_TOSS', ['DESK_TOSS'])
+add(retime('DESK_TOSS', 'g3a.mp4', [(2.6, 3.1, 1.3), (3.1, 5.5, 1.25)], ramp=0.3), 'DESK_TOSS', ['DESK_TOSS'])
 # ---- 5. bed: sweater thrown fast, duvet smoothed slowly
 a3 = retime('SEG3Ba', 'g3b.mp4', [(0.5, 1.05, 1.3)])
 b3 = retime('SEG3Bb', 'g3b.mp4', [(1.85, 2.7, 1.0), (2.7, 4.3, 2.8), (4.3, 5.3, 1.3), (5.3, 9.95, 1.9)], ramp=0.35, lid_out=0.18, black=0.06)

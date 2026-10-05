@@ -38,7 +38,7 @@ def gaussian_filter1d(x, sig, axis=0, mode='nearest'):
 Ps = gaussian_filter1d(P, 1.5, axis=0, mode='nearest')
 Hsm = [cv2.getPerspectiveTransform(C, Ps[i].astype(np.float32)) for i in range(N)]
 # --- target: the clip's own left pile at the handoff frame
-TH = 50   # 2.083 s
+TH = 62   # 2.583 s: the clip's own pile is fully inside the frame here
 def red_bbox(img, box):
     x0,y0,x1,y1 = box; h = cv2.cvtColor(img[y0:y1,x0:x1], cv2.COLOR_BGR2HSV)
     r = (h[...,1] > 80) & ((h[...,0] < 12) | (h[...,0] > 168)) & (h[...,2] > 60)
@@ -64,30 +64,40 @@ Kf = K.astype(np.float32)
 # grade K's clothes to the clip's tone (clip is slightly lighter / cooler)
 mean_k = Kf[gK > 200].mean(0); mean_c = F[0].astype(np.float32)[cv2.cvtColor(F[0],6) > 200].mean(0)
 gain = mean_c / mean_k; print('gain', gain)
-BL = np.float32([[150,905],[560,905],[560,1062],[150,1062]])
-endL = cv2.perspectiveTransform(cv2.perspectiveTransform(BL[None], Hsm[TH]), S_at(1.0))[0]
-def HL(i, w):
-    a = cv2.perspectiveTransform(BL[None], Hsm[i])[0]
-    return cv2.getPerspectiveTransform(BL, ((1-w)*a + w*endL).astype(np.float32))
+# the REAL pile of the clip (frame TH) is used from the very first frame, so there is no shape change at the hand-off
+fT = F[TH]; hT = cv2.cvtColor(fT, cv2.COLOR_BGR2HSV); gT = cv2.cvtColor(fT, 6)
+pm = ((hT[..., 1] > 40) | (gT < 190)).astype(np.uint8); pm[:650] = 0; pm[:, 1300:] = 0
+pm = cv2.morphologyEx(pm, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+n_, lab_, st_, _ = cv2.connectedComponentsWithStats(pm)
+pts = np.concatenate([np.stack(np.nonzero(lab_ == k)[::-1], 1) for k in range(1, n_) if st_[k, 4] > 300])
+hull = cv2.convexHull(pts.astype(np.int32)); pmask = np.zeros((1080, 1920), np.uint8); cv2.fillConvexPoly(pmask, hull, 1)
+pmask = cv2.dilate(pmask, np.ones((13, 13), np.uint8)); aP = fe(pmask, 5)
+x0_, y0_, w_, h_ = cv2.boundingRect(hull); print('real pile bbox', x0_, y0_, w_, h_)
+BR = np.float32([[x0_, y0_], [x0_ + w_, y0_], [x0_ + w_, y0_ + h_], [x0_, y0_ + h_]])
+PF = fT.astype(np.float32)
+Sinv = np.linalg.inv(S_at(1.0))
+def HP_(i, w):
+    kq = cv2.perspectiveTransform(cv2.perspectiveTransform(BR[None], Sinv), Hsm[i] @ np.linalg.inv(Hsm[TH]))[0]
+    return cv2.getPerspectiveTransform(BR, ((1 - w) * kq + w * BR).astype(np.float32))
 out = []
 for i in range(N):
     t = i / 24; f = F[i].astype(np.float32); Hc = Hsm[i]
     w = ss((t - 0.15) / (TH/24 - 0.15))       # glide from the trigger position to the real pile
     # hide the clip's own pile before the handoff (it only peeks in from the bottom edge)
-    if 34 <= i < TH + 9:
+    if 34 <= i < TH:
         reg = ((cv2.cvtColor(F[i], cv2.COLOR_BGR2HSV)[...,1] > 40) | (cv2.cvtColor(F[i],6) < 185)).astype(np.uint8)
-        reg[:int(1080*0.72)] = 0; reg[:, 1300:] = 0
+        reg[:int(1080 * (0.72 if i < 50 else 0.55))] = 0; reg[:, 1300:] = 0
         reg = cv2.dilate(reg, np.ones((25,25),np.uint8))
         if reg.any():
             clean = cv2.inpaint(F[i], reg, 9, cv2.INPAINT_TELEA).astype(np.float32)
-            hide = 1 - ss((i - TH + 3) / 11)
+            hide = 1.0
             mk = fe(reg, 6)[..., None] * hide; f = f * (1 - mk) + clean * mk
-    layers = [(aL, HL(i, w), 1 - ss((i - TH + 3) / 11)),
-              (aR, E_at(w, Hc) @ Hc, 1.0),
-              (aS, Hc, 1.0)]
-    for a, Hm, op in layers:
+    layers = [(aP, HP_(i, w), 1.0 if i < TH else 0.0, PF),
+              (aR, E_at(w, Hc) @ Hc, 1.0, Kf * gain),
+              (aS, Hc, 1.0, Kf * gain)]
+    for a, Hm, op, SRC in layers:
         if op <= 0: continue
-        Kw = cv2.warpPerspective(Kf * gain, Hm, (1920, 1080), flags=cv2.INTER_LANCZOS4)
+        Kw = cv2.warpPerspective(SRC, Hm, (1920, 1080), flags=cv2.INTER_LANCZOS4)
         aw = cv2.warpPerspective(a, Hm, (1920, 1080), flags=cv2.INTER_LINEAR)[..., None] * op
         f = f * (1 - aw) + Kw * aw
     out.append(np.clip(f, 0, 255).astype(np.uint8))
