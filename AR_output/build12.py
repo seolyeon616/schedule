@@ -15,7 +15,7 @@ def add(p, l, chains=(), xj=0.0):
 # ---- 0. opening (QC'd in v11)
 add('seg11/opening.mp4', 'opening')
 # ---- 1. floor clothes: slow walk-in, careless pushes, look right, second push
-P1 = [(2.1, 2.6, 1.0), (2.6, 5.8, 3.0), (5.8, 7.4, 1.0), (7.4, 9.6, 2.7)]   # eyes open with the pile already lying in view
+P1 = [(2.1, 2.6, 1.0), (2.6, 5.8, 3.0), (5.8, 7.4, 1.0), (7.4, 9.6, 3.0)]   # eyes open with the pile already lying in view
 def zoom(f, k, st):
     o = k / FPS
     o0 = np.searchsorted(st, 3.2) / FPS; o1 = np.searchsorted(st, 5.8) / FPS
@@ -27,20 +27,39 @@ add(retime('SEG1', 'g1c_fix.mp4', P1, ramp=0.45, lid_in=0.30, post=zoom), 'SEG1'
 # ---- 2. wardrobe: the shirt is already sticking out of the gap; look up, notice it, cram it in carelessly
 w_a = retime('SEG2Aa', 'g2a2_cl.mp4', [(1.45, 2.4, 1.6), (2.4, 3.4, 1.2)], ramp=0.4)
 # Flow clip (first frame = g2a2_cl @3.4): the stuffed wardrobe, shirt shoved back in carelessly, door pressed shut
-w_b = retime('SEG2Ab', 'w_new_full.mp4', [(0.3, 1.4, 1.8), (1.4, 6.2, 2.4), (6.2, 8.3, 1.5)], ramp=0.35, lid_out=0.18, black=0.06)
+w_b = retime('SEG2Ab', 'w_new_full.mp4', [(0.3, 1.4, 1.8), (1.4, 6.2, 2.4), (6.2, 8.0, 1.5)], ramp=0.35, lid_out=0.18, black=0.06)
 add(xjoin('SEG2A', [w_a, w_b], 0.125), 'SEG2A', ['SEG2Aa', 'SEG2Ab'], 0.125)
-# ---- 3. desk, perfectionist: laptop aligned slowly, nudged back and re-aligned twice
-LAP = [(0.0, 6.62), (1.25, 7.05), (1.8, 7.20), (2.25, 7.09), (2.75, 7.22), (3.1, 7.15), (3.55, 7.24), (3.62, 7.24)]
-add(retime('DESK_LAP', 'g2b.mp4', path=LAP, lid_in=0.28), 'DESK_LAP', ['DESK_LAP'])
-# ---- 4. desk, procrastinator: the book is flung off-screen without hesitation
-add(retime('DESK_TOSS', 'g3a.mp4', [(2.6, 3.1, 1.3), (3.1, 5.5, 1.25)], ramp=0.3), 'DESK_TOSS', ['DESK_TOSS'])
+# ---- 3. desk (Flow clip): the notebook is shoved out of sight towards the viewer without a look,
+#      then the laptop is turned square to the desk edge and re-adjusted until it is exactly parallel
+SXc, SYc = 1920 / (1280 - 16), 1080 / (720 - 10)
+def dX(x): return (x - 8) * SXc
+def dY(y): return (y - 5) * SYc
+def desk_post(f, k, st):
+    t = st[k]
+    z = 1 + 0.045 * ss((t - 4.6) / 1.6)                      # attention narrows onto the laptop while it is aligned
+    if z > 1.0005:
+        cx, cy = dX(614), dY(430)
+        M = np.array([[z, 0, (1 - z) * cx], [0, z, (1 - z) * cy]], np.float32)
+        f = cv2.warpAffine(f, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+    a = 0.55 * ss((t - 7.15) / 0.12) * (1 - ss((t - 7.62) / 0.2))
+    if a > 0.01:                                               # pencil guide lines: laptop edges parallel to the desk edge
+        ov = np.zeros((H, W), np.uint8)
+        for yy in (345, 514):
+            Y = dY(430) + (dY(yy) - dY(430)) * z
+            for x in range(0, W, 30):
+                cv2.line(ov, (x, int(Y)), (x + 18, int(Y)), 255, 2, cv2.LINE_AA)
+        o = ov.astype(np.float32)[..., None] / 255 * a
+        f = f * (1 - o) + np.array([70, 70, 76], np.float32) * o
+    return f
+DESKP = [(0.4, 0.6, 1.0), (0.6, 1.42, 1.5), (1.42, 2.05, 0.75), (2.05, 3.1, 3.0), (3.1, 4.2, 2.4), (4.2, 5.2, 1.0), (5.2, 7.2, 1.0), (7.2, 7.85, 0.8)]
+add(retime('DESK', 'd_new.mp4', DESKP, ramp=0.22, lid_in=0.28, post=desk_post), 'DESK', ['DESK'])
 # ---- 5. bed: sweater thrown fast, duvet smoothed slowly
 a3 = retime('SEG3Ba', 'g3b.mp4', [(0.5, 1.05, 1.3)])
 b3 = retime('SEG3Bb', 'g3b.mp4', [(1.85, 2.7, 1.0), (2.7, 4.3, 2.8), (4.3, 5.3, 1.3), (5.3, 9.95, 1.9)], ramp=0.35, lid_out=0.18, black=0.06)
 add(xjoin('SEG3B', [a3, b3], 0.45), 'SEG3B', ['SEG3Ba', 'SEG3Bb'], 0.45)
 # ---- 6. box shoved away
 a4 = retime('SEG4Aa', 'g4a_fix.mp4', [(3.05, 4.4, 3.0), (4.4, 5.2, 3.0)], lid_in=0.28)
-b4 = retime('SEG4Ab', 'g4a_fix.mp4', [(5.1, 6.0, 2.4), (6.0, 7.4, 1.3), (7.4, 9.9, 3.0)])
+b4 = retime('SEG4Ab', 'g4a_fix.mp4', [(5.1, 6.0, 2.4), (6.0, 7.4, 1.3), (7.4, 9.6, 3.0)])
 add(xjoin('SEG4A', [a4, b4], 0.15), 'SEG4A', ['SEG4Aa', 'SEG4Ab'], 0.15)
 # ---- 7. stand up
 a5 = retime('SEG4Ba', 'g4b.mp4', [(0.0, 1.7, 2.0)])
@@ -52,7 +71,7 @@ A = cv2.imread('pano/g4b_end.png').astype(np.float32); Hg = np.load('H_g4b_to_F.
 def lerpH(s):   # identity -> Hg
     C = np.float32([[0, 0], [W, 0], [W, H], [0, H]]); D_ = cv2.perspectiveTransform(C[None], Hg)[0]
     return cv2.getPerspectiveTransform(C, (C * (1 - s) + D_ * s).astype(np.float32))
-T_IN, T_STARE, T_RUSTLE, T_TURN = 0.5, 1.7, 0.9, 6.4
+T_IN, T_STARE, T_RUSTLE, T_TURN = 0.5, 1.5, 0.9, 6.4
 RUSTLE_AT = T_IN + T_STARE          # output time of the off-screen "바스락" within STARE
 wr = Writer('STARE'); n = int(round((T_IN + T_STARE + T_RUSTLE) * FPS)); yaw_end = 0.0
 for k in range(n):
@@ -97,7 +116,7 @@ def breathe(img, t, amp, zoom=1.0, blur=0.0):
     M = np.array([[zoom, 0, (1 - zoom) * W / 2 + dx], [0, zoom, (1 - zoom) * H * 0.55 + dy]], np.float32)
     f = cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
     return cv2.GaussianBlur(f, (0, 0), blur) if blur > 0.05 else f
-T_HOLD = 2.4
+T_HOLD = 2.3
 wr = Writer('HEAP_hold'); n = int(round(T_HOLD * FPS))
 for k in range(n):
     t = k / FPS; wr.w(breathe(HP, t, ss(t / 1.2), zoom=1 + 0.008 * t / T_HOLD))

@@ -76,16 +76,48 @@ tex = cv2.resize(tex, (x1 - x0, H_), interpolation=cv2.INTER_AREA)
 TEX = np.zeros((H_, W_, 3), np.float32); TEX[:, max(x0, 0):min(x1, W_)] = tex[:, max(0, -x0):(x1 - x0) - max(0, x1 - W_)]
 VAL = np.zeros((H_, W_), np.float32); VAL[:, max(x0, 0):min(x1, W_)] = 1
 
+# ---- stable gap band: fit the two door edges as straight lines per frame, then smooth them over time
+YS = np.arange(H_, dtype=np.float32)
+raw_masks, fits = [], []
+for i in range(N):
+    m, st = gapmask(F[i]); raw_masks.append(m)
+    if st is None: fits.append(None); continue
+    rows = [y for y in range(0, H_, 4) if m[y].any()]
+    L = np.array([[y, np.nonzero(m[y])[0].min()] for y in rows], np.float32)
+    R = np.array([[y, np.nonzero(m[y])[0].max()] for y in rows], np.float32)
+    if len(rows) < 30: fits.append(None); continue
+    def rfit(P):     # robust straight line x = a*y + b (hand/shirt rows are outliers)
+        p = np.polyfit(P[:, 0], P[:, 1], 1)
+        for _ in range(3):
+            r = np.abs(P[:, 1] - np.polyval(p, P[:, 0])); k = r < max(3.0, np.percentile(r, 60))
+            if k.sum() > 10: p = np.polyfit(P[k, 0], P[k, 1], 1)
+        return p
+    fits.append((rfit(L), rfit(R), int(min(rows)), int(max(rows))))
+idx = [i for i in range(N) if fits[i] is not None]
+arr = np.array([[*fits[i][0], *fits[i][1], fits[i][2], fits[i][3]] for i in idx], np.float64)
+sm = np.zeros_like(arr)
+for j in range(len(idx)):                         # temporal Gaussian over neighbouring valid frames (sigma 2 frames)
+    w = np.exp(-0.5 * ((np.array(idx) - idx[j]) / 2.0) ** 2); w /= w.sum(); sm[j] = (w[:, None] * arr).sum(0)
+SM = {i: sm[j] for j, i in enumerate(idx)}
 out = []
 for i in range(N):
-    f = F[i].astype(np.float32); m, st = gapmask(F[i])
-    if st is not None:
+    f = F[i].astype(np.float32)
+    if i in SM:
+        aL, bL, aR, bR, y0, y1 = SM[i]
+        xl = aL * YS + bL + 2.0; xr = aR * YS + bR - 2.0            # stay 2 px inside the door edges (edge lines stay drawn)
+        XX_ = np.arange(W_, dtype=np.float32)[None, :]
+        band = ((XX_ >= xl[:, None]) & (XX_ <= xr[:, None]) & (xr - xl > 3)[:, None]).astype(np.float32)
+        band[:max(int(y0) - 6, 0)] = 0; band[min(int(y1) + 6, H_):] = 0
+        # occluders in front (hand, sleeve, orange shirt) keep the original pixels
+        g = cv2.cvtColor(F[i], 6).astype(np.float32); sat = cv2.cvtColor(F[i], cv2.COLOR_BGR2HSV)[..., 1].astype(np.float32)
+        occ = ((sat > 34) | (g > 165) | (g < 50)).astype(np.uint8)
+        occ = cv2.morphologyEx(occ, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8)); occ = cv2.dilate(occ, np.ones((3, 3), np.uint8))
+        m = band * (1 - occ)
         T = cv2.warpPerspective(TEX, Hs[i], (W_, H_), flags=cv2.INTER_LINEAR)
         V = cv2.warpPerspective(VAL, Hs[i], (W_, H_), flags=cv2.INTER_NEAREST)
-        a = cv2.GaussianBlur(m * V, (0, 0), 1.0)[..., None]
-        # inside the wardrobe is in shadow: darker towards the door edges (ambient occlusion)
-        d = cv2.distanceTransform((m * 255).astype(np.uint8), cv2.DIST_L2, 5)
-        ao = (0.62 + 0.30 * np.clip(d / 18.0, 0, 1))[..., None]
+        a = cv2.GaussianBlur(m * V, (0, 0), 0.8)[..., None]
+        dist = np.minimum(np.abs(XX_ - xl[:, None]), np.abs(xr[:, None] - XX_))
+        ao = (0.62 + 0.30 * np.clip(dist / 18.0, 0, 1))[..., None]
         f = f * (1 - a) + T * ao * a
     out.append(np.clip(f, 0, 255).astype(np.uint8))
 enc = subprocess.Popen(['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W_}x{H_}', '-r', '24', '-i', '-',

@@ -100,7 +100,10 @@ def retime(name, src, parts=None, crop=True, ramp=0.3, lid_in=0.0, lid_out=0.0, 
     wr = Writer(name); n = len(st)
     for k in range(n):
         Lf = min(vt[k], 3.0) * 0.75          # 270-degree shutter in source frames
-        f = at(st[k]) if vt[k] <= 1.25 else flow_frame(st[k], Lf)
+        fr_ = st[k] * FPS - round(st[k] * FPS)
+        if vt[k] > 1.25: f = flow_frame(st[k], Lf)
+        elif abs(fr_) < 0.03: f = at(st[k])
+        else: f = flow_frame(st[k], 0.0)            # in-between time: optical-flow interpolation, no double image
         if post: f = post(f, k, st)
         o = k / FPS; T = n / FPS
         if lid_in and o < lid_in:

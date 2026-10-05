@@ -2,7 +2,7 @@
 use a short dissolve (XF s). Writes raw3.mp4 and timeline12x.json with corrected start times."""
 import json, subprocess
 XF = 10 / 24
-DISSOLVE_BEFORE = {'SEG2A', 'DESK_TOSS', 'SEG3B'}
+DISSOLVE_BEFORE = {'SEG2A', 'SEG3B'}
 TL = json.load(open('timeline12.json')); segs = TL['segs']
 def dur(p): return float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', p], capture_output=True, text=True).stdout)
 # group consecutive segments; a new group starts at each dissolve label
