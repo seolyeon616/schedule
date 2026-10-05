@@ -62,6 +62,10 @@ def at(seg, src):
         if mp[0] - 1e-3 <= src <= mp[-1] + 0.05: return off + np.interp(src, mp, np.arange(len(mp))) / 24
         off += len(mp) / 24 - COMP[seg]['xj']
     raise ValueError((seg, src))
+def atc(seg, ci, src):
+    off = S(seg)
+    for ch in COMP[seg]['chains'][:ci]: off += len(MAPS[ch]) / 24 - COMP[seg]['xj']
+    mp = np.array(MAPS[COMP[seg]['chains'][ci]]); return off + np.interp(src, mp, np.arange(len(mp))) / 24
 REVEAL = S('HEAP_hold_sigh') - 0.15        # turn has settled on the heap
 RUSTLE = S('STARE_clean_room') + TLJ['extra']['rustle']
 SIGH_T = REVEAL + 0.7                         # a moment of total silence first
@@ -99,7 +103,7 @@ A = [(at('SEG1', 4.4), rustle(0.35), 0.5, '왼쪽 옷 부스럭'), (at('SEG1', 5
      (at('SEG1', 6.0), whoosh(0.35), 0.15, '고개 돌림'),
      (at('SEG1', 7.7), rustle(0.4), 0.5, '오른쪽 옷 부스럭'), (at('SEG1', 8.6), tak(600), 0.55, '스윽-탁!'),
      (at('SEG2A', 2.2), whoosh(0.3), 0.15, '고개 들기'),
-     (at('SEG2A', 4.9), rustle(0.6), 0.65, '셔츠 대충 쑤셔넣기 부스럭'), (at('SEG2A', 7.2), tak(380), 0.7, '옷장 문 탁'),
+     (atc('SEG2A', 1, 1.8), rustle(0.5), 0.55, '삐져나온 셔츠 잡음'), (atc('SEG2A', 1, 3.0), rustle(0.8), 0.65, '대충 쑤셔넣기 부스럭'), (atc('SEG2A', 1, 4.6), rustle(0.6), 0.6, '꾹꾹 밀어넣기'), (atc('SEG2A', 1, 7.6), tak(380), 0.7, '옷장 문 탁'),
      (L0 - 0.12, whoosh(0.3), 0.1, '깜빡 → 책상'),
      (L0 + 0.70, paper(0.35), 0.30, '노트북 스르륵 (천천히)'), (L0 + 1.55, tak(1100), 0.18, '각 맞춤 톡'),
      (L0 + 2.05, paper(0.22), 0.22, '다시 살짝 당김'), (L0 + 2.55, paper(0.22), 0.22, '다시 맞춤'),
