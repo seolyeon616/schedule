@@ -25,10 +25,8 @@ def zoom(f, k, st):
     return cv2.warpAffine(f, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
 add(retime('SEG1', 'g1c_fix.mp4', P1, ramp=0.45, lid_in=0.30, post=zoom), 'SEG1', ['SEG1'])
 # ---- 2. wardrobe: the shirt is already sticking out of the gap; look up, notice it, cram it in carelessly
-w_a = retime('SEG2Aa', 'g2a2_cl.mp4', [(1.45, 2.4, 1.6), (2.4, 3.4, 1.2)], ramp=0.4)
-# Flow clip (first frame = g2a2_cl @3.4): the stuffed wardrobe, shirt shoved back in carelessly, door pressed shut
-w_b = retime('SEG2Ab', 'w_new_full.mp4', [(0.3, 1.4, 1.8), (1.4, 6.2, 2.4), (6.2, 8.0, 1.5)], ramp=0.35, lid_out=0.18, black=0.06)
-add(xjoin('SEG2A', [w_a, w_b], 0.125), 'SEG2A', ['SEG2Aa', 'SEG2Ab'], 0.125)
+# Flow clip only: the shirt is already peeking out of the stuffed wardrobe; shoved back in carelessly, door pressed shut
+add(retime('SEG2A', 'w_new_full.mp4', [(0.0, 1.4, 1.1), (1.4, 6.2, 2.4), (6.2, 8.0, 1.5)], ramp=0.35, lid_out=0.18, black=0.06), 'SEG2A', ['SEG2A'])
 # ---- 3. desk (Flow clip): the notebook is shoved out of sight towards the viewer without a look,
 #      then the laptop is turned square to the desk edge and re-adjusted until it is exactly parallel
 SXc, SYc = 1920 / (1280 - 16), 1080 / (720 - 10)
@@ -41,7 +39,7 @@ def desk_post(f, k, st):
         cx, cy = dX(614), dY(430)
         M = np.array([[z, 0, (1 - z) * cx], [0, z, (1 - z) * cy]], np.float32)
         f = cv2.warpAffine(f, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
-    a = 0.55 * ss((t - 7.15) / 0.12) * (1 - ss((t - 7.62) / 0.2))
+    a = 0.0                                                    # guide lines removed (client: no thin lines)
     if a > 0.01:                                               # pencil guide lines: laptop edges parallel to the desk edge
         ov = np.zeros((H, W), np.uint8)
         for yy in (345, 514):

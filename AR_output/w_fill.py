@@ -99,23 +99,36 @@ sm = np.zeros_like(arr)
 for j in range(len(idx)):                         # temporal Gaussian over neighbouring valid frames (sigma 2 frames)
     w = np.exp(-0.5 * ((np.array(idx) - idx[j]) / 2.0) ** 2); w /= w.sum(); sm[j] = (w[:, None] * arr).sum(0)
 SM = {i: sm[j] for j, i in enumerate(idx)}
+# vertical placement of the stack: scale / offset from the tracked homography, smoothed hard (no shake)
+cy0 = H_ / 2
+sy_, ty_ = [], []
+for i in range(N):
+    p = cv2.perspectiveTransform(np.float32([[[640, 160]], [[640, 560]]]), Hs[i]).reshape(2, 2)
+    sy = (p[1, 1] - p[0, 1]) / 400.0; sy_.append(sy); ty_.append(p[0, 1] - 160 * sy)
+def gsm(v, sig):
+    v = np.array(v); r = int(3 * sig); k = np.exp(-0.5 * (np.arange(-r, r + 1) / sig) ** 2); k /= k.sum()
+    return np.convolve(np.pad(v, r, mode='edge'), k, mode='valid')
+SY, TY = gsm(sy_, 8.0), gsm(ty_, 8.0)
+cL = SM[CAN] if CAN in SM else SM[min(SM, key=lambda j: abs(j - CAN))]
+XX_ = np.arange(W_, dtype=np.float32)[None, :].repeat(H_, 0); YY_ = np.arange(H_, dtype=np.float32)[:, None].repeat(W_, 1)
 out = []
 for i in range(N):
     f = F[i].astype(np.float32)
     if i in SM:
         aL, bL, aR, bR, y0, y1 = SM[i]
-        xl = aL * YS + bL + 2.0; xr = aR * YS + bR - 2.0            # stay 2 px inside the door edges (edge lines stay drawn)
-        XX_ = np.arange(W_, dtype=np.float32)[None, :]
-        band = ((XX_ >= xl[:, None]) & (XX_ <= xr[:, None]) & (xr - xl > 3)[:, None]).astype(np.float32)
+        xl = aL * YS + bL; xr = aR * YS + bR
+        band = ((XX_ >= xl[:, None] + 0.5) & (XX_ <= xr[:, None] - 1.5) & (xr - xl > 3)[:, None]).astype(np.float32)
         band[:max(int(y0) - 6, 0)] = 0; band[min(int(y1) + 6, H_):] = 0
-        # occluders in front (hand, sleeve, orange shirt) keep the original pixels
         g = cv2.cvtColor(F[i], 6).astype(np.float32); sat = cv2.cvtColor(F[i], cv2.COLOR_BGR2HSV)[..., 1].astype(np.float32)
         occ = ((sat > 34) | (g > 165) | (g < 50)).astype(np.uint8)
         occ = cv2.morphologyEx(occ, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8)); occ = cv2.dilate(occ, np.ones((3, 3), np.uint8))
         m = band * (1 - occ)
-        T = cv2.warpPerspective(TEX, Hs[i], (W_, H_), flags=cv2.INTER_LINEAR)
-        V = cv2.warpPerspective(VAL, Hs[i], (W_, H_), flags=cv2.INTER_NEAREST)
-        a = cv2.GaussianBlur(m * V, (0, 0), 0.8)[..., None]
+        # texture is glued to the gap itself: x from the left door edge, y from the smoothed camera scale
+        ty = (YY_ - TY[i]) / SY[i]
+        xcan = cL[0] * ty + cL[1]
+        tx = xcan + (XX_ - xl[:, None]) / SY[i]
+        T = cv2.remap(TEX, tx.astype(np.float32), ty.astype(np.float32), cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        a = cv2.GaussianBlur(m, (0, 0), 0.8)[..., None]
         dist = np.minimum(np.abs(XX_ - xl[:, None]), np.abs(xr[:, None] - XX_))
         ao = (0.62 + 0.30 * np.clip(dist / 18.0, 0, 1))[..., None]
         f = f * (1 - a) + T * ao * a
