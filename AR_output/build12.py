@@ -15,7 +15,7 @@ def add(p, l, chains=(), xj=0.0):
 # ---- 0. opening (QC'd in v11)
 add('seg11/opening.mp4', 'opening')
 # ---- 1. floor clothes: slow walk-in, careless pushes, look right, second push
-P1 = [(0.0, 1.2, 1.6), (1.2, 2.6, 1.2), (2.6, 5.8, 3.0), (5.8, 7.4, 1.0), (7.4, 9.6, 2.7)]
+P1 = [(2.1, 2.6, 1.0), (2.6, 5.8, 3.0), (5.8, 7.4, 1.0), (7.4, 9.6, 2.7)]   # eyes open with the pile already lying in view
 def zoom(f, k, st):
     o = k / FPS
     o0 = np.searchsorted(st, 3.2) / FPS; o1 = np.searchsorted(st, 5.8) / FPS
@@ -23,7 +23,7 @@ def zoom(f, k, st):
     if s <= 1.0001: return f
     M = np.array([[s, 0, (1 - s) * W / 2], [0, s, (1 - s) * H * 0.35]], np.float32)
     return cv2.warpAffine(f, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
-add(retime('SEG1', 'g1c_cl.mp4', P1, ramp=0.45, lid_in=0.30, post=zoom), 'SEG1', ['SEG1'])
+add(retime('SEG1', 'g1c_fix.mp4', P1, ramp=0.45, lid_in=0.30, post=zoom), 'SEG1', ['SEG1'])
 # ---- 2. wardrobe: the shirt is already sticking out of the gap; look up, notice it, cram it in carelessly
 add(retime('SEG2A', 'g2a2_cl.mp4', [(1.45, 2.4, 1.6), (2.4, 3.9, 1.2), (3.9, 4.7, 1.0), (4.7, 7.95, 2.5)], ramp=0.4,
            lid_out=0.18, black=0.06), 'SEG2A', ['SEG2A'])
