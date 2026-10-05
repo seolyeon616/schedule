@@ -52,9 +52,8 @@ def desk_post(f, k, st):
 DESKP = [(0.4, 0.6, 1.0), (0.6, 1.42, 1.5), (1.42, 2.05, 0.75), (2.05, 3.1, 3.0), (3.1, 4.2, 2.4), (4.2, 5.2, 1.0), (5.2, 7.2, 1.0), (7.2, 7.85, 0.8)]
 add(retime('DESK', 'd_new.mp4', DESKP, ramp=0.22, lid_in=0.28, post=desk_post), 'DESK', ['DESK'])
 # ---- 5. bed: sweater thrown fast, duvet smoothed slowly
-a3 = retime('SEG3Ba', 'g3b.mp4', [(0.5, 1.05, 1.3)])
-b3 = retime('SEG3Bb', 'g3b.mp4', [(1.85, 2.7, 1.0), (2.7, 4.3, 2.8), (4.3, 5.3, 1.3), (5.3, 9.95, 1.9)], ramp=0.35, lid_out=0.18, black=0.06)
-add(xjoin('SEG3B', [a3, b3], 0.45), 'SEG3B', ['SEG3Ba', 'SEG3Bb'], 0.45)
+b3 = retime('SEG3Bb', 'g3b.mp4', [(2.0, 2.7, 1.0), (2.7, 4.3, 2.8), (4.3, 5.3, 1.3), (5.3, 9.95, 1.9)], ramp=0.35, lid_out=0.18, black=0.06)
+add(b3, 'SEG3B', ['SEG3Bb'])   # starts on the bed (the desk part of this clip would ghost through the dissolve)
 # ---- 6. box shoved away
 a4 = retime('SEG4Aa', 'g4a_fix.mp4', [(3.05, 4.4, 3.0), (4.4, 5.2, 3.0)], lid_in=0.28)
 b4 = retime('SEG4Ab', 'g4a_fix.mp4', [(5.1, 6.0, 2.4), (6.0, 7.4, 1.3), (7.4, 9.6, 3.0)])
