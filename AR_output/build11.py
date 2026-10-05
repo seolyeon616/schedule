@@ -53,9 +53,21 @@ def curve(parts, ramp):
     idx = np.minimum((np.arange(n) / FPS / do).astype(int), len(v) - 1)
     return s[idx], v[idx]
 
-def retime(name, src, parts, crop=True, ramp=0.3, lid_in=0.0, lid_out=0.0, black=0.0, post=None):
-    st, vt = curve(parts, ramp)
-    j0, fr = load(src, parts[0][0], parts[-1][1], crop)
+def path_curve(keys):
+    """keys: [(out_t, src_t)] -> smooth (C1, monotone between keys) source time per output frame"""
+    ko = np.array([k[0] for k in keys], float); ks = np.array([k[1] for k in keys], float)
+    n = int(round(ko[-1] * FPS)); o = np.arange(n) / FPS
+    i = np.clip(np.searchsorted(ko, o, side='right') - 1, 0, len(ko) - 2)
+    u = (o - ko[i]) / (ko[i + 1] - ko[i]); u = u * u * (3 - 2 * u)      # ease in/out at every key (direction changes stop softly)
+    st = ks[i] + (ks[i + 1] - ks[i]) * u
+    vt = np.abs(np.gradient(st)) * FPS
+    return st, vt
+def retime(name, src, parts=None, crop=True, ramp=0.3, lid_in=0.0, lid_out=0.0, black=0.0, post=None, path=None):
+    if path is not None:
+        st, vt = path_curve(path); lo, hi = float(st.min()), float(st.max())
+    else:
+        st, vt = curve(parts, ramp); lo, hi = parts[0][0], parts[-1][1]
+    j0, fr = load(src, lo, hi, crop)
     last = len(fr) - 1
     dis = cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM)
     gy = [None] * len(fr); fl = {}
