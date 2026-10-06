@@ -4,6 +4,7 @@
 Q(질문) → A(대답) 자막, 맑고 발랄한 어쿠스틱 팝 BGM(직접 합성)과 셔터 소리.
 
 usage: python3 film05_interview.py <uploads_dir> <overlay_dir> <out.mp4>
+       CUT=short 이면 15초 미만 숏컷 버전 (제품 크레딧 컷 생략, 컷 길이 압축)
 """
 import glob
 import os
@@ -21,20 +22,35 @@ up, ovdir, out = [os.path.abspath(p) for p in sys.argv[1:4]]
 SR, FPS = 48000, 24
 rng = np.random.default_rng(5)
 
+MODE = os.environ.get("CUT", "full")
 # (이름, 파일 id, 시작, 끝, 줌 시작, 줌 끝)
-SEGS = [
-    ("g1", "81cc241a", 0.3, 3.0, 1.00, 1.03),   # 손 인사 + 타이틀
-    ("g2a", "8102e669", 0.2, 1.7, 1.00, 1.02),  # 앰플 기울이기 (질문)
-    ("g2b", "8102e669", 5.6, 7.6, 1.10, 1.12),  # 카메라 보며 미소 (대답, 점프컷)
-    ("g3", "c105f591", 0.0, 2.6, 1.00, 1.04),   # 손등에 한 방울
-    ("g4a", "0e83542a", 0.3, 2.1, 1.00, 1.02),  # 볼 톡톡 (질문)
-    ("g4b", "0e83542a", 5.2, 7.2, 1.10, 1.12),  # 거울 보며 미소 (대답, 점프컷)
-    ("g5", "fe92c77d", 3.0, 5.6, 1.00, 1.04),   # 제품 히어로
-    ("g6a", "814daa9c", 0.0, 3.4, 1.00, 1.03),  # 윙크 → 미소
-    ("g6b", "814daa9c", 8.4, 10.0, 1.00, 1.02), # 문 열고 나감
-]
-END_ID, END_SS, END = "451fc5a4", 1.0, 3.2       # 엔딩 패키샷 (크림 스튜디오 앰플 푸시인)
-SCENE_CUTS = {1, 3, 4, 6, 7, 9}                 # 장면이 바뀌는 컷 (셔터 소리)
+if MODE == "short":
+    SEGS = [
+        ("g1", "81cc241a", 0.3, 2.3, 1.00, 1.03),
+        ("g2a", "8102e669", 0.2, 1.2, 1.00, 1.02),
+        ("g2b", "8102e669", 5.8, 7.2, 1.10, 1.12),
+        ("g3", "c105f591", 0.0, 1.8, 1.00, 1.04),
+        ("g4a", "0e83542a", 0.3, 1.5, 1.00, 1.02),
+        ("g4b", "0e83542a", 5.4, 6.8, 1.10, 1.12),
+        ("g6a", "814daa9c", 0.0, 2.6, 1.00, 1.03),
+        ("g6b", "814daa9c", 9.0, 10.0, 1.00, 1.02),
+    ]
+    END_ID, END_SS, END = "451fc5a4", 1.6, 2.2
+else:
+    SEGS = [
+        ("g1", "81cc241a", 0.3, 3.0, 1.00, 1.03),   # 손 인사 + 타이틀
+        ("g2a", "8102e669", 0.2, 1.7, 1.00, 1.02),  # 앰플 기울이기 (질문)
+        ("g2b", "8102e669", 5.6, 7.6, 1.10, 1.12),  # 카메라 보며 미소 (대답, 점프컷)
+        ("g3", "c105f591", 0.0, 2.6, 1.00, 1.04),   # 손등에 한 방울
+        ("g4a", "0e83542a", 0.3, 2.1, 1.00, 1.02),  # 볼 톡톡 (질문)
+        ("g4b", "0e83542a", 5.2, 7.2, 1.10, 1.12),  # 거울 보며 미소 (대답, 점프컷)
+        ("g5", "fe92c77d", 3.0, 5.6, 1.00, 1.04),   # 제품 히어로
+        ("g6a", "814daa9c", 0.0, 3.4, 1.00, 1.03),  # 윙크 → 미소
+        ("g6b", "814daa9c", 8.4, 10.0, 1.00, 1.02), # 문 열고 나감
+    ]
+    END_ID, END_SS, END = "451fc5a4", 1.0, 3.2   # 엔딩 패키샷 (크림 스튜디오 앰플 푸시인)
+# 장면이 바뀌는 컷 (셔터 소리): 이름 앞 두 글자(g1, g2…)가 달라지는 곳 + 엔딩
+SCENE_CUTS = {i for i in range(1, len(SEGS)) if SEGS[i][0][:2] != SEGS[i - 1][0][:2]} | {len(SEGS)}
 
 
 def dur(p):
@@ -226,29 +242,34 @@ with wave.open(bgm, "wb") as w:
     w.writeframes((mix * 32767).astype(np.int16).tobytes())
 
 # ---------- 3) 자막 합성 (Q 먼저, 점프컷에 A) ----------
-s = starts
-OV = [("title", s[0] + .25, s[1], True),
-      ("q1", s[1] + .1, s[2], True), ("qa1", s[2], s[3], False),
-      ("step", s[3] + .2, s[4], True),
-      ("q2", s[4] + .1, s[5], True), ("qa2", s[5], s[6], False),
-      ("credit", s[6] + .3, s[7], True),
-      ("q3", s[7] + .2, s[7] + 1.8, True), ("qa3", s[7] + 1.8, s[8] + 1.0, False),
-      ("endlogo", s[9] + .3, TOTAL, True)]
+st = {name: starts[i] for i, (name, *_) in enumerate(SEGS)}
+st["end"] = starts[-1]
+en = {name: (starts[i + 1]) for i, (name, *_) in enumerate(SEGS)}
+OV = [("title", st["g1"] + .25, en["g1"], True),
+      ("q1", st["g2a"] + .1, en["g2a"], True), ("qa1", st["g2b"], en["g2b"], False),
+      ("step", st["g3"] + .2, en["g3"], True),
+      ("q2", st["g4a"] + .1, en["g4a"], True), ("qa2", st["g4b"], en["g4b"], False)]
+if "g5" in st:
+    OV.append(("credit", st["g5"] + .3, en["g5"], True))
+qa3_at = st["g6a"] + (1.8 if MODE != "short" else 1.3)
+OV += [("q3", st["g6a"] + .2, qa3_at, True), ("qa3", qa3_at, min(en["g6a"] + 1.0, st["end"] - .3), False),
+       ("endlogo", st["end"] + .3, TOTAL, True)]
 inputs = ["-i", body, "-i", bgm]
 fc = ["[0:v]noise=alls=5:allf=t,format=yuv420p[v0]"]
 lastv = "v0"
-for i, (png, st, en, fade_in) in enumerate(OV):
+for i, (png, t0, t1, fade_in) in enumerate(OV):
     inputs += ["-loop", "1", "-t", f"{TOTAL:.3f}", "-i", os.path.join(ovdir, png + ".png")]
     k = i + 2
-    fi = f"fade=t=in:st={st:.3f}:d=0.2:alpha=1," if fade_in else ""
-    fo_ = f"fade=t=out:st={en - .15:.3f}:d=0.15:alpha=1" if png.startswith(("qa", "title", "step", "credit", "endlogo")) else "null"
+    fi = f"fade=t=in:st={t0:.3f}:d=0.2:alpha=1," if fade_in else ""
+    fo_ = f"fade=t=out:st={t1 - .15:.3f}:d=0.15:alpha=1" if png.startswith(("qa", "title", "step", "credit", "endlogo")) else "null"
     fc.append(f"[{k}:v]format=rgba,{fi}{fo_}[o{i}]")
-    fc.append(f"[{lastv}][o{i}]overlay=enable='between(t,{st:.3f},{en:.3f})'[v{i + 1}]")
+    fc.append(f"[{lastv}][o{i}]overlay=enable='between(t,{t0:.3f},{t1:.3f})'[v{i + 1}]")
     lastv = f"v{i + 1}"
 inputs += ["-f", "lavfi", "-t", f"{TOTAL:.3f}", "-i", "color=c=white:s=1080x1920:r=24"]
 w = len(OV) + 2
-fc.append(f"[{w}:v]format=rgba,fade=t=in:st={s[9] - .25:.3f}:d=0.25:alpha=1,fade=t=out:st={s[9]:.3f}:d=0.45:alpha=1[wf]")
-fc.append(f"[{lastv}][wf]overlay=enable='between(t,{s[9] - .25:.3f},{s[9] + .45:.3f})'[vw]")
+t_w = st["end"]
+fc.append(f"[{w}:v]format=rgba,fade=t=in:st={t_w - .25:.3f}:d=0.25:alpha=1,fade=t=out:st={t_w:.3f}:d=0.45:alpha=1[wf]")
+fc.append(f"[{lastv}][wf]overlay=enable='between(t,{t_w - .25:.3f},{t_w + .45:.3f})'[vw]")
 lastv = "vw"
 fc.append(f"[{lastv}]fade=t=in:st=0:d=0.2,fade=t=out:st={TOTAL - .4:.3f}:d=0.4,format=yuv420p[vout]")
 fc.append("[0:a]volume=0.30[sfx]")
