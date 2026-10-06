@@ -33,7 +33,7 @@ SEGS = [
     ("g6a", "814daa9c", 0.0, 3.4, 1.00, 1.03),  # 윙크 → 미소
     ("g6b", "814daa9c", 8.4, 10.0, 1.00, 1.02), # 문 열고 나감
 ]
-END = 2.8                                       # 엔딩 패키샷 (G5 와이드 0~2.8초)
+END_ID, END_SS, END = "451fc5a4", 1.0, 3.2       # 엔딩 패키샷 (크림 스튜디오 앰플 푸시인)
 SCENE_CUTS = {1, 3, 4, 6, 7, 9}                 # 장면이 바뀌는 컷 (셔터 소리)
 
 
@@ -69,12 +69,11 @@ for name, fid, a, b, z0, z1 in SEGS:
     starts.append(t)
     parts.append(p)
     t += n / FPS
-# 엔딩: 물결 위 제품 패키샷 (G5 앞부분 와이드) + 로고
+# 엔딩: 크림 스튜디오 앰플 패키샷 + 로고
 n = round(END * FPS)
 endp = os.path.join(tmp, "end.mov")
-run(["-t", f"{END}", "-i", src("fe92c77d"), "-vf",
-     f"fps={FPS},scale=2160:3840,zoompan=z='1.0+0.05*in/{n}':d=1:x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':"
-     f"s=1080x1920:fps={FPS},{GRADE},setsar=1", "-af", "aresample=48000", "-frames:v", str(n),
+run(["-ss", f"{END_SS}", "-t", f"{END}", "-i", src(END_ID), "-f", "lavfi", "-t", f"{END}", "-i",
+     "anullsrc=r=48000:cl=stereo", "-vf", f"fps={FPS},{GRADE},setsar=1", "-map", "0:v", "-map", "1:a", "-frames:v", str(n),
      "-c:v", "libx264", "-crf", "12", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "pcm_s16le", "-ac", "2", endp])
 starts.append(t)
 parts.append(endp)
