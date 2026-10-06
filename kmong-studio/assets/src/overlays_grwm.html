@@ -79,4 +79,6 @@ section{width:1080px;height:1920px;position:relative;overflow:hidden}
     <div class="kick" style="margin-top:30px;color:#7a6f64;margin-right:-.42em">HYDRO AMPOULE</div>
   </div>
 </section>
+<script>/* 질문만 있는 버전(q1~q3): 대답 전에 먼저 띄움 */
+[["qa1","q1"],["qa2","q2"],["qa3","q3"]].forEach(([a,q])=>{const c=document.getElementById(a).cloneNode(true);c.id=q;c.querySelector(".a").style.visibility="hidden";document.getElementById(a).before(c);});</script>
 </body></html>
