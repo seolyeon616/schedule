@@ -5,11 +5,14 @@
 @font-face{font-family:"Bodoni";font-weight:400;src:url(node_modules/@fontsource/bodoni-moda/files/bodoni-moda-latin-400-normal.woff2)}
 @font-face{font-family:"Bodoni";font-weight:400;font-style:italic;src:url(node_modules/@fontsource/bodoni-moda/files/bodoni-moda-latin-400-italic.woff2)}
 @font-face{font-family:"Bodoni";font-weight:500;font-style:italic;src:url(node_modules/@fontsource/bodoni-moda/files/bodoni-moda-latin-500-italic.woff2)}
+@font-face{font-family:"Bodoni";font-weight:900;src:url(node_modules/@fontsource/bodoni-moda/files/bodoni-moda-latin-900-normal.woff2)}
 @font-face{font-family:"Bodoni";font-weight:700;src:url(node_modules/@fontsource/bodoni-moda/files/bodoni-moda-latin-700-normal.woff2)}
 </style>
 <link rel="stylesheet" href="node_modules/@fontsource/noto-serif-kr/500.css">
 <link rel="stylesheet" href="node_modules/@fontsource/noto-serif-kr/700.css">
 <link rel="stylesheet" href="node_modules/@fontsource/montserrat/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/montserrat/600.css">
+<link rel="stylesheet" href="node_modules/pretendard/dist/web/static/pretendard.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:transparent;-webkit-font-smoothing:antialiased}
@@ -69,15 +72,11 @@ section{width:1080px;height:1920px;position:relative;overflow:hidden}
     <div class="a">음… 백 점?</div>
   </div></section>
 
-<!-- 엔딩: 흰 화보 페이지 -->
-<section id="endlogo" style="background:radial-gradient(ellipse 85% 42% at 50% 47%,rgba(255,252,248,.9),rgba(255,252,248,.55) 70%,rgba(255,252,248,.25))">
-  <div style="position:absolute;left:0;right:0;top:690px;text-align:center;color:#1d1a17">
-    <div style="font-family:Bodoni;font-style:italic;font-size:44px;color:#5d554d">Haru's Beauty Secrets</div>
-    <div style="width:64px;height:2px;background:#1d1a17;margin:36px auto"></div>
-    <div style="font-family:Bodoni;font-weight:400;font-size:176px;letter-spacing:.12em;margin-right:-.12em;line-height:1">MULGYUL</div>
-    <div style="font-family:'Noto Serif KR';font-weight:700;font-size:46px;margin-top:40px">물처럼 가볍게, 하루 종일 촉촉하게</div>
-    <div class="kick" style="margin-top:30px;color:#7a6f64;margin-right:-.42em">HYDRO AMPOULE</div>
-  </div>
+<!-- 엔딩: 앰플 패키샷 위 흰 로고 하나만 -->
+<section id="endlogo">
+  <div style="position:absolute;left:0;right:0;top:340px;height:300px;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(20,40,40,.22),transparent 75%)"></div>
+  <div style="position:absolute;left:0;right:0;top:400px;text-align:center;font-family:Bodoni;font-weight:900;font-size:166px;line-height:1;letter-spacing:.03em;margin-right:-.03em;color:#fff;
+    text-shadow:0 2px 6px rgba(0,0,0,.28),0 0 40px rgba(10,40,40,.35)">MULGYUL</div>
 </section>
 <script>/* 질문만 있는 버전(q1~q3): 대답 전에 먼저 띄움 */
 [["qa1","q1"],["qa2","q2"],["qa3","q3"]].forEach(([a,q])=>{const c=document.getElementById(a).cloneNode(true);c.id=q;c.querySelector(".a").style.visibility="hidden";document.getElementById(a).before(c);});</script>

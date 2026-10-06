@@ -33,7 +33,7 @@ SEGS = [
     ("g6a", "814daa9c", 0.0, 3.4, 1.00, 1.03),  # 윙크 → 미소
     ("g6b", "814daa9c", 8.4, 10.0, 1.00, 1.02), # 문 열고 나감
 ]
-END = 2.8                                       # 흐린 엔딩 로고 카드
+END = 2.8                                       # 엔딩 패키샷 (G5 와이드 0~2.8초)
 SCENE_CUTS = {1, 3, 4, 6, 7, 9}                 # 장면이 바뀌는 컷 (셔터 소리)
 
 
@@ -69,14 +69,13 @@ for name, fid, a, b, z0, z1 in SEGS:
     starts.append(t)
     parts.append(p)
     t += n / FPS
-# 엔딩: 마지막 프레임을 멈추고 흐리게
-last = os.path.join(tmp, "last.png")
-run(["-sseof", "-0.1", "-i", parts[-1], "-frames:v", "1", "-update", "1", last])
+# 엔딩: 물결 위 제품 패키샷 (G5 앞부분 와이드) + 로고
+n = round(END * FPS)
 endp = os.path.join(tmp, "end.mov")
-run(["-loop", "1", "-t", f"{END}", "-i", last, "-f", "lavfi", "-t", f"{END}", "-i", "anullsrc=r=48000:cl=stereo",
-     "-filter_complex", f"[0:v]fps={FPS},split[a][b];[b]gblur=sigma=32:steps=2,eq=brightness=0.03,format=rgba,"
-     "fade=t=in:st=0:d=0.7:alpha=1[bl];[a][bl]overlay,format=yuv420p[v]", "-map", "[v]", "-map", "1:a",
-     "-c:v", "libx264", "-crf", "12", "-preset", "medium", "-c:a", "pcm_s16le", endp])
+run(["-t", f"{END}", "-i", src("fe92c77d"), "-vf",
+     f"fps={FPS},scale=2160:3840,zoompan=z='1.0+0.05*in/{n}':d=1:x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':"
+     f"s=1080x1920:fps={FPS},{GRADE},setsar=1", "-af", "aresample=48000", "-frames:v", str(n),
+     "-c:v", "libx264", "-crf", "12", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "pcm_s16le", "-ac", "2", endp])
 starts.append(t)
 parts.append(endp)
 TOTAL = t + END
@@ -196,7 +195,7 @@ OV = [("title", s[0] + .25, s[1], True),
       ("q2", s[4] + .1, s[5], True), ("qa2", s[5], s[6], False),
       ("credit", s[6] + .3, s[7], True),
       ("q3", s[7] + .2, s[7] + 1.8, True), ("qa3", s[7] + 1.8, s[8] + 1.0, False),
-      ("endlogo", s[9] + .35, TOTAL, True)]
+      ("endlogo", s[9] + .3, TOTAL, True)]
 inputs = ["-i", body, "-i", bgm]
 fc = ["[0:v]noise=alls=5:allf=t,format=yuv420p[v0]"]
 lastv = "v0"
@@ -208,6 +207,11 @@ for i, (png, st, en, fade_in) in enumerate(OV):
     fc.append(f"[{k}:v]format=rgba,{fi}{fo_}[o{i}]")
     fc.append(f"[{lastv}][o{i}]overlay=enable='between(t,{st:.3f},{en:.3f})'[v{i + 1}]")
     lastv = f"v{i + 1}"
+inputs += ["-f", "lavfi", "-t", f"{TOTAL:.3f}", "-i", "color=c=white:s=1080x1920:r=24"]
+w = len(OV) + 2
+fc.append(f"[{w}:v]format=rgba,fade=t=in:st={s[9] - .25:.3f}:d=0.25:alpha=1,fade=t=out:st={s[9]:.3f}:d=0.45:alpha=1[wf]")
+fc.append(f"[{lastv}][wf]overlay=enable='between(t,{s[9] - .25:.3f},{s[9] + .45:.3f})'[vw]")
+lastv = "vw"
 fc.append(f"[{lastv}]fade=t=in:st=0:d=0.2,fade=t=out:st={TOTAL - .4:.3f}:d=0.4,format=yuv420p[vout]")
 fc.append("[0:a]volume=0.30[sfx]")
 fc.append(f"[1:a]atrim=0:{TOTAL:.3f},volume=0.9[bg]")
