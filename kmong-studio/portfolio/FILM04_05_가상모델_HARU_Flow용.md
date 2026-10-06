@@ -226,6 +226,21 @@ Audio: keys jingling, a door opening, morning street sounds outside.
 
 ---
 
+### FILM 05 재작업 v2 (G1·G2·G4·G6) — 실제 생성 결과 반영
+- G1 1차: 영상 단계에 H1을 첨부해서 회색 스튜디오 컷이 나옴 → **영상엔 반드시 G1 이미지(침실)를 첨부**
+- 헤어가 달라짐 → 이미지 프롬프트에 머리 모양을 직접 적음
+- 영상 거절 방지 → `the same woman from the first frame` 삭제
+- 가방은 복제되므로 G6에서 가방을 뺌. 손 동작은 1개만
+- H1이 없으면 G4 이미지(정면 얼굴)를 얼굴 기준으로 첨부
+
+**이미지 공통 첫 줄:** `Use the attached image as the reference for the woman's face, hair, beauty mark and earrings: shoulder-length dark brown hair with soft layers and light see-through bangs, a small beauty mark under one eye, small silver hoop earrings.`
+- G1: bedroom selfie, cream cardigan, one hand raised in a small wave at shoulder height, palm toward camera
+- G2: vanity table, holding the ampoule at chest height, (첨부 H1 → P1)
+- G4: round mirror, fingertips resting on cheek, eyes softly closed
+- G6: front door, light blue shirt, no bag, one hand on the door handle, glancing back over her shoulder with a wink
+
+---
+
 ## 2. QC (두 편 공통)
 - [ ] 모든 컷의 얼굴이 H1과 같은 사람 (특히 **왼쪽 눈 아래 점**)
 - [ ] 손가락 5개, 자연스러운 손 모양
