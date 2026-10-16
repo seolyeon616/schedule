@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH });
+const p = await b.newPage({ deviceScaleFactor: 1, viewport: { width: 900, height: 900 } });
+await p.goto("file:///home/user/schedule/kmong-studio/assets/src/index.html");
+await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(400);
+const el = p.locator("#detail-one");
+await el.screenshot({ path: "/home/user/schedule/kmong-studio/assets/detail-one-mobile.jpg", type: "jpeg", quality: 88 });
+await p.evaluate(() => window.scrollTo(0, 0)); const box = await el.boundingBox(); const h = Math.ceil(box.height / 3);
+for (let i = 0; i < 3; i++) await p.screenshot({ path: `/home/user/schedule/kmong-studio/assets/detail-one-part${i+1}.jpg`, type: "jpeg", quality: 90, fullPage: true, clip: { x: box.x, y: box.y + i*h, width: box.width, height: Math.min(h, box.height - i*h) } });
+await b.close();
