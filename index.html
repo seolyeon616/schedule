@@ -96,6 +96,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--t1);
 .tag-admin{background:var(--orange-l);color:var(--orange);}
 .tag-notice{background:var(--green-l);color:var(--green);}
 .tag-finance{background:var(--purple-l);color:var(--purple);}
+.tag-ttak{background:#e3f6f4;color:#0f8a7e;}
 .tc-time{font-size:11px;color:var(--t3);}
 .tc-note{font-size:11px;color:var(--t3);margin-top:2px;line-height:1.4;}
 .tc-acts{display:flex;gap:5px;flex-shrink:0;}
@@ -258,6 +259,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--t1);
      <option value="admin">🟡 내부행정</option>
      <option value="notice">🟢 공지</option>
      <option value="finance">🟣 금융</option>
+     <option value="ttak">🎬 뚝딱컷</option>
     </select>
    </div>
    <div>
@@ -431,6 +433,37 @@ function initData(){
   localStorage.setItem('sched_init','1');
 }
 
+
+// ── 뚝딱컷: 전국 AI 영상 공모전 마감 일정 (2026-10-16 조사, 한 번만 추가) ──
+const AI_CONTESTS = [
+  {d:'2026-10-18',t:'',n:'제44회 교통안전 홍보작품 공모전 (도로교통공단)',note:'광고영상 1분30초~3분 16:9 / 숏폼 20초~1분 9:16 · AI 활용 · 전국민 · 대상 200만 · koroad-contest.kr'},
+  {d:'2026-10-18',t:'',n:'제6회 별별화성 Awards AI CF 공모전 (화성특례시)',note:'생성형 AI CF·숏폼 · AI CF 대상 1,000만 · aihscity.com'},
+  {d:'2026-10-19',t:'',n:'고성 해양심층수 브랜드 AI 영상 공모전',note:'30~60초 가로형 · AI 제작 누구나 · 결과 10/23 · 시상식 10/26 현장참석 필수'},
+  {d:'2026-10-22',t:'',n:'2026 해양안전 콘텐츠 공모전 — AI 영상 분야 (해수부·해경)',note:'AI 활용 90초 이내 9:16 · 해양안전 주제 · 모든 국민'},
+  {d:'2026-10-25',t:'23:59',n:'2026 AI 활용 저작권 콘텐츠 공모전 (문체부·저작권위)',note:'생성형 AI 1분 이내 세로 숏폼 · 국민 누구나 · 총 190만(대상 100만) · 구글폼 · 사용 AI 도구 기재'},
+  {d:'2026-10-26',t:'',n:'외교부 제2회 KOREAZ 콘텐츠 공모전 (AI 영상)',note:'16:9 FHD mp4/mov · SNS 업로드 + #YouthFULL Tomorrow + 구글폼 · 마감 10/26~10/31 출처마다 다름 → 10/26 기준 제출'},
+  {d:'2026-10-30',t:'23:59',n:'BytePlus × AI-Kive Seedance AI 시리즈 제작지원 공모전',note:'16:9 30초~1분 시리즈 프롤로그 + 시놉시스 · 8팀 375만 크레딧 · Powered by Seedance 표기 · aikive.com'},
+  {d:'2026-10-31',t:'23:59',n:'2026 전국민 AI 활용 사례 공모전 시즌3 (과기정통부)',note:'1분 이내 숏폼 또는 블로그 · 총 3,400만 · 11월 결선 · 12월 시상'},
+  {d:'2026-10-31',t:'23:59',n:'모두의 프로듀서 시즌2 — AI 뮤직비디오 (과기정통부)',note:'총 550만(대상 300만) · 결과 11/26'},
+  {d:'2026-11-16',t:'17:00',n:'아산시시설관리공단 숏폼 콘텐츠 공모전 (AI 허용)',note:'15~60초 세로 · 이메일 접수 · ※ 올해 공고인지 공단 홈페이지에서 확인 필요'},
+  {d:'2026-12-28',t:'23:59',n:'NEXMUSE AI Music Video Contest 2027',note:'지정 AI 아이돌 캐릭터 24명 중 1명 주인공 · 유튜브 링크 이메일 제출(aiartslab@gmail.com) · 시상 2027-01-30'},
+];
+function seedContests(){
+  const KEY='seed_aicontest_2026h2';
+  if(localStorage.getItem(KEY)) return;
+  const tasks=load('tasks');
+  AI_CONTESTS.forEach(c=>{
+    const days=Math.round((new Date(c.d+'T00:00:00')-new Date('2026-10-16T00:00:00'))/86400000);
+    tasks.push({id:uid(),date:c.d,name:'[AI공모전 마감] '+c.n,tag:'ttak',pri:days<=10?'high':'mid',time:c.t,note:c.note+' · 접수 전 주최 공고 재확인',done:false});
+  });
+  save('tasks',tasks);
+  const reminds=load('reminds');
+  reminds.unshift({id:uid(),icon:'📌',title:'뚝딱컷 — AI 영상 공모전 마감 일정',
+    desc:AI_CONTESTS.map(c=>`${+c.d.slice(5,7)}/${+c.d.slice(8)} ${c.n}`).join(' · ')+' ※ 개인 참가만 받는 곳이 있으니 법인(제이티온) 참가 가능 여부 확인'});
+  save('reminds',reminds);
+  localStorage.setItem(KEY,'1');
+}
+
 // ── CALENDAR ──
 function renderCalendar(){
   const strip = $('calStrip');
@@ -527,8 +560,8 @@ function renderCurrentTab(){
 }
 
 // ── TASKS ──
-const TAG_LABELS = {urgent:'긴급',meeting:'회의/교육',admin:'내부행정',notice:'공지',finance:'금융'};
-const TAG_CLS = {urgent:'tag-urgent',meeting:'tag-meeting',admin:'tag-admin',notice:'tag-notice',finance:'tag-finance'};
+const TAG_LABELS = {urgent:'긴급',meeting:'회의/교육',admin:'내부행정',notice:'공지',finance:'금융',ttak:'뚝딱컷'};
+const TAG_CLS = {urgent:'tag-urgent',meeting:'tag-meeting',admin:'tag-admin',notice:'tag-notice',finance:'tag-finance',ttak:'tag-ttak'};
 
 function renderTasks(){
   const dKey = dateKey(selDate);
@@ -793,6 +826,7 @@ if('serviceWorker' in navigator){
 
 // ── BOOT ──
 initData();
+seedContests();
 renderDateLabel();
 renderCalendar();
 renderTasks();
